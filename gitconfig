@@ -1,0 +1,14 @@
+[user]
+	email = HE7086@users.noreply.github.com
+	name = HE&)*^
+[core]
+	editor = vim
+[github]
+    user = HE7086
+[color]
+	ui = auto
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = auto
+	grep = auto

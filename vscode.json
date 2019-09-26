@@ -1,0 +1,25 @@
+{
+    "workbench.colorTheme": "One Dark Pro",
+    "window.titleBarStyle": "custom",
+    "editor.fontFamily": "'Fira Code Retina'",
+    "editor.fontLigatures": true,
+    "vim.enableNeovim": true,
+    "vim.neovimPath": "/usr/bin/nvim",
+    "vim.incsearch": true,
+    "vim.ignorecase": true,
+    "vim.smartcase": true,
+    "vim.hlsearch": true,
+    "vim.showcmd": true,
+    "vim.surround": true,
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["Z", "S"],
+            "commands": [":w"]
+        },
+        {
+            "before": ["Z", "Z"],
+            "commands": [":wq"]
+        },
+    ],
+    "editor.lineNumbers": "relative",
+}
