@@ -2,7 +2,7 @@
 	email = HE7086@users.noreply.github.com
 	name = HE&)*^
 [core]
-	editor = vim
+	editor = nvim
 [github]
     user = HE7086
 [color]

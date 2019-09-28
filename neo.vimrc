@@ -1,6 +1,13 @@
 scriptencoding utf-8
 set nocompatible
 
+" auto install for first time
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Use colours and encoding
 set encoding=utf-8
 " set termguicolors
@@ -30,6 +37,7 @@ filetype plugin on
 
 "set cursorline cursorcolumn
 
+" scrolling settings
 set nofoldenable
 set sidescroll=1
 set sidescrolloff=8
@@ -94,9 +102,9 @@ noremap! <A-j> <down>
 noremap! <A-k> <up>
 noremap! <A-l> <right>
 " Alt + 0/1/2 -> line begin/start of text/end
-nnoremap <A-1> 0
-nnoremap <A-2> ^
-nnoremap <A-3> $
+noremap <A-1> 0
+noremap <A-2> ^
+noremap <A-3> $
 " use system clip board accordingly
 noremap <A-y> "*y
 noremap <A-p> "*p
@@ -123,6 +131,8 @@ nmap <A-c> gcc
 vmap <A-c> gc
 " insert the current date and time
 inoremap <silent> <insert>date <C-R>=strftime('%c')<CR>
+" toggle markdown preview
+nmap <silent> <F5> <Plug>MarkdownPreviewToggle
 
 "toggle transparent background, deprecated
 " let t:is_transparent = 0
@@ -160,6 +170,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mhinz/vim-startify'
 Plug 'Konfekt/vim-CtrlXA'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'ryanoasis/vim-devicons'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 call plug#end()
 
 "------------------------------------------------
@@ -243,3 +255,6 @@ let g:CtrlXA_Toggles = [
             \ ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'],
             \ ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
             \ ]
+
+" devIcon settings
+let g:WebDevIconsOS = 'Linux'
