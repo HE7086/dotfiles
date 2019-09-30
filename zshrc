@@ -1,12 +1,25 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.config/oh-my-zsh"
 
+# auto install for first time
+if [ ! -e $ZSH/oh-my-zsh.sh ]
+then
+    mkdir -p $ZSH
+    curl -Lo /tmp/install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    ZSH=$ZSH /tmp/install.sh --unattended
+    git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions
+    git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
+fi
+
+
+
+
 autoload -U colors && colors
 
-autoload -U compinit
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-compinit
+
 # Use vim keys in tab complete menu
 bindkey -v
 export KEYTIMEOUT=1
@@ -69,12 +82,32 @@ DISABLE_UPDATE_PROMPT="true"
 # much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+#------------------------------------------------
+# plugin settings
+#------------------------------------------------
+ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+# ZSH_AUTOSUGGEST_MANUAL_REBIND=1
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+autoload autosuggest-accept
+zle -N autosuggest-accept
+bindkey '^ ' autosuggest-accept
+
 # Which plugins would you like to load?
 # Standard plugins can be found in ~/.oh-my-zsh/plugins/*
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse zsh-syntax-highlighting)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting vi-mode fancy-ctrl-z)
+plugins=(
+    vi-mode
+    fancy-ctrl-z
+    zsh-completions
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+)
+
+autoload -U compinit 
+compinit
 
 source $ZSH/oh-my-zsh.sh
 

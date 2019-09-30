@@ -3,9 +3,9 @@ set nocompatible
 
 " auto install for first time
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+                \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 " Use colours and encoding
@@ -119,7 +119,8 @@ nnoremap <F7> :set wrap!<CR>
 " toggle list - show all characters
 nnoremap <F8> :set list!<CR>
 " Format the hole file and delete space at the end of line
-nnoremap <silent> =-= mmgg=G:%s/\s\+$//<CR>'m
+nnoremap <silent> =-= mmgg=G'm
+nnoremap <silent> =--= mmgg=G:%s/\s\+$//<CR>'m
 " Save without exit
 nnoremap ZS :w<CR>
 " Abort all changes
@@ -133,20 +134,8 @@ vmap <A-c> gc
 inoremap <silent> <insert>date <C-R>=strftime('%c')<CR>
 " toggle markdown preview
 nmap <silent> <F5> <Plug>MarkdownPreviewToggle
-
-"toggle transparent background, deprecated
-" let t:is_transparent = 0
-" function! Toggle_transparent()
-"     if t:is_transparent == 0
-"         hi Normal guibg=NONE ctermbg=NONE
-"         let t:is_transparent = 1
-"     else
-"         set background=dark
-"         let t:is_tranparent = 0
-"     endif
-" endfunction
-" nnoremap <F3> : call Toggle_transparent()<CR>
-
+" run startify
+nnoremap <silent> ZA :Startify<CR>
 
 " terminal behaviour
 let g:neoterm_autoscroll = 1
@@ -156,22 +145,27 @@ autocmd TermOpen term://* startinsert
 " vim-plug settings
 "------------------------------------------------
 call plug#begin('~/.config/nvim/plugged')
+" Editor Functionality
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'Konfekt/vim-CtrlXA'
+" Themes and Colors
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'rakr/vim-one'
+Plug 'ryanoasis/vim-devicons'
+" External Functionalities
 Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mhinz/vim-startify'
-Plug 'Konfekt/vim-CtrlXA'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'ryanoasis/vim-devicons'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Browser extensions
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
 call plug#end()
 
 "------------------------------------------------
@@ -216,17 +210,17 @@ let g:startify_lists = [
 let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'}, {'z': '~/.zshrc'} ]
 "let g:startify_commands = [ {'Vim Help Page': 'help'} ]
 let g:startify_custom_header = [
-            \ "         _   _ _______   _____ _____ ___   ___   __   ",
-            \ "        | | | | ____\\ \\ / /_ _|___  / _ \\ ( _ ) / /_  ",
-            \ "        | |_| |  _|  \\ V / | |   / / | | |/ _ \\| '_ \\ ",
+            \ "         _   _ _______   _____ _____ ___   ___   __",
+            \ "        | | | | ____\\ \\ / /_ _|___  / _ \\ ( _ ) / /_",
+            \ "        | |_| |  _|  \\ V / | |   / / | | |/ _ \\| '_ \\",
             \ "        |  _  | |___  | |  | |  / /| |_| | (_) | (_) |",
-            \ "        |_| |_|_____| |_| |___|/_/  \\___/ \\___/ \\___/ ",
-            \ "                     __     _____ __  __              ",
-            \ "                     \\ \\   / /_ _|  \\/  |             ",
-            \ "                      \\ \\ / / | || |\\/| |             ",
-            \ "                       \\ V /  | || |  | |             ",
-            \ "                        \\_/  |___|_|  |_|             "
-            \]
+            \ "        |_| |_|_____| |_| |___|/_/  \\___/ \\___/ \\___/",
+            \ "                     __     _____ __  __",
+            \ "                     \\ \\   / /_ _|  \\/  |",
+            \ "                      \\ \\ / / | || |\\/| |",
+            \ "                       \\ V /  | || |  | |",
+            \ "                        \\_/  |___|_|  |_|"
+            \ ]
 
 " CtrlXA switch list
 let g:CtrlXA_Toggles = [
