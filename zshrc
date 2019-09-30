@@ -4,12 +4,14 @@ export ZSH="$HOME/.config/oh-my-zsh"
 # auto install for first time
 if [ ! -e $ZSH/oh-my-zsh.sh ]
 then
-    mkdir -p $ZSH
-    curl -Lo /tmp/install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
-    ZSH=$ZSH /tmp/install.sh --unattended
+    curl -Lo ~/omz_install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
+    chmod +x ~/omz_install.sh
+    ZSH=$ZSH ~/omz_install.sh --unattended
+    export ZSH_CUSTOM="$HOME/.config/oh-my-zsh/custom"
     git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
+    rm -f ~/omz_install.sh
 fi
 
 
