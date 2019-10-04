@@ -111,7 +111,15 @@ noremap <A-p> "*p
 noremap <A-Y> "+y
 noremap <A-P> "+p
 " temporarily disable highlighting for searach
-nnoremap <space><CR> :nohlsearch<CR>
+nnoremap <silent> <space><CR> :nohlsearch<CR>
+" auto move cursor when insert braces
+inoremap () ()<left>
+inoremap [] []<left>
+inoremap {} {}<left>
+inoremap (<CR> ()<left><CR><CR><up>
+inoremap [<CR> []<left><CR><CR><up>
+inoremap {<CR> {}<left><CR><CR><up>
+"inoremap <> <><left> " avoid mistake when compare
 " toggle line number for copying
 nnoremap <F6> :set nu! rnu!<CR>
 " toggle wrap
@@ -136,6 +144,8 @@ inoremap <silent> <insert>date <C-R>=strftime('%c')<CR>
 nmap <silent> <F5> <Plug>MarkdownPreviewToggle
 " run startify
 nnoremap <silent> ZA :Startify<CR>
+" toggle table mode
+nmap <silent> <F3> :TableModeToggle<CR>
 
 " terminal behaviour
 let g:neoterm_autoscroll = 1
@@ -166,6 +176,11 @@ Plug 'mhinz/vim-startify'
 " Browser extensions
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
 Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
+
+" testing
+Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
+Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
+"Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 "------------------------------------------------
@@ -173,13 +188,13 @@ call plug#end()
 "------------------------------------------------
 " themes
 set background=dark
-"colorscheme solarized
 let g:airline_theme='solarized'
 let g:solarized_termcolors=256
-colorscheme one
-"let g:airline_theme='one'
+" colorscheme solarized
+" let g:airline_theme='one'
 let g:one_allow_italics=1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+colorscheme one
 let g:airline_powerline_fonts=1
 let g:airline_extensions=['branch']
 "let g:airline_section_y='%{strlen(&fenc)?&fenc:&enc}[%{&ff}]'

@@ -44,3 +44,6 @@ nnoremap <down> :action MoveLineDown<CR>
 
 nmap <A-c> gcc
 vmap <A-c> gc
+
+nnoremap <space><CR> :nohlsearch<CR>
+nnoremap \\r <ESC>:source ~/.ideavimrc<CR>

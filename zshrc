@@ -139,8 +139,15 @@ alias nf='neofetch'
 alias py='python3'
 
 # make sure to leave a space at the end to enable appended aliases
-alias sudo='sudo -E '
-alias SUDO='sudo '
+alias sudo='SUDO '
+# wenn using sudo root, preserve the variables
+function SUDO() {
+   case $1 in 
+       vi|vim|nvim) command sudo -E "$@";;
+       *) command sudo "$@";;
+   esac
+}
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
