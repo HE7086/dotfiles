@@ -137,6 +137,7 @@ alias vi='nvim'
 alias ra='ranger'
 alias nf='neofetch'
 alias py='python3'
+alias sctl='sudo systemctl '
 
 # make sure to leave a space at the end to enable appended aliases
 alias sudo='SUDO '

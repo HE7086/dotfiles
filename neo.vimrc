@@ -116,9 +116,9 @@ nnoremap <silent> <space><CR> :nohlsearch<CR>
 inoremap () ()<left>
 inoremap [] []<left>
 inoremap {} {}<left>
-inoremap (<CR> ()<left><CR><CR><up>
-inoremap [<CR> []<left><CR><CR><up>
-inoremap {<CR> {}<left><CR><CR><up>
+inoremap (<CR> (<CR><CR>)<up><end>
+inoremap [<CR> [<CR><CR>]<up><end>
+inoremap {<CR> {<CR><CR>}<up><end>
 "inoremap <> <><left> " avoid mistake when compare
 " toggle line number for copying
 nnoremap <F6> :set nu! rnu!<CR>
