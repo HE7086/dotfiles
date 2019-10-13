@@ -87,6 +87,7 @@ autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal wrap
 " better movement for plain text editing while wraping
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap j gj
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap k gk
+autocmd BufRead,BufNewFile *.md,*.markdown inoremap ``` ```<CR>```<up>
 " normal/visual mod: Alt + hjkl -> move/indent line
 nnoremap <A-h> <<
 nnoremap <A-l> >>

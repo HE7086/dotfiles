@@ -22,6 +22,7 @@ backup idea.vimrc ~ .ideavimrc
 backup neo.vimrc ~/.config/nvim init.vim
 backup ranger.conf ~/.config/ranger rc.conf
 backup vscode.json ~/.config/Code/User settings.json
+backup vscodeKey.json ~/.config/Code/User keybindings.json
 backup kitty.conf ~/.config/kitty kitty.conf
 
 echo 'dot file linking complete!'
