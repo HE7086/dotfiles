@@ -114,13 +114,19 @@ noremap <A-P> "+p
 " temporarily disable highlighting for searach
 nnoremap <silent> <space><CR> :nohlsearch<CR>
 " auto move cursor when insert braces
-inoremap () ()<left>
-inoremap [] []<left>
-inoremap {} {}<left>
-inoremap "" ""<left>
-inoremap '' ''<left>
-inoremap `` ``<left>
-inoremap (<CR> (<CR><CR>)<up><end>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ` ``<left>
+inoremap () ()
+inoremap [] []
+inoremap {} {}
+inoremap "" ""
+inoremap '' ''
+inoremap `` ``
+inoremap (<cr> (<CR><CR>)<up><end>
 inoremap [<CR> [<CR><CR>]<up><end>
 inoremap {<CR> {<CR><CR>}<up><end>
 "inoremap <> <><left> " avoid mistake when compare
@@ -184,8 +190,9 @@ Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
 " testing
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
-"Plug 'sheerun/vim-polyglot'
+" Plug 'sheerun/vim-polyglot'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'mzlogin/vim-markdown-toc'
 call plug#end()
 
 "------------------------------------------------

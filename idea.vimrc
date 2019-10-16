@@ -28,8 +28,6 @@ set multiple-cursors
 set commentary
 
 noremap <F6> :set nu! rnu!<CR>
-nnoremap <right> >>
-nnoremap <left> <<
 vnoremap <right> >gv
 vnoremap <left> <gv
 
@@ -39,8 +37,8 @@ inoremap <A-k> <up>
 inoremap <A-l> <right> 
 
 nnoremap == :action ReformatCode<CR>
-nnoremap <up> :action MoveLineUp<CR>
-nnoremap <down> :action MoveLineDown<CR>
+nnoremap <A-k> :action MoveLineUp<CR>
+nnoremap <A-j> :action MoveLineDown<CR>
 
 nmap <A-c> gcc
 vmap <A-c> gc

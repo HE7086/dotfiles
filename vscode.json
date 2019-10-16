@@ -20,6 +20,10 @@
             "before": ["Z", "Z"],
             "commands": [":wq"]
         },
+        {
+            "before": ["<space>", "<CR>"],
+            "commands": [":nohl"]
+        }
     ],
     "editor.lineNumbers": "relative",
     "workbench.iconTheme": "vscode-icons",

@@ -11,8 +11,10 @@ then
     git clone https://github.com/zsh-users/zsh-completions ${ZSH_CUSTOM}/plugins/zsh-completions
     git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM}/plugins/zsh-autosuggestions
     git clone https://github.com/zsh-users/zsh-syntax-highlighting ${ZSH_CUSTOM}/plugins/zsh-syntax-highlighting
-    git clone https://github.com/bhilburn/powerlevel9k.git ${ZSH_CUSTOM}/themes/powerlevel9k
+    git clone https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM}/themes/powerlevel10k
     rm -f ~/omz_install.sh
+    rm -f ~/.zshrc
+    mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 fi
 
 
@@ -34,7 +36,8 @@ bindkey -M menuselect 'j' vi-down-line-or-history
 #------------------------------------------------
 # Theme settings
 #------------------------------------------------
-ZSH_THEME="powerlevel9k/powerlevel9k"
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 # left prompts
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
 # left colors
@@ -66,11 +69,10 @@ POWERLEVEL9K_VI_INSERT_MODE_STRING=''
 POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
 #POWERLEVEL9K_VI_VISUAL_MODE_STRING='V' #visual mode does not exist(?)
 # shorten the directory path TODO: fix this
-POWERLEVEL9K_SHORTEN_DIR_LENTH=2
-POWERLEVEL9K_DIR_SHORTEN_LENTH=2 # ?
-POWERLEVEL9K_SHORTEN_DELIMITER='.'
-POWERLEVEL9K_SHORTEN_STRATEGY=truncate_to_unique #this does not work 
-#POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right" #does this work?
+POWERLEVEL9K_SHORTEN_DIR_LENTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_unique"
+# POWERLEVEL9K_DIR_SHORTEN_STRATEGY="truncate_to_unique"
 
 #------------------------------------------------
 # other settings
