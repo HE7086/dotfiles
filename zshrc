@@ -18,8 +18,6 @@ then
 fi
 
 
-
-
 autoload -U colors && colors
 
 zstyle ':completion:*' menu select
@@ -28,10 +26,6 @@ zmodload zsh/complist
 # Use vim keys in tab complete menu
 bindkey -v
 export KEYTIMEOUT=1
-bindkey -M menuselect 'h' vi-backward-char
-bindkey -M menuselect 'k' vi-up-line-or-history
-bindkey -M menuselect 'l' vi-forward-char
-bindkey -M menuselect 'j' vi-down-line-or-history
 
 #------------------------------------------------
 # Theme settings
@@ -71,8 +65,7 @@ POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
 # shorten the directory path TODO: fix this
 POWERLEVEL9K_SHORTEN_DIR_LENTH=1
 POWERLEVEL9K_SHORTEN_DELIMITER=""
-POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_unique"
-# POWERLEVEL9K_DIR_SHORTEN_STRATEGY="truncate_to_unique"
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
 
 #------------------------------------------------
 # other settings
@@ -92,23 +85,18 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 #------------------------------------------------
 ZSH_AUTOSUGGEST_STRATEGY=(completion history)
 ZSH_AUTOSUGGEST_USE_ASYNC=1
-# ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 autoload autosuggest-accept
 zle -N autosuggest-accept
 bindkey '^ ' autosuggest-accept
 
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse zsh-syntax-highlighting)
-# Add wisely, as too many plugins slow down shell startup.
 plugins=(
     vi-mode
     fancy-ctrl-z
     zsh-completions
     zsh-autosuggestions
     zsh-syntax-highlighting
+    zsh-history-substring-search
 )
 
 autoload -U compinit 
@@ -117,18 +105,7 @@ compinit
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
 export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
 export EDITOR=/usr/bin/nvim
 
 #------------------------------------------------
@@ -178,6 +155,21 @@ ex ()
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval $(thefuck --alias)
+#------------------------------------------------
+# Key bindings
+#------------------------------------------------
+# Use vim keys for select when autocomplete
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+# Use vim keys for history search
+zle -N history-substring-search-up
+zle -N history-substring-search-down
+# bindkey "$terminfo[kcuu1]" history-substring-search-up
+# bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 #------------------------------------------------
 # key stroke workaround for vi mode
