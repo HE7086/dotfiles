@@ -71,7 +71,6 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
 #------------------------------------------------
 # other settings
 #------------------------------------------------
-# Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 HYPHEN_INSENSITIVE="true"
 # Uncomment the following line to automatically update without prompting.
@@ -90,6 +89,10 @@ ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
 autoload autosuggest-accept
 zle -N autosuggest-accept
 bindkey '^ ' autosuggest-accept
+
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
 
 plugins=(
     vi-mode
@@ -129,28 +132,33 @@ function SUDO() {
    esac
 }
     
-# # ex - archive extractor    
-# # usage: ex <file>    
-ex ()    
-{       
-  if [ -f $1 ] ; then    
-    case $1 in    
-      *.tar.bz2)   tar xjf $1   ;;    
-      *.tar.gz)    tar xzf $1   ;;    
-      *.bz2)       bunzip2 $1   ;;    
-      *.rar)       unrar x $1     ;;    
-      *.gz)        gunzip $1    ;;    
-      *.tar)       tar xf $1    ;;    
-      *.tbz2)      tar xjf $1   ;;    
-      *.tgz)       tar xzf $1   ;;    
-      *.zip)       unzip $1     ;;    
-      *.Z)         uncompress $1;;    
-      *.7z)        7z x $1      ;;    
-      *)           echo "'$1' cannot be extracted via ex()" ;;    
-    esac    
-  else    
-    echo "'$1' is not a valid file"    
-  fi    
+# # ex - archive extractor
+ex () {
+    if [[ $# -eq 0 ]] ; then
+        echo "ex: archive extractor"
+        echo "usage: ex <file>"
+    fi
+    while [[ -n "$1" ]] ; do
+        if [[ -f $1 ]] ; then
+            case $1 in    
+                *.tar.bz2)   tar xjf $1   ;;
+                *.tar.gz)    tar xzf $1   ;;
+                *.bz2)       bunzip2 $1   ;;
+                *.rar)       unrar x $1   ;;
+                *.gz)        gunzip $1    ;;
+                *.tar)       tar xf $1    ;;
+                *.tbz2)      tar xjf $1   ;;
+                *.tgz)       tar xzf $1   ;;
+                *.zip)       unzip $1     ;;
+                *.Z)         uncompress $1;;
+                *.7z)        7z x $1      ;;
+                *)           echo "'$1' cannot be extracted via ex()" ;;
+            esac
+        else
+            echo "'$1' is not a valid file"
+        fi
+        shift
+    done
 }
 
 

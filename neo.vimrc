@@ -200,13 +200,14 @@ call plug#end()
 "------------------------------------------------
 " themes
 set background=dark
-let g:airline_theme='solarized'
-let g:solarized_termcolors=256
+" let g:airline_theme='solarized'
+" let g:solarized_termcolors=256
 " colorscheme solarized
-" let g:airline_theme='one'
+let g:airline_theme='one'
 let g:one_allow_italics=1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 colorscheme one
+set termguicolors
 let g:airline_powerline_fonts=1
 let g:airline_extensions=['branch']
 "let g:airline_section_y='%{strlen(&fenc)?&fenc:&enc}[%{&ff}]'
