@@ -27,6 +27,8 @@ set surround
 set multiple-cursors
 set commentary
 
+set ideajoin
+
 noremap <F6> :set nu! rnu!<CR>
 vnoremap <right> >gv
 vnoremap <left> <gv

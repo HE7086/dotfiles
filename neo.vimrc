@@ -130,6 +130,8 @@ inoremap (<cr> (<CR><CR>)<up><end>
 inoremap [<CR> [<CR><CR>]<up><end>
 inoremap {<CR> {<CR><CR>}<up><end>
 "inoremap <> <><left> " avoid mistake when compare
+" test if it is useful
+inoremap kj <esc>
 " toggle line number for copying
 nnoremap <F6> :set nu! rnu!<CR>
 " toggle wrap
