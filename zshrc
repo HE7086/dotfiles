@@ -43,10 +43,9 @@ then
     POWERLEVEL9K_USER_ROOT_FOREGROUND='232'
 else
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host dir vcs)
-    POWERLEVEL9K_HOST_DEFAULT_BACKGROUND='232'
-    POWERLEVEL9K_HOST_DEFAULT_FOREGROUND='250'
-    POWERLEVEL9K_HOST_ROOT_BACKGROUND='250'
-    POWERLEVEL9K_HOST_ROOT_FOREGROUND='232'
+    POWERLEVEL9K_HOST_BACKGROUND='232'
+    POWERLEVEL9K_HOST_FOREGROUND='250'
+    POWERLEVEL9K_SSH_ICON="\uF489"
 fi
 # left colors
 # use some custom grey instead of black to avoid transparency
@@ -139,6 +138,16 @@ function SUDO() {
        vi|vim|nvim) command sudo -E "$@";;
        *) command sudo "$@";;
    esac
+}
+
+# prevent nested ranger
+ranger() {
+    if [[ -z "$RANGER_LEVEL" ]]
+    then
+        /usr/bin/ranger "$@"
+    else
+        exit
+    fi
 }
     
 # # ex - archive extractor

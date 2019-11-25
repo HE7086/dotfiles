@@ -130,6 +130,8 @@ inoremap (<cr> (<CR><CR>)<up><end>
 inoremap [<CR> [<CR><CR>]<up><end>
 inoremap {<CR> {<CR><CR>}<up><end>
 "inoremap <> <><left> " avoid mistake when compare
+" test if it is useful
+inoremap kj <esc>
 " toggle line number for copying
 nnoremap <F6> :set nu! rnu!<CR>
 " toggle wrap
@@ -193,6 +195,8 @@ Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
 " Plug 'sheerun/vim-polyglot'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mzlogin/vim-markdown-toc'
+
+Plug 'HE7086/cyp-vim-syntax'
 call plug#end()
 
 "------------------------------------------------
