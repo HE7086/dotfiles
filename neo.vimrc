@@ -216,7 +216,6 @@ let g:airline_powerline_fonts=1
 let g:airline_extensions=['branch']
 "let g:airline_section_y='%{strlen(&fenc)?&fenc:&enc}[%{&ff}]'
 let g:airline_section_z='%3p%%%4l%3c'
-set guifont=Fira\ Code\ Retina
 
 " NERDTree
 let NERDTreeMapToggleHidden="zh"
