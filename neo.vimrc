@@ -107,25 +107,27 @@ noremap <A-1> 0
 noremap <A-2> ^
 noremap <A-3> $
 " use system clip board accordingly
-noremap <A-y> "*y
-noremap <A-p> "*p
-noremap <A-Y> "+y
-noremap <A-P> "+p
+set clipboard+=unnamedplus
+" noremap <A-y> "*y
+" noremap <A-p> "*p
+" noremap <A-Y> "+y
+" noremap <A-P> "+p
+
 " temporarily disable highlighting for searach
 nnoremap <silent> <space><CR> :nohlsearch<CR>
 " auto move cursor when insert braces
-inoremap ( ()<left>
-inoremap [ []<left>
-inoremap { {}<left>
-inoremap " ""<left>
-inoremap ' ''<left>
-inoremap ` ``<left>
-inoremap () ()
-inoremap [] []
-inoremap {} {}
-inoremap "" ""
-inoremap '' ''
-inoremap `` ``
+" inoremap ( ()<left>
+" inoremap [ []<left>
+" inoremap { {}<left>
+" inoremap " ""<left>
+" inoremap ' ''<left>
+" inoremap ` ``<left>
+" inoremap () ()
+" inoremap [] []
+" inoremap {} {}
+" inoremap "" ""
+" inoremap '' ''
+" inoremap `` ``
 inoremap (<cr> (<CR><CR>)<up><end>
 inoremap [<CR> [<CR><CR>]<up><end>
 inoremap {<CR> {<CR><CR>}<up><end>
@@ -174,6 +176,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Konfekt/vim-CtrlXA'
+Plug 'junegunn/vim-peekaboo'
 " Themes and Colors
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -182,8 +185,8 @@ Plug 'rakr/vim-one'
 Plug 'ryanoasis/vim-devicons'
 " External Functionalities
 Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
+Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'mhinz/vim-startify'
 " Browser extensions
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
@@ -193,7 +196,7 @@ Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
 " Plug 'sheerun/vim-polyglot'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mzlogin/vim-markdown-toc'
 
 Plug 'HE7086/cyp-vim-syntax'
@@ -219,7 +222,7 @@ let g:airline_section_z='%3p%%%4l%3c'
 
 " NERDTree
 let NERDTreeMapToggleHidden="zh"
-let NERDTreeMapCustomOpen="<space>"
+let NERDTreeMapCustomOpen="<CR>"
 let NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "✹",
             \ "Staged"    : "✚",
@@ -283,3 +286,40 @@ let g:CtrlXA_Toggles = [
 
 " devIcon settings
 let g:WebDevIconsOS = 'Linux'
+
+
+" coc.nvim addons
+let g:coc_global_extensions = ['coc-yank']
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Remap keys for gotos
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction

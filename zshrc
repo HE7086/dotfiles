@@ -32,7 +32,12 @@ export KEYTIMEOUT=1
 # Theme settings
 #------------------------------------------------
 # ZSH_THEME="powerlevel9k/powerlevel9k"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+if [[ -z "$TMUX" ]]
+then
+    ZSH_THEME="powerlevel10k/powerlevel10k"
+else
+    ZSH_THEME="robbyrussell"
+fi
 # left prompts
 if [[ -z "$SSH_CONNECTION" ]]
 then
@@ -103,6 +108,7 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 
 plugins=(
+    lol
     vi-mode
     fancy-ctrl-z
     zsh-completions
@@ -140,15 +146,16 @@ function SUDO() {
    esac
 }
 
-# prevent nested ranger
-ranger() {
-    if [[ -z "$RANGER_LEVEL" ]]
-    then
-        /usr/bin/ranger "$@"
-    else
-        exit
-    fi
-}
+
+# # prevent nested ranger -- cause inf. loop?
+# ranger() {
+#     if [[ -z "$RANGER_LEVEL" ]]
+#     then
+#         /usr/bin/ranger "$@"
+#     else
+#         exit
+#     fi
+# }
     
 # # ex - archive extractor
 ex () {
@@ -230,3 +237,6 @@ key[PageDown]=${terminfo[knp]}
 key[SEnter]=OM # manually setup since terminfo is not avaliable
 [[ -n "${key[SEnter]}"   ]] && bindkey "${key[SEnter]}"     accept-line
 [[ -n "${key[SEnter]}"   ]] && bindkey -M vicmd "${key[SEnter]}"     accept-line
+
+
+[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
