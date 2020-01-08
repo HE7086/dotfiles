@@ -60,7 +60,7 @@ set novisualbell
 set number
 set relativenumber
 set showcmd
-" set mouse=a
+set mouse=a
 
 " searching settings
 set showmatch
@@ -73,6 +73,7 @@ set wildmenu
 set wildignorecase
 
 set lazyredraw
+set ttyfast
 
 set nolist
 set listchars=eol:¶,tab:>_,trail:·,extends:¦,precedes:¦,space:·,nbsp:␣
@@ -195,7 +196,7 @@ Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
 " testing
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
-" Plug 'sheerun/vim-polyglot'
+Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mzlogin/vim-markdown-toc'
 
@@ -222,7 +223,8 @@ let g:airline_section_z='%3p%%%4l%3c'
 
 " NERDTree
 let NERDTreeMapToggleHidden="zh"
-let NERDTreeMapCustomOpen="<CR>"
+let NERDTreeMapCustomOpen="l"
+let NERDTreeMapUpdir="h"
 let NERDTreeIndicatorMapCustom = {
             \ "Modified"  : "✹",
             \ "Staged"    : "✚",
@@ -289,8 +291,9 @@ let g:WebDevIconsOS = 'Linux'
 
 
 " coc.nvim addons
-let g:coc_global_extensions = ['coc-yank']
-" Use <c-space> to trigger completion.
+set hidden
+let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml']
+" Use <c-space> to force trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
 " Coc only does snippet and additional edit on confirm.
@@ -300,6 +303,10 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+" shift - F6 to rename, same as intellij
+nmap <F18> <Plug>(coc-refactor)
+nmap <M-CR> :CocAction<CR>
+" nmap <M-CR> <Plug>(coc-codeaction)
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
@@ -323,3 +330,13 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+
+
+
+
+" ---------- End of Settings ----------
+
+exec "nohlsearch"

@@ -3,6 +3,7 @@
 	name = HE&)*^
 [core]
 	editor = nvim
+	autocrlf = input
 [github]
     user = HE7086
 [color]

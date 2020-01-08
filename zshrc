@@ -1,3 +1,8 @@
+if [[ "$TTY" = "/dev/tty2" ]]
+then
+    exec bash
+fi
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.config/oh-my-zsh"
 
@@ -108,7 +113,6 @@ setopt HIST_FIND_NO_DUPS
 setopt HIST_IGNORE_ALL_DUPS
 
 plugins=(
-    lol
     vi-mode
     fancy-ctrl-z
     zsh-completions
@@ -237,6 +241,3 @@ key[PageDown]=${terminfo[knp]}
 key[SEnter]=OM # manually setup since terminfo is not avaliable
 [[ -n "${key[SEnter]}"   ]] && bindkey "${key[SEnter]}"     accept-line
 [[ -n "${key[SEnter]}"   ]] && bindkey -M vicmd "${key[SEnter]}"     accept-line
-
-
-[ -f "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env" ] && source "${GHCUP_INSTALL_BASE_PREFIX:=$HOME}/.ghcup/env"
