@@ -161,6 +161,16 @@ nmap <silent> <F5> <Plug>MarkdownPreviewToggle
 nnoremap <silent> ZA :Startify<CR>
 " toggle table mode
 nmap <silent> <F3> :TableModeToggle<CR>
+" avoid accidentally toggle help
+noremap <F1> <ESC>
+noremap! <F1> <ESC>
+
+noremap H ^
+noremap L $
+
+cnoremap <C-a> <Home>
+cnoremap <C-e> <End>
+
 
 " terminal behaviour
 let g:neoterm_autoscroll = 1
@@ -190,12 +200,12 @@ Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'mhinz/vim-startify'
 " Browser extensions
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install' }
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
 
 " testing
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
-Plug 'dkarter/bullets.vim', { 'for' :['markdown', 'vim-plug'] }
+Plug 'dkarter/bullets.vim', { 'for': ['markdown', 'vim-plug'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mzlogin/vim-markdown-toc'
@@ -292,7 +302,7 @@ let g:WebDevIconsOS = 'Linux'
 
 " coc.nvim addons
 set hidden
-let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml']
+let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight']
 " Use <c-space> to force trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
@@ -305,7 +315,7 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " shift - F6 to rename, same as intellij
 nmap <F18> <Plug>(coc-refactor)
-nmap <M-CR> :CocAction<CR>
+nmap <M-CR> :CocAction quickfix<CR>
 " nmap <M-CR> <Plug>(coc-codeaction)
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -334,6 +344,9 @@ endfunction
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
+
+" ---------- Run Code in Terminal ----------
+autocmd BufRead,BufNewFile *.hs nnoremap <F22> :w<CR>:term ghci %<CR>
 
 
 
