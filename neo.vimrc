@@ -151,8 +151,8 @@ nnoremap QQ :edit!<CR>
 " open NerdTree
 nnoremap <F2> :NERDTreeToggle<CR>
 " Commentary toggle, must be recursive
-nmap <A-c> gcc
-vmap <A-c> gc
+nmap <C-/> gcc
+vmap <C-/> gc
 " insert the current date and time
 inoremap <silent> <insert>date <C-R>=strftime('%c')<CR>
 " toggle markdown preview
@@ -299,10 +299,9 @@ let g:CtrlXA_Toggles = [
 " devIcon settings
 let g:WebDevIconsOS = 'Linux'
 
-
 " coc.nvim addons
 set hidden
-let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight']
+let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight', 'coc-xml']
 " Use <c-space> to force trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
@@ -315,7 +314,9 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 " shift - F6 to rename, same as intellij
 nmap <F18> <Plug>(coc-refactor)
-nmap <M-CR> :CocAction quickfix<CR>
+" nmap <M-CR> :CocAction quickfix<CR>
+map <M-CR> :CocFix<CR>
+" nmap <M-CR> :CocAction<CR>
 " nmap <M-CR> <Plug>(coc-codeaction)
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -344,11 +345,8 @@ endfunction
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
 
-
 " ---------- Run Code in Terminal ----------
 autocmd BufRead,BufNewFile *.hs nnoremap <F22> :w<CR>:term ghci %<CR>
-
-
 
 " ---------- End of Settings ----------
 

@@ -28,6 +28,8 @@ set multiple-cursors
 set commentary
 
 set ideajoin
+set ideastatusbar
+set idearefactormode=visual
 
 noremap <F6> :set nu! rnu!<CR>
 vnoremap <right> >gv
@@ -36,7 +38,10 @@ vnoremap <left> <gv
 inoremap <A-h> <left>    
 inoremap <A-j> <down>    
 inoremap <A-k> <up>    
-inoremap <A-l> <right> 
+inoremap <A-l> <right>
+
+noremap L $
+noremap H ^
 
 nnoremap == :action ReformatCode<CR>
 nnoremap <A-k> :action MoveLineUp<CR>
