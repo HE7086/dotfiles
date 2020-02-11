@@ -1,6 +1,7 @@
 [user]
 	email = HE7086@users.noreply.github.com
 	name = HE&)*^
+	signingkey = EA7BA0067B62CF1F
 [core]
 	editor = nvim
 	autocrlf = input

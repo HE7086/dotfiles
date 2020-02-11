@@ -164,13 +164,16 @@ nmap <silent> <F3> :TableModeToggle<CR>
 " avoid accidentally toggle help
 noremap <F1> <ESC>
 noremap! <F1> <ESC>
-
+" cursor movement
 noremap H ^
 noremap L $
 
 cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
+" do not use Ex mode
+noremap Q <nop>
+noremap gQ <nop>
 
 " terminal behaviour
 let g:neoterm_autoscroll = 1
@@ -301,6 +304,7 @@ let g:WebDevIconsOS = 'Linux'
 
 " coc.nvim addons
 set hidden
+set updatetime=500
 let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight', 'coc-xml']
 " Use <c-space> to force trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -344,6 +348,10 @@ endfunction
 
 " Use `:Format` to format current buffer
 command! -nargs=0 Format :call CocAction('format')
+" use `:OR` for organize import of current buffer
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+" Highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " ---------- Run Code in Terminal ----------
 autocmd BufRead,BufNewFile *.hs nnoremap <F22> :w<CR>:term ghci %<CR>
