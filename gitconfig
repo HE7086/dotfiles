@@ -16,3 +16,6 @@
 	grep = auto
 [commit]
 	gpgsign = true
+[merge]
+	tool = kdiff3
+    guitool = kdiff3
