@@ -1,5 +1,4 @@
-if [[ "$TTY" = "/dev/tty2" ]]
-then
+if [[ "$TTY" = "/dev/tty2" ]]; then
     exec bash
 fi
 
@@ -7,8 +6,7 @@ fi
 export ZSH="$HOME/.config/oh-my-zsh"
 
 # auto install for first time
-if [ ! -e $ZSH/oh-my-zsh.sh ]
-then
+if [[ ! -e $ZSH/oh-my-zsh.sh ]]; then
     curl -Lo ~/omz_install.sh https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh
     chmod +x ~/omz_install.sh
     ZSH=$ZSH ~/omz_install.sh --unattended
@@ -23,6 +21,8 @@ then
     mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
 fi
 
+# ignore duplicates in the history
+setopt HIST_IGNORE_ALL_DUPS
 
 autoload -U colors && colors
 
@@ -37,15 +37,13 @@ export KEYTIMEOUT=1
 # Theme settings
 #------------------------------------------------
 # ZSH_THEME="powerlevel9k/powerlevel9k"
-if [[ -z "$TMUX" ]]
-then
+if [[ -z "$TMUX" ]]; then
     ZSH_THEME="powerlevel10k/powerlevel10k"
 else
     ZSH_THEME="robbyrussell"
 fi
 # left prompts
-if [[ -z "$SSH_CONNECTION" ]]
-then
+if [[ -z "$SSH_CONNECTION" ]]; then
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
     POWERLEVEL9K_USER_DEFAULT_BACKGROUND='232'
     POWERLEVEL9K_USER_DEFAULT_FOREGROUND='250'
@@ -181,12 +179,12 @@ function ranger() {
     
 # # ex - archive extractor
 ex () {
-    if [[ $# -eq 0 ]] ; then
+    if [[ $# -eq 0 ]]; then
         echo "ex: archive extractor"
         echo "usage: ex <file>"
     fi
-    while [[ -n "$1" ]] ; do
-        if [[ -f $1 ]] ; then
+    while [[ -n "$1" ]]; do
+        if [[ -f $1 ]]; then
             case $1 in
                 *.tar.bz2)   tar xjf $1   ;;
                 *.tar.gz)    tar xzf $1   ;;
@@ -209,7 +207,7 @@ ex () {
 }
 
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval $(thefuck --alias)
 #------------------------------------------------
 # Key bindings

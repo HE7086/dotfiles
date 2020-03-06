@@ -19,9 +19,9 @@ set showtabline=1
 "set showmode
 
 " kitty vim adapter
-if $TERM == "xterm-kitty"
-    let &t_ut=''
-endif
+" if $TERM == "xterm-kitty"
+"     let &t_ut=''
+" endif
 
 " use vim packages in ~/.vim
 "set runtimepath^=~/.vim runtimepath+=~/.vim/after
@@ -192,13 +192,14 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'Konfekt/vim-CtrlXA'
 Plug 'junegunn/vim-peekaboo'
 " Themes and Colors
+" Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'rakr/vim-one'
 Plug 'ryanoasis/vim-devicons'
 " External Functionalities
-Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf', { 'dir': '~/.local/fzf', 'do': './install --all' }
 Plug 'scrooloose/nerdtree', {'on': 'NERDTreeToggle'}
 Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'mhinz/vim-startify'
@@ -305,7 +306,7 @@ let g:WebDevIconsOS = 'Linux'
 " coc.nvim addons
 set hidden
 set updatetime=500
-let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight', 'coc-xml']
+let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight', 'coc-vimlsp']
 " Use <c-space> to force trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
@@ -355,6 +356,8 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 
 " ---------- Run Code in Terminal ----------
 autocmd BufRead,BufNewFile *.hs nnoremap <F22> :w<CR>:term ghci %<CR>
+autocmd BufRead,BufNewFile *.c nnoremap <F22> :w<CR>:term clang % -o test.out; ./test.out<CR>
+autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ % -o test.out; ./test.out<CR>
 
 " ---------- End of Settings ----------
 
