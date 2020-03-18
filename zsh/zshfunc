@@ -1,0 +1,63 @@
+# wenn using sudo root, preserve the variables
+function sudo() {
+   case $1 in 
+       vi|vim|nvim) command sudo -E "$@";;
+       *) command sudo "$@";;
+   esac
+}
+
+# press Q to quit ranger and move to pwd
+function ranger() {
+    local IFS=$'\t\n'
+    local tempfile="$(mktemp -t tmp.XXXXXX)"
+    local ranger_cmd=(
+        command
+        ranger
+        --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
+    )
+
+    ${ranger_cmd[@]} "$@"
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$PWD" ]]; then
+        cd -- "$(cat "$tempfile")" || return
+    fi
+    command rm -f -- "$tempfile" 2>/dev/null
+}
+
+# # prevent nested ranger -- cause inf. loop?
+# ranger() {
+#     if [[ -z "$RANGER_LEVEL" ]]
+#     then
+#         /usr/bin/ranger "$@"
+#     else
+#         exit
+#     fi
+# }
+    
+# # ex - archive extractor
+ex () {
+    if [[ $# -eq 0 ]]; then
+        echo "ex: archive extractor"
+        echo "usage: ex <file>"
+    fi
+    while [[ -n "$1" ]]; do
+        if [[ -f $1 ]]; then
+            case $1 in
+                *.tar.bz2)   tar xjf $1   ;;
+                *.tar.gz)    tar xzf $1   ;;
+                *.bz2)       bunzip2 $1   ;;
+                *.rar)       unrar x $1   ;;
+                *.gz)        gunzip $1    ;;
+                *.tar)       tar xf $1    ;;
+                *.tbz2)      tar xjf $1   ;;
+                *.tgz)       tar xzf $1   ;;
+                *.zip)       unzip $1     ;;
+                *.Z)         uncompress $1;;
+                *.7z)        7z x $1      ;;
+                *)           echo "'$1' cannot be extracted via ex()" ;;
+            esac
+        else
+            echo "'$1' is not a valid file"
+        fi
+        shift
+    done
+}

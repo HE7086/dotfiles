@@ -1,0 +1,72 @@
+#------------------------------------------------
+# Theme settings
+#------------------------------------------------
+# ZSH_THEME="powerlevel9k/powerlevel9k"
+if [[ -z "$TMUX" ]]; then
+    ZSH_THEME="powerlevel10k/powerlevel10k"
+else
+    ZSH_THEME="robbyrussell"
+fi
+# left prompts
+if [[ -z "$SSH_CONNECTION" ]]; then
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
+    POWERLEVEL9K_USER_DEFAULT_BACKGROUND='232'
+    POWERLEVEL9K_USER_DEFAULT_FOREGROUND='250'
+    POWERLEVEL9K_USER_ROOT_BACKGROUND='250'
+    POWERLEVEL9K_USER_ROOT_FOREGROUND='232'
+else
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host dir vcs)
+    POWERLEVEL9K_HOST_BACKGROUND='232'
+    POWERLEVEL9K_HOST_FOREGROUND='250'
+    POWERLEVEL9K_SSH_ICON="\uF489"
+fi
+# left colors
+# use some custom grey instead of black to avoid transparency
+POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='045'
+POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='000'
+POWERLEVEL9K_DIR_ETC_BACKGROUND='045'
+POWERLEVEL9K_DIR_ETC_FOREGROUND='000'
+POWERLEVEL9K_DIR_HOME_BACKGROUND='039'
+POWERLEVEL9K_DIR_HOME_FOREGROUND='000'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='039'
+POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='000'
+# right prompts
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator dir_writable)
+# right colors
+POWERLEVEL9K_STATUS_OK_BACKGROUND='232'
+POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='232'
+POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='250'
+POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND='232'
+POWERLEVEL9K_VI_MODE_VISUAL_FOREGROUND='250'
+# only show error status
+POWERLEVEL9K_STATUS_OK=false
+# Vim mode indecator
+POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
+#POWERLEVEL9K_VI_VISUAL_MODE_STRING='V' #visual mode does not exist(?)
+# shorten the directory path TODO: fix this
+POWERLEVEL9K_SHORTEN_DIR_LENTH=1
+POWERLEVEL9K_SHORTEN_DELIMITER=""
+POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
+
+#------------------------------------------------
+# plugin settings
+#------------------------------------------------
+ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+ZSH_AUTOSUGGEST_USE_ASYNC=1
+ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+autoload autosuggest-accept
+zle -N autosuggest-accept
+
+HISTORY_SUBSTRING_SEARCH_ENSURE_UNIQUE=1
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+
+plugins=(
+    vi-mode
+    fancy-ctrl-z
+    zsh-completions
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zsh-history-substring-search
+)
