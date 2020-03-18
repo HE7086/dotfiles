@@ -257,7 +257,7 @@ let g:startify_lists = [
             \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
             \ { 'type': 'commands',  'header': ['   Commands']       },
             \ ]
-let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'}, {'z': '~/.zshrc'} ]
+let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'}, {'z': '$ZDOTDIR/.zshrc'} ]
 "let g:startify_commands = [ {'Vim Help Page': 'help'} ]
 let g:startify_custom_header = [
             \ "         _   _ _______   _____ _____ ___   ___   __",
