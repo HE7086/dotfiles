@@ -16,7 +16,7 @@ if [[ ! -e $ZSH/oh-my-zsh.sh ]]; then
     git clone https://github.com/zsh-users/zsh-history-substring-search ${ZSH_CUSTOM}/plugins/zsh-history-substring-search
     rm -f ~/omz_install.sh
     rm -f ~/.zshrc
-    mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc
+    mv ~/.zshrc.pre-oh-my-zsh ~/.zshrc # XDG_CONFIG_HOME
     # chsh -s /usr/bin/zsh
 fi
 

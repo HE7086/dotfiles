@@ -2,6 +2,8 @@
 
 mkdir $PWD/backup
 
+[[ -z $XDG_CONFIG_HOME ]] && XDG_CONFIG_HOME=$HOME/.config
+
 # $1 : the file to be linked 
 # $2 : the linking path 
 # $3 : the linking file
@@ -15,14 +17,21 @@ backup() {
     fi
     ln -s $PWD/$1 $2/$3
 }
-backup zshrc ~ .zshrc
-backup gitconfig ~ .gitconfig
+
+[[ -z $ZDOTDIR ]] && ZDOTDIR=$XDG_CONFIG_HOME/zsh
+backup zsh/zshrc $ZDOTDIR .zshrc
+backup zsh/zshenv $ZDOTDIR .zshenv
+backup zsh/zshkeys $ZDOTDIR zshkeys
+backup zsh/zshplugin $ZDOTDIR zshplugin
+backup zsh/zshfunc $ZDOTDIR zshfunc
+
+backup gitconfig $XDG_CONFIG_HOME/git .gitconfig
 backup pam_environment ~ .pam_environment
 backup idea.vimrc ~ .ideavimrc
-backup neo.vimrc ~/.config/nvim init.vim
-backup ranger.conf ~/.config/ranger rc.conf
-backup vscode.json ~/.config/Code/User settings.json
-backup vscodeKey.json ~/.config/Code/User keybindings.json
-backup kitty.conf ~/.config/kitty kitty.conf
+backup neo.vimrc $XDG_CONFIG_HOME/nvim init.vim
+backup ranger.conf $XDG_CONFIG_HOME/ranger rc.conf
+backup vscode.json $XDG_CONFIG_HOME/Code/User settings.json
+backup vscodeKey.json $XDG_CONFIG_HOME/Code/User keybindings.json
+backup kitty.conf $XDG_CONFIG_HOME/kitty kitty.conf
 
 echo 'dot file linking complete!'

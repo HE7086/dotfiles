@@ -7,6 +7,8 @@
 	autocrlf = input
 [github]
     user = HE7086
+	email = HE7086@users.noreply.github.com
+	username = HE&)*^
 [color]
 	ui = auto
 	diff = auto
@@ -19,3 +21,5 @@
 [merge]
 	tool = kdiff3
     guitool = kdiff3
+[submodule]
+    recurse = true
