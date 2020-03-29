@@ -361,4 +361,7 @@ autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ % -o test.ou
 
 " ---------- End of Settings ----------
 
+" save a file with sudo
+nmap ZW :w !sudo tee %<CR>
+
 exec "nohlsearch"

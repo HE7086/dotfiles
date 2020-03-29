@@ -59,7 +59,7 @@ _comp_options+=(globdots)
 #------------------------------------------------
 # Aliases
 #------------------------------------------------
-alias vim='nvim'
+#alias vim='nvim'
 alias vi='nvim'
 alias ra='ranger'
 alias nf='neofetch'
@@ -67,6 +67,7 @@ alias py='python3'
 alias rf='rifle'
 alias sctl='sudo systemctl '
 alias sl='ls'
+alias git='hub '
 
 # make sure to leave a space at the end to enable appended aliases
 alias sudo='sudo '

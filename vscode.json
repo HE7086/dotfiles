@@ -33,12 +33,4 @@
     "languageServerHaskell.maxNumberOfProblems": 100,
     "languageServerHaskell.useCustomHieWrapper": true,
     "languageServerHaskell.useCustomHieWrapperPath": "/usr/bin/hie-wrapper",
-    "languageServerHaskell": {
-        "hlintOn": true,
-        "maxNumberOfProblems": 100,
-        "completionSnippetsOn"        : true,
-        "formatOnImportOn"            : true,
-        "formattingProvider"          : "brittany"
-    }
-
 }
