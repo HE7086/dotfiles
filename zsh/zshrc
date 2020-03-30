@@ -59,7 +59,7 @@ _comp_options+=(globdots)
 #------------------------------------------------
 # Aliases
 #------------------------------------------------
-#alias vim='nvim'
+alias vim='nvim'
 alias vi='nvim'
 alias ra='ranger'
 alias nf='neofetch'

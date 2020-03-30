@@ -1,31 +1,30 @@
 # auto sudo while editing
-function vim() {
-    [[ -z $EDITOR ]] && EDITOR=/usr/bin/nvim
+# function vim() {
+#     [[ -z $EDITOR ]] && EDITOR=/usr/bin/nvim
 
-    if [[ $# -eq 0 ]]; then 
-        $EDITOR 
-    else 
-        function all_can_write() {
-            for file in $@; do
-                [[ -w $file ]] || return 1
-            done
-            return 0
-        } 
-        if all_can_write $@; then 
-            $EDITOR $@ 
-        else
-            sudo -E $EDITOR $@
-        fi
-    fi
-}
+#     if [[ $# -eq 0 ]]; then 
+#         $EDITOR 
+#     else 
+#         if (){
+#             for file in $@; do
+#                 [[ -w $file ]] || return 1
+#             done
+#             return 0
+#         } $@; then 
+#             $EDITOR $@ 
+#         else
+#             sudo -E $EDITOR $@
+#         fi
+#     fi
+# }
 
 # wenn using sudo root, preserve the variables
-# function sudo() {
-#    case $1 in 
-#        vi|vim|nvim) command sudo -E "$@";;
-#        *) command sudo "$@";;
-#    esac
-# }
+function sudo() {
+   case $1 in 
+       vi|vim|nvim) command sudo -E "$@";;
+       *) command sudo "$@";;
+   esac
+}
 
 # press Q to quit ranger and move to pwd
 function ranger() {
