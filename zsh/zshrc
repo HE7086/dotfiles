@@ -46,8 +46,9 @@ DISABLE_UPDATE_PROMPT="true"
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 source $ZDOTDIR/zshfunc
-source $ZDOTDIR/zshkeys
 source $ZDOTDIR/zshplugin
+source $ZDOTDIR/fzf.zsh
+source $ZDOTDIR/zshkeys
 
 # make sure to source this one at last
 source $ZSH/oh-my-zsh.sh
@@ -71,5 +72,8 @@ alias git='hub '
 
 # make sure to leave a space at the end to enable appended aliases
 alias sudo='sudo '
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 eval $(thefuck --alias)
+
+# zle -N fzf-history-widget
+# something's wrong with fzf
+eval bindkey '^R' fzf-history-widget
