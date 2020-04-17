@@ -1,4 +1,6 @@
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
 XMODIFIERS=@im=fcitx
+
 ZDOTDIR=/home/he/.config/zsh
+NPM_CONFIG_USERCONFIG=/home/he/.config/npm/npmrc
