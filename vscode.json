@@ -32,5 +32,5 @@
     "languageServerHaskell.hlintOn": true,
     "languageServerHaskell.maxNumberOfProblems": 100,
     "languageServerHaskell.useCustomHieWrapper": true,
-    "languageServerHaskell.useCustomHieWrapperPath": "/usr/bin/hie-wrapper",
+    "languageServerHaskell.useCustomHieWrapperPath": "/home/he/.local/bin/hie-wrapper",
 }

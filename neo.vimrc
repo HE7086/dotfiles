@@ -88,6 +88,8 @@ autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal wrap
 " better movement for plain text editing while wraping
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap j gj
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap k gk
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap j gj
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap k gk
 autocmd BufRead,BufNewFile *.md,*.markdown inoremap ``` ```<CR>```<up>
 " normal/visual mod: Alt + hjkl -> move/indent line
 nnoremap <A-h> <<
@@ -205,7 +207,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'mhinz/vim-startify'
 " Browser extensions
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
+" Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
 
 " testing
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
@@ -214,12 +216,14 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'mzlogin/vim-markdown-toc'
 
+Plug 'pboettch/vim-cmake-syntax'
 Plug 'HE7086/cyp-vim-syntax'
 call plug#end()
 
 "------------------------------------------------
 " Plugin settings
 "------------------------------------------------
+set guifont=FiraCode\ Nerd\ Font\ Mono
 " themes
 set background=dark
 " let g:airline_theme='solarized'
