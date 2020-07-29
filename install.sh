@@ -21,9 +21,7 @@ backup() {
 [[ -z $ZDOTDIR ]] && ZDOTDIR=$XDG_CONFIG_HOME/zsh
 backup zsh/zshrc $ZDOTDIR .zshrc
 backup zsh/zshenv $ZDOTDIR .zshenv
-backup zsh/zshkeys $ZDOTDIR zshkeys
-backup zsh/zshplugin $ZDOTDIR zshplugin
-backup zsh/zshfunc $ZDOTDIR zshfunc
+backup zsh/fzf.zsh $ZDOTDIR fzf.zsh
 
 backup gitconfig $XDG_CONFIG_HOME/git .gitconfig
 backup pam_environment ~ .pam_environment
