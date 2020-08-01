@@ -120,7 +120,6 @@ plugins=(
 )
 
 source $ZDOTDIR/fzf.zsh
-source $ZDOTDIR/zshkeys
 
 # make sure to source this one at last
 source $ZSH/oh-my-zsh.sh

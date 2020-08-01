@@ -310,7 +310,7 @@ let g:WebDevIconsOS = 'Linux'
 " coc.nvim addons
 set hidden
 set updatetime=500
-let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight', 'coc-vimlsp']
+let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight', 'coc-vimlsp', 'coc-clangd']
 " Use <c-space> to force trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.

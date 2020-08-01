@@ -23,7 +23,7 @@ backup zsh/zshrc $ZDOTDIR .zshrc
 backup zsh/zshenv $ZDOTDIR .zshenv
 backup zsh/fzf.zsh $ZDOTDIR fzf.zsh
 
-backup gitconfig $XDG_CONFIG_HOME/git .gitconfig
+backup gitconfig $XDG_CONFIG_HOME/git config
 backup pam_environment ~ .pam_environment
 backup idea.vimrc $XDG_CONFIG_HOME/ideavim .ideavimrc
 backup neo.vimrc $XDG_CONFIG_HOME/nvim init.vim

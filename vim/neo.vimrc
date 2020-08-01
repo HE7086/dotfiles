@@ -205,7 +205,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin', {'on': 'NERDTreeToggle'}
 Plug 'mhinz/vim-startify'
 " Browser extensions
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
+" Plug 'glacambre/firenvim', { 'do': ':call firenvim#install(0)' }
 
 " testing
 Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
