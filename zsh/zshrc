@@ -137,9 +137,20 @@ alias ra='ranger'
 alias nf='neofetch'
 alias py='python3'
 alias rf='rifle'
-alias sctl='sudo systemctl '
 alias sl='ls'
-alias git='hub '
+alias git='hub ' 
+
+alias start='sudo systemctl start'
+alias stop='sudo systemctl stop'
+alias restart='sudo systemctl restart'
+alias status='sudo systemctl status'
+alias enable='sudo systemctl enable'
+alias disable='sudo systemctl disable'
+
+alias cpr='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1'
+alias mvr='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 --remove-source-files'
+
+# alias fuck='eval $(thefuck $(fc -ln -1));' 
 
 # make sure to leave a space at the end to enable appended aliases
 alias sudo='sudo '

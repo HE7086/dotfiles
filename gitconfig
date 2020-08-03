@@ -1,7 +1,7 @@
 [user]
 	email = HE7086@users.noreply.github.com
 	name = HE&)*^
-    signingkey = 2A1DEA2ECDF710B2
+    signingkey = 91D524E3EE5B0EF8
 [core]
 	editor = nvim
 	autocrlf = input
@@ -23,3 +23,5 @@
     guitool = kdiff3
 [submodule]
     recurse = true
+[alias]
+    lg = log --abbrev-commit --graph 
