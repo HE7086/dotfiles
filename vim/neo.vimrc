@@ -257,7 +257,7 @@ let g:startify_lists = [
             \ { 'type': 'bookmarks', 'header': ['   Bookmarks']      },
             \ { 'type': 'commands',  'header': ['   Commands']       },
             \ ]
-let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'}, {'z': '$ZDOTDIR/.zshrc'} ]
+let g:startify_bookmarks = [ {'v': '~/.config/nvim/init.vim'}, {'z': '~/.zshrc'} ]
 "let g:startify_commands = [ {'Vim Help Page': 'help'} ]
 let g:startify_custom_header = [
             \ "         _   _ _______   _____ _____ ___   ___   __",
@@ -306,7 +306,7 @@ let g:WebDevIconsOS = 'Linux'
 " coc.nvim addons
 set hidden
 set updatetime=500
-let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight', 'coc-vimlsp']
+let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight', 'coc-vimlsp', 'coc-clangd']
 " Use <c-space> to force trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.

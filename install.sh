@@ -25,7 +25,8 @@ backup zsh/fzf.zsh $ZDOTDIR fzf.zsh
 
 backup gitconfig $XDG_CONFIG_HOME/git config
 backup pam_environment ~ .pam_environment
-backup idea.vimrc $XDG_CONFIG_HOME/ideavim .ideavimrc
+backup xprofile ~ .xprofile
+backup idea.vimrc $XDG_CONFIG_HOME/ideavim ideavimrc
 backup neo.vimrc $XDG_CONFIG_HOME/nvim init.vim
 backup ranger.conf $XDG_CONFIG_HOME/ranger rc.conf
 backup vscode.json $XDG_CONFIG_HOME/Code/User settings.json

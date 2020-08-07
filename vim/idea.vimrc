@@ -53,3 +53,5 @@ vmap <A-c> gc
 nnoremap <space><CR> :nohlsearch<CR>
 nnoremap \\r <ESC>:source ~/.ideavimrc<CR>
 " inoremap kj <esc>
+
+exec nohlsearch
