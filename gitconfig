@@ -25,6 +25,6 @@
     recurse = true
 [alias]
     lg = log --abbrev-commit --graph 
-    yolo = !git add -A && git commit `curl -s http://whatthecommit.com/index.txt`
+    yolo = !git add -A && git commit -m `curl -s http://whatthecommit.com/index.txt` && git push
 [pull]
 	rebase = true
