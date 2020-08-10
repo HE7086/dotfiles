@@ -183,7 +183,7 @@ alias ll='ls -lh'
 alias ra='ranger'
 alias rf='rifle'
 alias nf='neofetch'
-alias git='hub '
+alias git='hub'
 alias sl='ls'
 
 alias start='sudo systemctl start'
