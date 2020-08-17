@@ -6,18 +6,30 @@ setopt globdots
 
 zstyle ':completion:*' menu select
 zstyle ':completion::complete:*' gain-privileges 1
-setopt COMPLETE_ALIASES
+setopt complete_aliases
 zmodload zsh/complist
 
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z-_}={A-Za-z_-}'
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'm:{a-zA-Z}={A-Za-z} r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+
+setopt autocd
+setopt auto_pushd
+setopt pushd_ignore_dups
+setopt pushd_minus
+
+setopt interactive_comments
+setopt auto_continue
+# setopt extended_glob
+setopt listpacked
+setopt magic_equal_subst
 
 #----------------------------------------------------------------------------------------------------
 # history settings
 #----------------------------------------------------------------------------------------------------
 HISTSIZE=10000
 SAVEHIST=10000
-setopt HIST_IGNORE_ALL_DUPS
-setopt HIST_FIND_NO_DUPS
+setopt hist_ignore_all_dups
+setopt hist_find_no_dups
+setopt hist_save_no_dups
 
 #----------------------------------------------------------------------------------------------------
 # prompt settings
@@ -25,6 +37,8 @@ setopt HIST_FIND_NO_DUPS
 # autoload -Uz promptinit && promptinit
 # prompt redhat
 autoload -U colors && colors
+# only show right prompt on newest line
+setopt transient_rprompt
 
 #----------------------------------------------------------------------------------------------------
 # Plugin Settings
@@ -185,6 +199,7 @@ alias rf='rifle'
 alias nf='neofetch'
 alias git='hub'
 alias sl='ls'
+alias svim='nvim --clean'
 
 alias start='sudo systemctl start'
 alias stop='sudo systemctl stop'
@@ -197,6 +212,14 @@ alias cpr='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify
 alias mvr='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 --remove-source-files'
 
 alias wget='wget --hsts-file="~/.cache/wget-hsts"'
+
+alias Ss='pacman -Ss'
+alias Si='pacman -Si'
+alias Qs='pacman -Qs'
+alias Qi='pacman -Qi'
+alias Syu='sudo pacman -Syu'
+
+alias syu='yay -Syu'
 
 # enable appended alias
 alias sudo='sudo '
@@ -333,3 +356,27 @@ fi
 }
 zle -N fancy-ctrl-z
 bindkey '^Z' fancy-ctrl-z
+
+
+#----------------------------------------------------------------------------------------------------
+# sudo command line
+#----------------------------------------------------------------------------------------------------
+# sudo-command-line() {
+#     [[ -z $BUFFER ]] && zle up-history
+#     [[ $BUFFER != sudo\ * && $UID -ne 0 ]] && {
+#       typeset -a bufs
+#       bufs=(${(z)BUFFER})
+#       while (( $+aliases[$bufs[1]] )); do
+#         local expanded=(${(z)aliases[$bufs[1]]})
+#         bufs[1,1]=($expanded)
+#         if [[ $bufs[1] == $expanded[1] ]]; then
+#           break
+#         fi
+#       done
+#       bufs=(sudo $bufs)
+#       BUFFER=$bufs
+#     }
+#     zle end-of-line
+# }
+# zle -N sudo-command-line
+# bindkey "\e\e" sudo-command-line
