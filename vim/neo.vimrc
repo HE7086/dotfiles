@@ -195,7 +195,7 @@ Plug 'junegunn/vim-peekaboo'
 " Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 Plug 'rakr/vim-one'
 Plug 'ryanoasis/vim-devicons'
 " External Functionalities
@@ -306,7 +306,21 @@ let g:WebDevIconsOS = 'Linux'
 " coc.nvim addons
 set hidden
 set updatetime=500
-let g:coc_global_extensions = ['coc-yank', 'coc-json', 'coc-yaml', 'coc-highlight', 'coc-vimlsp', 'coc-clangd']
+let g:coc_global_extensions = [
+    \ 'coc-yank', 
+    \ 'coc-json', 
+    \ 'coc-yaml', 
+    \ 'coc-highlight', 
+    \ 'coc-vimlsp', 
+    \ 'coc-clangd', 
+    \ 'coc-python'
+    \ ]
+
+if has("patch-8.1.1564")
+    set signcolumn=number
+else
+    set signcolumn=yes
+endif
 " Use <c-space> to force trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
@@ -317,12 +331,17 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
+nmap <silent> g- <Plug>(coc-diagnostic-prev)
+nmap <silent> g= <Plug>(coc-diagnostic-next)
+xmap = <Plug>(coc-format-selected)
 " shift - F6 to rename, same as intellij
 nmap <F18> <Plug>(coc-refactor)
 " nmap <M-CR> :CocAction quickfix<CR>
 map <M-CR> :CocFix<CR>
 " nmap <M-CR> :CocAction<CR>
 " nmap <M-CR> <Plug>(coc-codeaction)
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 " Use K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 

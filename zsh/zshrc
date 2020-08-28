@@ -4,13 +4,19 @@
 autoload -Uz compinit && compinit -d $ZCOMPDUMPFILE
 setopt globdots
 
-zstyle ':completion:*' menu select
-zstyle ':completion::complete:*' gain-privileges 1
 setopt complete_aliases
+setopt auto_menu
+setopt complete_in_word
+setopt always_to_end
 zmodload zsh/complist
 
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'm:{a-zA-Z}={A-Za-z} r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion::complete:*' gain-privileges 1
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' special-dirs true
 
+# cd options
 setopt autocd
 setopt auto_pushd
 setopt pushd_ignore_dups
@@ -28,8 +34,11 @@ setopt magic_equal_subst
 HISTSIZE=10000
 SAVEHIST=10000
 setopt hist_ignore_all_dups
+setopt hist_ignore_space
 setopt hist_find_no_dups
 setopt hist_save_no_dups
+setopt hist_verify
+setopt share_history
 
 #----------------------------------------------------------------------------------------------------
 # prompt settings
@@ -39,6 +48,7 @@ setopt hist_save_no_dups
 autoload -U colors && colors
 # only show right prompt on newest line
 setopt transient_rprompt
+setopt prompt_subst
 
 #----------------------------------------------------------------------------------------------------
 # Plugin Settings
@@ -204,7 +214,7 @@ alias svim='nvim --clean'
 alias start='sudo systemctl start'
 alias stop='sudo systemctl stop'
 alias restart='sudo systemctl restart'
-alias status='sudo systemctl status'
+alias status='systemctl status'
 alias enable='sudo systemctl enable'
 alias disable='sudo systemctl disable'
 
