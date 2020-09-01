@@ -15,6 +15,8 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' special-dirs true
+zstyle ':completion:*:*:kill:*' menu yes select
+zstyle ':completion:*:kill:*'   force-list always
 
 # cd options
 setopt autocd
@@ -192,12 +194,10 @@ fi
 # alias
 #----------------------------------------------------------------------------------------------------
 
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
-alias ~='cd ~'
-alias /='cd /'
+alias -g ..='..'
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g .....='../../../..'
 
 alias ls='ls --color=auto'
 alias l='ls -lah'
@@ -254,13 +254,13 @@ function ranger() {
     local tempfile="$(mktemp -t tmp.XXXXXX)"
     local ranger_cmd=(
     command ranger --cmd="map Q chain shell echo %d > "$tempfile"; quitall"
-)
+    )
 
-${ranger_cmd[@]} "$@"
-if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$PWD" ]]; then
-    cd -- "$(cat "$tempfile")" || return
-fi
-command rm -f -- "$tempfile" 2>/dev/null
+    ${ranger_cmd[@]} "$@"
+    if [[ -f "$tempfile" ]] && [[ "$(cat -- "$tempfile")" != "$PWD" ]]; then
+        cd -- "$(cat "$tempfile")" || return
+    fi
+    command rm -f -- "$tempfile" 2>/dev/null
 }
 
 # # ex - archive extractor
