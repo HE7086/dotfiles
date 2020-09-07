@@ -1,5 +1,0 @@
-export ZSH="$HOME/.config/oh-my-zsh"
-export KEYTIMEOUT=1
-export LANG=en_US.UTF-8
-export EDITOR=/usr/bin/nvim
-export LESSHISTFILE=-
