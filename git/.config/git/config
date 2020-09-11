@@ -1,25 +1,25 @@
 [user]
 	email = HE7086@users.noreply.github.com
-	name = HE&)*^
+    name = HE&)*^
     signingkey = 91D524E3EE5B0EF8
 [core]
 	editor = nvim
-	autocrlf = input
+    autocrlf = input
 [github]
     user = HE7086
-	email = HE7086@users.noreply.github.com
-	username = HE&)*^
+    email = HE7086@users.noreply.github.com
+    username = HE&)*^
 [color]
-	ui = auto
-	diff = auto
-	status = auto
-	branch = auto
-	interactive = auto
-	grep = auto
+    ui = auto
+    diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    grep = auto
 [commit]
-	gpgsign = true
+    gpgsign = true
 [merge]
-	tool = kdiff3
+    tool = kdiff3
     guitool = kdiff3
 [submodule]
     recurse = true
@@ -27,4 +27,4 @@
     lg = log --abbrev-commit --graph 
     yolo = !git add -A && git commit -m \"$(curl -s http://whatthecommit.com/index.txt)\" && git push
 [pull]
-	rebase = true
+    rebase = true

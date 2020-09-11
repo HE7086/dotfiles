@@ -5,7 +5,7 @@ dirs := $(dir $(wildcard */.))
 all:
 	stow --dotfiles $(dirs) --target=$(HOME)
 
-.PHONY:
+.PHONY: clean
 clean:
 	stow --delete --dotfiles $(dirs) --target=$(HOME)
 
