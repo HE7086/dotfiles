@@ -231,6 +231,8 @@ alias Syu='sudo pacman -Syu'
 
 alias syu='yay -Syu'
 
+alias reboot2win='sudo grub-reboot 2 && reboot'
+
 # enable appended alias
 alias sudo='sudo '
 eval $(thefuck --alias)
