@@ -1,14 +1,16 @@
 # wildcard only directories
-dirs := $(filter-out root $(dir $(wildcard */.)))
-rootpkgs := $(dir $(wildcard root/*/.))
+dirs := $(filter-out root/,$(dir $(wildcard */.)))
 
 .PHONY: all
 all:
+	@echo "installing packages..."
 	stow --dotfiles $(dirs) --target=$(HOME)
+	@echo "run make root to install root packages"
 
 # packages that require previledges
 root:
-	sudo stow --dotfiles $(rootpkgs) --dir=root --target=/
+	@echo "installing root packages..."
+	$(MAKE) -C root all
 
 .PHONY: clean
 clean:
