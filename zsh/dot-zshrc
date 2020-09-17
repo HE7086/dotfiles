@@ -227,7 +227,12 @@ alias Ss='pacman -Ss'
 alias Si='pacman -Si'
 alias Qs='pacman -Qs'
 alias Qi='pacman -Qi'
+alias Ql='pacman -Ql'
+alias Qdt='pacman -Qdt'
+alias S='sudo pacman -S'
 alias Syu='sudo pacman -Syu'
+alias R='sudo pacman -R'
+alias Rs='sudo pacman -Rs'
 
 alias syu='yay -Syu'
 
