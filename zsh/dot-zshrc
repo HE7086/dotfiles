@@ -207,7 +207,6 @@ alias ll='ls -lh'
 alias ra='ranger'
 alias rf='rifle'
 alias nf='neofetch'
-alias git='hub'
 alias sl='ls'
 alias svim='nvim --clean'
 
