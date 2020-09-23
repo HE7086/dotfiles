@@ -1,6 +1,6 @@
 [user]
     email = HE7086@users.noreply.github.com
-    name = HE&)*^
+    name = HE7086
     signingkey = 91D524E3EE5B0EF8
 [core]
 	editor = nvim
@@ -8,7 +8,7 @@
 [github]
     user = HE7086
     email = HE7086@users.noreply.github.com
-    username = HE&)*^
+    username = HE7086
 [color]
     ui = auto
     diff = auto
