@@ -34,16 +34,15 @@
                 "*.cabal",
                 "stack.yaml",
                 "cabal.project",
-                "package.yaml"
+                "package.yaml",
+                "hie.yaml"
             ],
             "filetypes": [
                 "hs",
                 "lhs",
-                "haskell"
-            ],
-            "initializationOptions": {
-                "haskell": {}
-            }
+                "haskell",
+                "lhaskell"
+            ]
         }
     }
 }
