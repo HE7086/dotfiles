@@ -4,8 +4,6 @@ EnumerateWithTriggerKeys=True
 
 [Hotkey/TriggerKeys]
 0=Super+space
-1=Zenkaku_Hankaku
-2=Hangul
 
 [Hotkey/AltTriggerKeys]
 0=Shift_L
@@ -39,6 +37,9 @@ EnumerateWithTriggerKeys=True
 
 [Hotkey/NextCandidate]
 0=Tab
+
+[Hotkey/TogglePreedit]
+0=Control+Alt+P
 
 [Behavior]
 # Active By Default
