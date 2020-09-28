@@ -3,7 +3,7 @@
     name = HE7086
     signingkey = 91D524E3EE5B0EF8
 [core]
-	editor = nvim
+    editor = nvim
     autocrlf = input
 [github]
     user = HE7086
