@@ -1,0 +1,8 @@
+#!/bin/bash
+
+if [[ "$1" == "bilibili:"* ]]; then
+    ref=${1#bilibili://}
+    xdg-open "https://bilibili.com/$ref"
+else 
+    xdg-open "$1"
+fi

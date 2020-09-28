@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=BiliBili Scheme Handler
+Exec=open-bili %u
+StartupNotify=false
+MimeType=x-scheme-handler/bilibili;
