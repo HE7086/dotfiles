@@ -238,6 +238,8 @@ alias Rs='sudo pacman -Rs'
 alias syu='yay -Syu'
 
 alias reboot2win='sudo grub-reboot 2 && reboot'
+alias activateconda='source /opt/anaconda/bin/activate root'
+alias deactivateconda='source /opt/anaconda/bin/deactivate root'
 
 # enable appended alias
 alias sudo='sudo '
