@@ -300,9 +300,6 @@ let g:CtrlXA_Toggles = [
             \ ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
             \ ]
 
-" devIcon settings
-let g:WebDevIconsOS = 'Linux'
-
 " coc.nvim addons
 set hidden
 set updatetime=500
