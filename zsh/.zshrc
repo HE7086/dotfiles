@@ -176,9 +176,9 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
 [[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" reverse-menu-complete
 
-key[SEnter]=OM # manually setup since terminfo is not avaliable
-[[ -n "${key[SEnter]}"   ]] && bindkey "${key[SEnter]}"     accept-line
-[[ -n "${key[SEnter]}"   ]] && bindkey -M vicmd "${key[SEnter]}"     accept-line
+# key[SEnter]=M # manually setup since terminfo is not avaliable
+# [[ -n "${key[SEnter]}"   ]] && bindkey "${key[SEnter]}"     accept-line
+# [[ -n "${key[SEnter]}"   ]] && bindkey -M vicmd "${key[SEnter]}"     accept-line
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -208,6 +208,8 @@ alias ra='ranger'
 alias rf='rifle'
 alias nf='neofetch'
 alias sl='ls'
+alias py='python'
+alias a='aria2c'
 alias svim='nvim --clean'
 
 alias start='sudo systemctl start'
@@ -227,7 +229,9 @@ alias Si='pacman -Si'
 alias Qs='pacman -Qs'
 alias Qi='pacman -Qi'
 alias Ql='pacman -Ql'
+alias Qo='pacman -Qo'
 alias Qdt='pacman -Qdt'
+alias Qdtq='pacman -Qdtq'
 alias Fl='pacman -Fl'
 
 alias S='sudo pacman -S'
@@ -358,8 +362,10 @@ function vi_mode_prompt_info() {
 }
 
 # define right prompt, if it wasn't defined by a theme
-if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
-    RPS1='$(vi_mode_prompt_info)'
+if [[ $TTY =~ "/dev/tty" ]]; then
+    if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
+        RPS1='$(vi_mode_prompt_info)'
+    fi
 fi
 
 #----------------------------------------------------------------------------------------------------

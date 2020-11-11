@@ -374,6 +374,7 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 autocmd BufRead,BufNewFile *.hs nnoremap <F22> :w<CR>:term ghci %<CR>
 autocmd BufRead,BufNewFile *.c nnoremap <F22> :w<CR>:term clang % -o test.out; ./test.out<CR>
 autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ % -o test.out; ./test.out<CR>
+autocmd BufRead,BufNewFile *.py nnoremap <F22> :w<CR>:term python %<CR>
 
 " ---------- End of Settings ----------
 

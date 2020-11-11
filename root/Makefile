@@ -2,9 +2,9 @@ dirs := $(dir $(wildcard */.))
 
 .PHONY: all
 all:
-	sudo stow $(dirs) --dotfiles --target=/
+	sudo stow $(dirs) --target=/
 
 .PHONY: clean
 clean:
-	sudo stow $(dirs) --delete --dotfiles --target=/
+	sudo stow $(dirs) --delete --target=/
 
