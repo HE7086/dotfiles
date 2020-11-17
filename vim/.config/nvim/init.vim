@@ -175,6 +175,9 @@ cnoremap <C-e> <End>
 noremap Q <nop>
 noremap gQ <nop>
 
+" :W = :w
+command! -nargs=0 W :w
+
 " terminal behaviour
 let g:neoterm_autoscroll = 1
 autocmd TermOpen term://* startinsert
