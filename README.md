@@ -3,7 +3,8 @@
 * controlled by GNU stow
 * install dotfiles with `make`
 * automatically create symbolic link
-* install single file with `stow --dotfiles`
+* install single file with `stow <package name> --target=$HOME`
+* install single file to root with `sudo stow <package name> --target=/`
 
 ## required additional packages
 * shell
