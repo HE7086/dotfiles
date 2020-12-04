@@ -379,6 +379,7 @@ autocmd BufRead,BufNewFile *.hs nnoremap <F22> :w<CR>:term ghci %<CR>
 autocmd BufRead,BufNewFile *.c nnoremap <F22> :w<CR>:term clang % -o test.out; ./test.out<CR>
 autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ % -o test.out; ./test.out<CR>
 autocmd BufRead,BufNewFile *.py nnoremap <F22> :w<CR>:term python %<CR>
+autocmd BufRead,BufNewFile *.cprf nnoremap <F22> :w<CR>:term cyp <C-R>=expand('%:r')<CR>.cthy % <CR>
 
 " ---------- End of Settings ----------
 
