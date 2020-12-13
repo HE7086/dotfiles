@@ -235,9 +235,10 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 colorscheme one
 set termguicolors
 let g:airline_powerline_fonts=1
-let g:airline_extensions=['branch']
+let g:airline_extensions=['branch', 'coc']
 "let g:airline_section_y='%{strlen(&fenc)?&fenc:&enc}[%{&ff}]'
 let g:airline_section_z='%3p%%%4l%3c'
+let g:airline#extensions#coc#enabled=1
 
 " NERDTree
 let NERDTreeMapToggleHidden="zh"
