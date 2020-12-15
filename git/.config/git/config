@@ -19,8 +19,10 @@
 [commit]
     gpgsign = true
 [merge]
-    tool = kdiff3
-    guitool = kdiff3
+    tool = intellij
+[mergetool "intellij"]
+	cmd = /usr/bin/intellij-idea-ultimate-edition merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+    trustExitCode = true
 [submodule]
     recurse = true
 [alias]
