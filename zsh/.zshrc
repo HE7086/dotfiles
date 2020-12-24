@@ -14,7 +14,7 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z-_}={A-Za-z_-}' 'r:|=*' 'l:|=* r:|=*'
 zstyle ':completion::complete:*' gain-privileges 1
 zstyle ':completion:*' list-colors ''
-zstyle ':completion:*' special-dirs true
+zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 
@@ -242,8 +242,6 @@ alias Rs='sudo pacman -Rs'
 alias syu='yay -Syu'
 
 alias reboot2win='sudo grub-reboot 2 && reboot'
-alias activateconda='source /opt/anaconda/bin/activate root'
-alias deactivateconda='source /opt/anaconda/bin/deactivate root'
 alias startVirtualCam='sudo modprobe v4l2loopback devices=1 video_nr=10 card_label="OBS Cam" exclusive_caps=1'
 
 # enable appended alias

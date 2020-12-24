@@ -216,6 +216,7 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'dkarter/bullets.vim', { 'for': ['markdown', 'vim-plug'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'mzlogin/vim-markdown-toc'
 
 Plug 'HE7086/cyp-vim-syntax'
@@ -314,7 +315,7 @@ let g:coc_global_extensions = [
     \ 'coc-yaml', 
     \ 'coc-highlight', 
     \ 'coc-vimlsp', 
-    \ 'coc-python', 
+    \ 'coc-pyright', 
     \ 'coc-html', 
     \ 'coc-clangd'
     \ ]
@@ -377,8 +378,8 @@ command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport
 
 " ---------- Run Code in Terminal ----------
 autocmd BufRead,BufNewFile *.hs nnoremap <F22> :w<CR>:term ghci %<CR>
-autocmd BufRead,BufNewFile *.c nnoremap <F22> :w<CR>:term clang % -o test.out; ./test.out<CR>
-autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ % -o test.out; ./test.out<CR>
+autocmd BufRead,BufNewFile *.c nnoremap <F22> :w<CR>:term clang % -o test.out && ./test.out<CR>
+autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ -std=c++2a % -o test.out && ./test.out<CR>
 autocmd BufRead,BufNewFile *.py nnoremap <F22> :w<CR>:term python %<CR>
 autocmd BufRead,BufNewFile *.cprf nnoremap <F22> :w<CR>:term cyp <C-R>=expand('%:r')<CR>.cthy % <CR>
 

@@ -14,7 +14,6 @@
     "suggest.floatEnable": true,
     "list.previousKeymap": "<A-k>",
     "list.nextKeymap": "<A-j>",
-    "codeLens.enable": true,
     "languageserver": {
         "bash": {
             "command": "bash-language-server",
@@ -44,5 +43,9 @@
                 "lhaskell"
             ]
         }
-    }
+    },
+    "clangd.fallbackFlags": [
+        "-std=c++2a"
+    ],
+    "clangd.semanticHighlighting": true
 }
