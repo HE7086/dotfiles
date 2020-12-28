@@ -211,6 +211,7 @@ alias sl='ls'
 alias py='python'
 alias a='aria2c'
 alias svim='nvim --clean'
+alias xc='xclip -selection c'
 
 alias start='sudo systemctl start'
 alias stop='sudo systemctl stop'
