@@ -5,6 +5,7 @@
 [core]
     editor = nvim
     autocrlf = input
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [github]
     user = HE7086
     email = HE7086@users.noreply.github.com
@@ -21,7 +22,7 @@
 [merge]
     tool = intellij
 [mergetool "intellij"]
-	cmd = /usr/bin/intellij-idea-ultimate-edition merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+    cmd = /usr/bin/intellij-idea-ultimate-edition merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
     trustExitCode = true
 [submodule]
     recurse = true
