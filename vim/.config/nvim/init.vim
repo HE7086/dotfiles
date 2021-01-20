@@ -379,6 +379,7 @@ command! -nargs=0 Format :call CocAction('format')
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
 
 " ---------- Run Code in Terminal ----------
+autocmd BufRead,BufNewFile *.sh nnoremap <F22> :w<CR>:term zsh %<CR>
 autocmd BufRead,BufNewFile *.hs nnoremap <F22> :w<CR>:term ghci %<CR>
 autocmd BufRead,BufNewFile *.c nnoremap <F22> :w<CR>:term clang % -o test.out && ./test.out<CR>
 autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ -std=c++2a % -o test.out && ./test.out<CR>
