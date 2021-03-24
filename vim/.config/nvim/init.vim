@@ -318,8 +318,10 @@ let g:coc_global_extensions = [
     \ 'coc-pyright', 
     \ 'coc-html', 
     \ 'coc-clangd',
+    \ 'coc-cmake',
     \ 'coc-dictionary',
     \ 'coc-word',
+    \ 'coc-vimtex',
     \ ]
 
 if has("patch-8.1.1564")
