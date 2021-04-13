@@ -82,6 +82,7 @@ set listchars=eol:¶,tab:>_,trail:·,extends:¦,precedes:¦,space:·,nbsp:␣
 " word wrap only for text files
 set nowrap
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal wrap
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal linebreak
 
 "------------------------------------------------
 " Key bindings
@@ -89,6 +90,8 @@ autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal wrap
 " better movement for plain text editing while wraping
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap j gj
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap k gk
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap L g$
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap H g^
 autocmd BufRead,BufNewFile *.md,*.markdown inoremap ``` ```<CR>```<up>
 " normal/visual mod: Alt + hjkl -> move/indent line
 nnoremap <A-h> <<
@@ -218,6 +221,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'mzlogin/vim-markdown-toc'
+Plug 'lervag/vimtex'
 
 Plug 'HE7086/cyp-vim-syntax'
 call plug#end()
@@ -323,6 +327,8 @@ let g:coc_global_extensions = [
     \ 'coc-word',
     \ 'coc-vimtex',
     \ ]
+
+let g:vimtex_compiler_progname = 'nvr'
 
 if has("patch-8.1.1564")
     set signcolumn=number

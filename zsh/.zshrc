@@ -238,8 +238,7 @@ alias Fl='pacman -Fl'
 
 alias S='sudo pacman -S'
 alias Syu='sudo pacman -Syu'
-alias R='sudo pacman -R'
-alias Rs='sudo pacman -Rs'
+alias Rns='sudo pacman -Rns'
 
 alias syu='yay -Syu'
 
