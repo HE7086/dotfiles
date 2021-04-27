@@ -245,6 +245,10 @@ alias syu='yay -Syu'
 alias reboot2win='sudo grub-reboot 2 && reboot'
 alias startVirtualCam='sudo modprobe v4l2loopback devices=1 video_nr=10 card_label="OBS Cam" exclusive_caps=1'
 
+alias printarg='python -c "print(__import__(\"sys\").argv[1:])"'
+
+alias se='sudoedit'
+
 # enable appended alias
 alias sudo='sudo '
 eval $(thefuck --alias)
