@@ -77,7 +77,10 @@ if [[ $TTY =~ "/dev/tty" ]]; then
     autoload -Uz promptinit && promptinit
     prompt redhat
 else
+    # eval "$(starship init zsh)"
+# fi
 
+# if false; then
     # left prompts
     if [[ -z "$SSH_CONNECTION" ]]; then
         POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
@@ -208,9 +211,9 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
 [[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" reverse-menu-complete
 
-# key[SEnter]=M # manually setup since terminfo is not avaliable
-# [[ -n "${key[SEnter]}"   ]] && bindkey "${key[SEnter]}"     accept-line
-# [[ -n "${key[SEnter]}"   ]] && bindkey -M vicmd "${key[SEnter]}"     accept-line
+key[SEnter]=OM # manually setup since terminfo is not avaliable
+[[ -n "${key[SEnter]}"   ]] && bindkey "${key[SEnter]}"          accept-and-hold
+[[ -n "${key[SEnter]}"   ]] && bindkey -M vicmd "${key[SEnter]}" accept-and-hold
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
@@ -396,14 +399,17 @@ if [[ "$MODE_INDICATOR" == "" ]]; then
     MODE_INDICATOR="%{$fg_bold[red]%}<%{$fg[red]%}<<%{$reset_color%}"
 fi
 
-function vi_mode_prompt_info() {
-    echo "${${VI_KEYMAP/vicmd/$MODE_INDICATOR}/(main|viins)/}"
-}
-
 # define right prompt, if it wasn't defined by a theme
+# somehow only works from second prompt
 if [[ $TTY =~ "/dev/tty" ]]; then
     if [[ "$RPS1" == "" && "$RPROMPT" == "" ]]; then
-        RPS1='$(vi_mode_prompt_info)'
+        function zle-line-init zle-keymap-select {
+            RPS1="${${KEYMAP/vicmd/-- NORMAL --}/(main|viins)/-- INSERT --}"
+            RPS2=$RPS1
+            zle reset-prompt
+        }
+        zle -N zle-line-init
+        zle -N zle-keymap-select
     fi
 fi
 
