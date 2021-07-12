@@ -44,5 +44,8 @@
             ]
         }
     },
-    "clangd.semanticHighlighting": true
+    "clangd.semanticHighlighting": true,
+    "clangd.fallbackFlags": [
+        "-std=c++20"
+    ]
 }

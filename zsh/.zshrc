@@ -240,7 +240,7 @@ alias S='sudo pacman -S'
 alias Syu='sudo pacman -Syu'
 alias Rns='sudo pacman -Rns'
 
-alias syu='yay -Syu'
+alias syu='paru -Syu'
 
 alias reboot2win='sudo grub-reboot 2 && reboot'
 alias startVirtualCam='sudo modprobe v4l2loopback devices=1 video_nr=10 card_label="OBS Cam" exclusive_caps=1'
@@ -290,19 +290,21 @@ function ex() {
     while [[ -n "$1" ]]; do
         if [[ -f $1 ]]; then
             case $1 in
-                *.tar.bz2)   tar xjf $1      ;;
-                *.tbz2)      tar xjf $1      ;;
-                *.tar.gz)    tar xzf $1      ;;
-                *.tgz)       tar xzf $1      ;;
-                *.tar)       tar xf $1       ;;
-                *.bz2)       bunzip2 $1      ;;
-                *.gz)        gunzip $1       ;;
-                *.rar)       unrar x $1      ;;
-                *.zip)       unzip $1        ;;
-                *.Z)         uncompress $1   ;;
-                *.7z)        7z x $1         ;;
-                *.tar.zst)   tar xf $1 --zstd;;
-                *.zst)       unzstd $1       ;;
+                *.tar.bz2)   tar xjf $1       ;;
+                *.tbz2)      tar xjf $1       ;;
+                *.tar.gz)    tar xzf $1       ;;
+                *.tgz)       tar xzf $1       ;;
+                *.tar)       tar xf $1        ;;
+                *.bz2)       bunzip2 $1       ;;
+                *.gz)        gunzip $1        ;;
+                *.rar)       unrar x $1       ;;
+                *.zip)       unzip $1         ;;
+                *.Z)         uncompress $1    ;;
+                *.7z)        7z x $1          ;;
+                *.tar.zst)   tar xf $1 --zstd ;;
+                *.zst)       unzstd $1        ;;
+                *.tar.xz)    tar xJf $1       ;;
+                *.xz)        xz -d $1         ;;
                 *)           echo "'$1' cannot be extracted via ex()" ;;
             esac
         else
@@ -412,3 +414,10 @@ bindkey '^Z' fancy-ctrl-z
 # }
 # zle -N sudo-command-line
 # bindkey "\e\e" sudo-command-line
+
+#
+# pdfgrep
+#
+function findpdf() {
+    find . -iname "*.pdf" -exec pdfgrep "$*" {} +
+}

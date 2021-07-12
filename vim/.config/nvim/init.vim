@@ -92,6 +92,10 @@ autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap j gj
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap k gk
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap L g$
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap H g^
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap j gj
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap k gk
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap L g$
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap H g^
 autocmd BufRead,BufNewFile *.md,*.markdown inoremap ``` ```<CR>```<up>
 " normal/visual mod: Alt + hjkl -> move/indent line
 nnoremap <A-h> <<
@@ -197,7 +201,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'Konfekt/vim-CtrlXA'
-Plug 'junegunn/vim-peekaboo'
+" Plug 'junegunn/vim-peekaboo'
 " Themes and Colors
 " Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
@@ -219,9 +223,11 @@ Plug 'dhruvasagar/vim-table-mode', { 'on': 'TableModeToggle' }
 Plug 'dkarter/bullets.vim', { 'for': ['markdown', 'vim-plug'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jackguo380/vim-lsp-cxx-highlight'
+" Plug 'jackguo380/vim-lsp-cxx-highlight'
 Plug 'mzlogin/vim-markdown-toc'
 Plug 'lervag/vimtex'
+Plug 'dpelle/vim-LanguageTool'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 Plug 'HE7086/cyp-vim-syntax'
 call plug#end()
@@ -385,6 +391,28 @@ endfunction
 command! -nargs=0 Format :call CocAction('format')
 " use `:OR` for organize import of current buffer
 command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" ---------- language tool ----------
+let g:languagetool_cmd='/usr/bin/languagetool'
+
+" ---------- treesitter ----------
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  ignore_install = {},
+  highlight = {
+    enable = true,
+    disable = {},
+  },
+  incremental_selection = {
+      enable = true,
+  },
+  indent = {
+      enable = true,
+  },
+}
+EOF
 
 " ---------- Run Code in Terminal ----------
 autocmd BufRead,BufNewFile *.sh nnoremap <F22> :w<CR>:term zsh %<CR>
