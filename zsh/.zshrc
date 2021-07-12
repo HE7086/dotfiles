@@ -57,12 +57,22 @@ setopt prompt_subst
 #----------------------------------------------------------------------------------------------------
 
 # FZF
-which fzf >> /dev/null || echo "fzf not installed!"
-# Auto-completion
-[[ $- == *i* ]] && source "/usr/share/fzf/completion.zsh" 2> /dev/null
-# Key bindings
-source "/usr/share/fzf/key-bindings.zsh"
+if (which fzf > /dev/null); then 
+    if [[ -f /usr/bin/fzf ]]; then
+        [[ $- == *i* ]] && source /usr/share/fzf/completion.zsh 2> /dev/null
+        source /usr/share/fzf/key-bindings.zsh
+    else
+        [[ $- == *i* ]] && source ~/.local/share/fzf/shell/completion.zsh 2> /dev/null
+        source ~/.local/share/fzf/shell/key-bindings.zsh
+    fi
+else
+    git clone --depth=1 https://github.com/junegunn/fzf.git ~/.local/share/fzf
+    ~/.local/share/fzf/install --no-bash --no-fish --no-key-bindings --no-completion --no-update-rc --bin
+    ln -s ~/.local/share/fzf/bin/fzf ~/.local/bin/fzf
+    echo "fzf will be available for next shell instance"
+fi
 
+# prompt
 if [[ $TTY =~ "/dev/tty" ]]; then
     autoload -Uz promptinit && promptinit
     prompt redhat
@@ -109,7 +119,15 @@ else
     POWERLEVEL9K_SHORTEN_DIR_LENTH=1
     POWERLEVEL9K_SHORTEN_DELIMITER=""
     POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
-    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+    if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
+        source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+    else
+        if [[ ! -f ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme ]]; then
+            [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
+            git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.local/share/zsh/plugins/powerlevel10k
+        fi
+        source ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+    fi
 
     # sudo pacman -S zsh-completions zsh-autosuggestions zsh-syntax-highlighting zsh-history-substring-search
     ZSH_AUTOSUGGEST_STRATEGY=(completion history)
@@ -117,10 +135,24 @@ else
     ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
     autoload autosuggest-accept
     zle -N autosuggest-accept
-    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-    source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 
+    function check_plugin() {
+        if [[ -f /usr/share/zsh/plugins/"$1"/"$1".zsh ]]; then
+            source /usr/share/zsh/plugins/"$1"/"$1".zsh
+        else
+            if [[ ! -f ~/.local/share/zsh/plugins/"$1"/"$1".zsh ]]; then
+                [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
+                git clone --depth=1 https://github.com/zsh-users/"$1".git ~/.local/share/zsh/plugins/"$1"
+            fi
+            source ~/.local/share/zsh/plugins/"$1"/"$1".zsh
+        fi
+    }
+
+    check_plugin zsh-syntax-highlighting
+    check_plugin zsh-autosuggestions
+    check_plugin zsh-history-substring-search
+
+    unset -f check_plugin
 fi
 
 #----------------------------------------------------------------------------------------------------
