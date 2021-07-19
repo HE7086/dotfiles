@@ -274,6 +274,7 @@ alias Fl='pacman -Fl'
 alias S='sudo pacman -S'
 alias Syu='sudo pacman -Syu'
 alias Rns='sudo pacman -Rns'
+alias Fy='sudo pacman -Fy'
 
 alias syu='paru -Syu'
 
@@ -457,5 +458,5 @@ bindkey '^Z' fancy-ctrl-z
 # pdfgrep
 #
 function findpdf() {
-    find . -iname "*.pdf" -exec pdfgrep "$*" {} +
+    find . -iname "*.pdf" -exec pdfgrep -i "$*" {} +
 }

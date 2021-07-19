@@ -31,5 +31,11 @@
 [alias]
     lg = log --abbrev-commit --graph 
 	yolo = !git add -A && git commit -m \"$(curl -s http://whatthecommit.com/index.txt)\" && git push
+    cr = !git reset --hard && git clean -xdf
 [pull]
     rebase = true
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
