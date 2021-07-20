@@ -14,6 +14,9 @@ require('telescope').setup{
                     ['h'] = actions.move_to_bottom + actions.select_default + actions.center,
                 }
             }
+        },
+        buffers = {
+            on_complete = { function() vim.cmd 'stopinsert' end },
         }
     }
 }

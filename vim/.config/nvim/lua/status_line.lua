@@ -86,6 +86,33 @@ local function filename_lsp()
     end
 end
 
+-- get buffer number
+local function bufnum()
+    if short_mode(80) then
+        return ''
+    else
+        return '[%n] '
+    end
+end
+
+--get misc filetype info
+local function ft_misc()
+    local fe = vim.bo.fileencoding
+    local ff = vim.bo.ff
+
+    local msg = ''
+
+    -- only show info when not standard unix
+    if short_mode(80) then
+        return ''
+    elseif fe ~= 'utf-8' then
+        msg = msg .. '[' .. fe .. '] '
+    elseif ff ~= 'unix' then
+        msg = msg .. '[' .. ff .. '] '
+    end
+    return msg
+end
+
 -- get filetype with icons
 local function filetype()
     local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
@@ -117,6 +144,7 @@ local function set_active()
         colors.git .. git_status(),
         colors.inactive,
         "%=", filename_lsp(), "%=",
+        bufnum(), ft_misc(),
         colors.filetype .. filetype(),
         colors.line_col .. line_col()
     })
@@ -130,9 +158,7 @@ end
 -- explorer color scheme
 local function set_explorer()
     local title = colors.mode .. '   '
-    local title_alt = colors.mode_alt
-
-    return table.concat({ colors.active, title, title_alt })
+    return table.concat({ colors.active, title})
 end
 
 Statusline = function(current_state)

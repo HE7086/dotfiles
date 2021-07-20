@@ -29,14 +29,14 @@ wo.number = true
 wo.relativenumber = true
 
 -- tab and indent
-bo.expandtab = true
+o.expandtab = true
 o.smarttab = true
-bo.autoindent = true
-bo.smartindent = true
+o.autoindent = true
+o.smartindent = true
 o.shiftround = true
-bo.shiftwidth = 4
-bo.tabstop = 4
-bo.softtabstop = 4
+o.shiftwidth = 4
+o.tabstop = 4
+o.softtabstop = 4
 
 -- search
 o.ignorecase = true
