@@ -79,7 +79,7 @@ cmd 'filetype plugin indent on'
 
 -- clipboard and yank
 o.clipboard = 'unnamedplus'
-cmd 'autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = false}'
+cmd 'autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = true}'
 
 -- wrapping and folding
 o.wrap = false
