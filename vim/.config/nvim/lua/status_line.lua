@@ -105,9 +105,9 @@ local function ft_misc()
     -- only show info when not standard unix
     if short_mode(80) then
         return ''
-    elseif fe ~= 'utf-8' then
+    elseif fe ~= 'utf-8' and fe ~= '' then
         msg = msg .. '[' .. fe .. '] '
-    elseif ff ~= 'unix' then
+    elseif ff ~= 'unix' and fe ~= '' then
         msg = msg .. '[' .. ff .. '] '
     end
     return msg
@@ -132,7 +132,7 @@ local function line_col()
     if short_mode(80) then
         return '%l:%c'
     else
-        return ' %4l : %3c '
+        return ' %4l :%3c '
     end
 end
 
@@ -155,27 +155,19 @@ local function set_inactive()
     return colors.inactive .. '%= %F %='
 end
 
--- explorer color scheme
-local function set_explorer()
-    local title = colors.mode .. '   '
-    return table.concat({ colors.active, title})
-end
-
 Statusline = function(current_state)
     local state = setmetatable({
         ['active']   = set_active(),
         ['inactive'] = set_inactive(),
-        ['explorer'] = set_explorer(),
     }, { __index = function() return set_active() end })
     return state[current_state]
 end
 
 api.nvim_exec([[
 augroup Statusline
-au!
-au WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
-au WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
-au WinEnter,BufEnter,FileType NvimTree setlocal statusline=%!v:lua.Statusline('explorer')
+autocmd!
+autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
+autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
 augroup END
 ]], false)
 
@@ -196,7 +188,7 @@ local function set_hl(group, options)
     end
 end
 
-OverrideColorscheme = function()
+StatusLineColorScheme = function()
     local highlights = {
         {'StatusLine',         {bg = '#4b5263', fg = '#abb2bf'}},
         {'StatuslineNC',       {bg = '#abb2bf', fg = '#4b5263'}},
@@ -210,10 +202,10 @@ OverrideColorscheme = function()
     end
 end
 
--- automatically override colourscheme
-vim.api.nvim_exec([[
-augroup NewColor
-au!
-au ColorScheme one call v:lua.OverrideColorscheme()
+-- automatically load the status line
+vim.cmd([[
+augroup StatusLineColor
+autocmd!
+autocmd ColorScheme * call v:lua.StatusLineColorScheme()
 augroup END
-]], false)
+]])

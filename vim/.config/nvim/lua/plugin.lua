@@ -6,10 +6,13 @@ return require('packer').startup(function(use)
     -- use {'tpope/vim-fugitive'}
     use {'terryma/vim-multiple-cursors'}
     use {'Konfekt/vim-CtrlXA'}
-    use {'rakr/vim-one'}
+    use {'rakr/vim-one',
+        config = function() vim.cmd 'colorscheme one' end
+    }
     use {'kyazdani42/nvim-web-devicons'}
 
     use {'mhinz/vim-startify',
+        ft = {'startify'},
         config = function() require('plugins.startify') end
     }
 
@@ -22,7 +25,8 @@ return require('packer').startup(function(use)
     }
 
     use {'iamcco/markdown-preview.nvim',
-        run = 'cd app && yarn install',
+        run = function() vim.fn['mkdp#util#install']() end,
+        ft = {'markdown'},
         cmd = {
             'MarkdownPreview',
             'MarkdownPreviewToggle'
@@ -41,9 +45,12 @@ return require('packer').startup(function(use)
         config = function() require('plugins.formatter') end
     }
 
+    -- use {'rktjmp/lush.nvim'}
+
     ----- lsp plugins -----
     use {'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
+        branch = '0.5-compat', -- TODO: switch to master when 0.6 stable
         config = function() require('plugins.nvim-treesitter') end
     }
     use {'neovim/nvim-lspconfig',
