@@ -3,13 +3,15 @@ return require('packer').startup(function(use)
     use {'tpope/vim-surround'}
     use {'tpope/vim-repeat'}
     use {'tpope/vim-commentary'}
-    -- use {'tpope/vim-fugitive'}
+    use {'tpope/vim-fugitive'}
     use {'terryma/vim-multiple-cursors'}
     use {'Konfekt/vim-CtrlXA'}
     use {'rakr/vim-one',
         config = function() vim.cmd 'colorscheme one' end
     }
     use {'kyazdani42/nvim-web-devicons'}
+
+    use {'skywind3000/asyncrun.vim'}
 
     use {'mhinz/vim-startify',
         config = function() require('plugins.startify') end
