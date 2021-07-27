@@ -17,6 +17,14 @@ require('telescope').setup{
         },
         buffers = {
             on_complete = { function() vim.cmd 'stopinsert' end },
+            mappings = {
+                n = {
+                    ['j'] = actions.move_selection_next,
+                    ['k'] = actions.move_selection_previous,
+                    ['l'] = actions.select_default + actions.center,
+                    ['h'] = actions.move_to_bottom + actions.select_default + actions.center,
+                }
+            }
         }
     }
 }

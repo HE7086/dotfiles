@@ -12,7 +12,6 @@ return require('packer').startup(function(use)
     use {'kyazdani42/nvim-web-devicons'}
 
     use {'mhinz/vim-startify',
-        ft = {'startify'},
         config = function() require('plugins.startify') end
     }
 

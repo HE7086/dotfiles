@@ -10,3 +10,5 @@ export GTK_USE_PORTAL=1
 
 # fix vscode delete freeze
 export ELECTRON_TRASH=gio
+
+export MOZ_DISABLE_RDD_SANDBOX=1

@@ -3,6 +3,8 @@ local map = require('util.keymap').map
 vim.cmd [[autocmd BufEnter * lua require('completion').on_attach()]]
 vim.o.completeopt='menuone,noinsert,noselect'
 
+
+-- actually nvim-lspconfig configuration
 vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
 map('i', '<Tab>',   '<Plug>(completion_smart_tab)')
