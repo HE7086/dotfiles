@@ -250,7 +250,6 @@ alias sl='ls'
 alias py='python'
 alias a='aria2c'
 alias svim='nvim --clean'
-alias xc='xclip -selection c'
 alias pc='proxychains'
 
 alias start='sudo systemctl start'
@@ -463,4 +462,12 @@ bindkey '^Z' fancy-ctrl-z
 #
 function findpdf() {
     find . -iname "*.pdf" -exec pdfgrep -i "$*" {} +
+}
+
+function clip() {
+    if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then
+        wl-copy
+    else
+        xclip -selection c
+    fi
 }
