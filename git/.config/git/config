@@ -1,41 +1,52 @@
+[core]
+    editor = nvim
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [user]
     email = HE7086@users.noreply.github.com
     name = HE7086
-    signingkey = 91D524E3EE5B0EF8
-[core]
-    editor = nvim
-    autocrlf = input
-    pager = diff-so-fancy | less --tabs=4 -RFX
+    signingKey = 91D524E3EE5B0EF8
 [github]
     user = HE7086
     email = HE7086@users.noreply.github.com
     username = HE7086
-[color]
-    ui = auto
-    diff = auto
-    status = auto
-    branch = auto
-    interactive = auto
-    grep = auto
+
 [commit]
-    gpgsign = true
-[merge]
-    tool = vimdiff
-[mergetool]
-    keepBackup = false
-[mergetool "intellij"]
-    cmd = /usr/bin/intellij-idea-ultimate-edition merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
-    trustExitCode = true
-[submodule]
-    recurse = true
-[alias]
-    lg = log --abbrev-commit --graph 
-	yolo = !git add -A && git commit -m \"$(curl -s http://whatthecommit.com/index.txt)\" && git push
-    cr = !git reset --hard && git clean -xdf
+    gpgSign = true
+[tag]
+    gpgSign = true
+[push]
+    recurseSubmodules = no
 [pull]
     rebase = true
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    ff = only
+
+[rebase]
+    autoStash = true
+
+[submodule]
+    recurse = true
+    fetchJobs = 2
+
+[status]
+    showStash = true
+[diff]
+    ignoreSubmodules = all
+
+[merge]
+    tool = smerge
+[mergetool]
+    keepBackup = false
+[mergetool "smerge"]
+    cmd = smerge mergetool "$BASE" "$LOCAL" "$REMOTE" -o "$MERGED"
+    trustExitCode = true
+[mergetool "intellij"]
+    cmd = intellij-idea-ultimate-edition merge $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL") $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE") $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE") $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")
+    trustExitCode = true
+
+[alias]
+    lg = log --abbrev-commit --graph 
+    cl = clone --recursive --depth=1 --shallow-submodules
+    yolo = !git add -A && git commit -m \"$(curl -s http://whatthecommit.com/index.txt)\" && git push
+    cr = !git reset --hard && git clean -xdf
+    spushall = submodule foreach --recursive git push
+    sup = submodule update --init --recursive --recommend-shallow
