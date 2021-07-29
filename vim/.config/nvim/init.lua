@@ -4,8 +4,6 @@ local fn = vim.fn   -- invoke vim function
 local g = vim.g     -- global variables
 
 local o = vim.o     -- editor option
-local wo = vim.wo   -- window option
-local bo = vim.bo   -- buffer option
 
 local noremap = require('util.keymap').noremap
 local noremap_all = require('util.keymap').noremap_all
@@ -14,8 +12,8 @@ local noremap_all = require('util.keymap').noremap_all
 o.fileencodings = 'utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1'
 
 -- numbers
-wo.number = true
-wo.relativenumber = true
+o.number = true
+o.relativenumber = true
 
 -- tab and indent
 o.expandtab = true

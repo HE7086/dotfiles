@@ -47,6 +47,7 @@ return require('packer').startup(function(use)
     }
 
     -- use {'rktjmp/lush.nvim'}
+    use {'killphi/vim-ebnf'}
 
     ----- lsp plugins -----
     use {'nvim-treesitter/nvim-treesitter',
