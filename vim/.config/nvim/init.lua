@@ -124,6 +124,10 @@ o.updatetime = 500
 noremap('n', '<space><CR>', ':nohlsearch<CR>')
 noremap('', 'H', '^')
 noremap('', 'L', '$')
+noremap('i', '<A-h>', '<left>')
+noremap('i', '<A-j>', '<down>')
+noremap('i', '<A-k>', '<up>')
+noremap('i', '<A-l>', '<right>')
 
 noremap('i', '(<CR>', '(<CR><CR>)<UP><END>')
 noremap('i', '[<CR>', '[<CR><CR>]<UP><END>')

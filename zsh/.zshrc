@@ -33,6 +33,9 @@ setopt magic_equal_subst
 # rm option
 setopt rm_star_silent
 
+# setup cache directory if not exist
+[[ -d ~/.cache/zsh ]] || mkdir -p ~/.cache/zsh;
+
 #----------------------------------------------------------------------------------------------------
 # history settings
 #----------------------------------------------------------------------------------------------------
@@ -44,6 +47,8 @@ setopt hist_ignore_space
 setopt hist_find_no_dups
 setopt hist_save_no_dups
 setopt hist_verify
+setopt hist_reduce_blanks
+setopt inc_append_history
 setopt share_history
 
 #----------------------------------------------------------------------------------------------------
@@ -81,10 +86,6 @@ if [[ $TTY =~ "/dev/tty" ]]; then
     autoload -Uz promptinit && promptinit
     prompt redhat
 else
-    # eval "$(starship init zsh)"
-# fi
-
-# if false; then
     # left prompts
     if [[ -z "$SSH_CONNECTION" ]]; then
         POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
@@ -239,9 +240,10 @@ alias -g ....='../../..'
 alias -g .....='../../../..'
 
 alias ls='ls --color=auto'
-alias l='ls -lah'
+alias l='ls -lFh'
+alias la='ls -lAFh'
 alias ll='ls -lh'
-
+alias lr='ls -tRFh'
 
 alias ra='ranger'
 alias rf='rifle'
@@ -290,6 +292,8 @@ alias se='sudoedit'
 
 # enable appended alias
 alias sudo='sudo '
+
+# plugins
 eval $(thefuck --alias)
 eval bindkey '^R' fzf-history-widget
 
@@ -344,10 +348,10 @@ function ex() {
                 *.zst)       unzstd $1        ;;
                 *.tar.xz)    tar xJf $1       ;;
                 *.xz)        xz -d $1         ;;
-                *)           echo "'$1' cannot be extracted via ex()" ;;
+                *)           echo "Unknown file: $1" >&2;;
             esac
         else
-            echo "'$1' is not a valid file"
+            echo "Not a file: $1" >&2
         fi
         shift
     done
@@ -457,13 +461,16 @@ bindkey '^Z' fancy-ctrl-z
 # zle -N sudo-command-line
 # bindkey "\e\e" sudo-command-line
 
-#
+#----------------------------------------------------------------------------------------------------
 # pdfgrep
-#
+#----------------------------------------------------------------------------------------------------
 function findpdf() {
     find . -iname "*.pdf" -exec pdfgrep -i "$*" {} +
 }
 
+#----------------------------------------------------------------------------------------------------
+# clipboard for x11 and wayland
+#----------------------------------------------------------------------------------------------------
 function clip() {
     if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then
         wl-copy

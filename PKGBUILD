@@ -46,4 +46,3 @@ depends=(
     'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-fira-code' 'ttf-nerd-fonts-symbols' 'wqy-microhei' 'ttf-liberation'
 
 )
-optdepends=('linux: bare metal support')
