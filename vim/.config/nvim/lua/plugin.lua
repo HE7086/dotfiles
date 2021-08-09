@@ -11,6 +11,12 @@ return require('packer').startup(function(use)
     }
     use {'kyazdani42/nvim-web-devicons'}
 
+    -- use {'glepnir/galaxyline.nvim',
+    --     branch = 'main',
+    --     config = function() require('plugins.galaxyline') end,
+    --     requires = {'kyazdani42/nvim-web-devicons'}
+    -- }
+
     use {'skywind3000/asyncrun.vim'}
 
     use {'mhinz/vim-startify',

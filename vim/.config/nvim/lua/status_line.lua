@@ -192,7 +192,7 @@ StatusLineColorScheme = function()
     local highlights = {
         {'StatusLine',         {bg = '#4b5263', fg = '#abb2bf'}},
         {'StatuslineNC',       {bg = '#abb2bf', fg = '#4b5263'}},
-        {'StatusLineMode',     {bg = '#98c379', fg = '#181a1f'}},
+        {'StatusLineMode',     {bg = '#98c379', fg = '#181a1f', gui = 'bold'}},
         {'StatusLineGit',      {bg = '#d19a66', fg = '#181a1f'}},
         {'StatusLineFiletype', {bg = '#61afef', fg = '#181a1f'}},
         {'StatusLineLineCol',  {bg = '#c678dd', fg = '#181a1f'}},

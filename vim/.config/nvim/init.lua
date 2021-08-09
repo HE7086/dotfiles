@@ -5,6 +5,7 @@ local g = vim.g     -- global variables
 
 local o = vim.o     -- editor option
 
+local map = require('util.keymap').map
 local noremap = require('util.keymap').noremap
 local noremap_all = require('util.keymap').noremap_all
 
@@ -134,7 +135,7 @@ noremap('i', '[<CR>', '[<CR><CR>]<UP><END>')
 noremap('i', '{<CR>', '{<CR><CR>}<UP><END>')
 
 -- avoid misinput
-noremap_all('Q', '<nop>')  -- disable Ex mode entirely
+-- noremap_all('Q', '<nop>')  -- disable Ex mode entirely
 noremap_all('gQ', '<nop>')
 noremap_all('<F1>', '<ESC>')
 cmd ':command! -nargs=0 W w'
@@ -154,6 +155,17 @@ augroup END
 
 -------------------- Hand Crafted Plugins --------------------
 require('status_line')
+
+map('n', 'Q', ':lua Close_Floating_Windows()<CR>')
+-- close all the floating windows
+Close_Floating_Windows = function()
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if vim.api.nvim_win_get_config(win).relative ~= '' then
+            vim.api.nvim_win_close(win, false)
+        end
+    end
+
+end
 
 -------------------- Plugins --------------------
 
