@@ -164,7 +164,6 @@ Close_Floating_Windows = function()
             vim.api.nvim_win_close(win, false)
         end
     end
-
 end
 
 -------------------- Plugins --------------------
@@ -176,6 +175,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
     -- run PackerInstall to install plugins
     cmd 'packadd packer.nvim'
     -- first time will generate a lot of errors, just ignore
+    require('plugin').compile()
     require('plugin').install()
 end
 

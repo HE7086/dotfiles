@@ -62,10 +62,20 @@ local function git_status()
     elseif short_mode(100) then
         return string.format('  %s ', signs.head)
     else
-        return string.format(
-            ' +%s ~%s -%s |  %s ',
-            signs.added, signs.changed, signs.removed, signs.head
-        )
+        local str = ' '
+        if signs.added and signs.added ~= 0 then
+            str = str .. '+' .. signs.added .. ' '
+        end
+        if signs.changed and signs.changed ~= 0 then
+            str = str .. '~' .. signs.changed .. ' '
+        end
+        if signs.removed and signs.removed ~= 0 then
+            str = str .. '-' .. signs.removed .. ' '
+        end
+        if str ~= ' ' then
+            str = str .. '| '
+        end
+        return str .. ' ' .. signs.head .. ' '
     end
 end
 
