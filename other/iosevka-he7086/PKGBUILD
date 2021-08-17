@@ -1,0 +1,30 @@
+_git_name=Iosevka
+pkgname=ttf-iosevka-he7086
+pkgver=10.0.0
+pkgrel=1
+pkgdesc='Typeface family designed for coding, terminal use and technical documents. Customized verion for he7086'
+arch=('any')
+url='https://typeof.net/Iosevka/'
+license=('OFL')
+makedepends=('git' 'ttfautohint' 'npm')
+source=("${_git_name}-${pkgver}.tar.gz"::"https://github.com/be5invis/Iosevka/archive/refs/tags/v${pkgver}.tar.gz"
+        "private-build-plans.toml")
+
+sha256sums=('20d351190be5f0bb68bd458ce549c1ed34e923e1e7718d8f3f129e3fc84ab5b9'
+            'c2e0370cf29229ca66c0992fe558f1c0e894e60d5bc9c134b9dd32cc9b38ac83')
+
+build() {
+    cp "private-build-plans.toml" "${_git_name}-${pkgver}/private-build-plans.toml"
+    cd "${_git_name}-${pkgver}"
+    # npm install
+    # npm update
+    # npm run build -- ttf::iosevka-he7086
+}
+
+package() {
+    cd "${_git_name}-${pkgver}"
+
+    install -d ${pkgdir}/usr/share/fonts/TTF/
+    install -m644 dist/iosevka-he7086/ttf/* ${pkgdir}/usr/share/fonts/TTF/
+    install -D -m644 LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
+}

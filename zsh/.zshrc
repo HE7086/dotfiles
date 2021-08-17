@@ -278,18 +278,22 @@ alias Fl='pacman -Fl'
 
 alias S='sudo pacman -S'
 alias Syu='sudo pacman -Syu'
+alias R='sudo pacman -R'
 alias Rns='sudo pacman -Rns'
 alias Fy='sudo pacman -Fy'
 
 alias syu='paru -Syu'
 
-alias reboot2win='sudo grub-reboot 2 && reboot'
+# alias reboot2win='sudo grub-reboot 2 && reboot'
+alias reboot2win='systemctl reboot --boot-loader-entry=windows.conf'
 alias startVirtualCam='sudo modprobe v4l2loopback devices=1 video_nr=10 card_label="OBS Cam" exclusive_caps=1'
+alias fixkeymap='setxkbmap -option caps:escape_shifted_capslock'
 
 alias printarg='python -c "print(__import__(\"sys\").argv[1:])"'
 
-alias se='sudoedit'
+alias grep='grep --color=auto'
 
+alias se='sudoedit'
 # enable appended alias
 alias sudo='sudo '
 

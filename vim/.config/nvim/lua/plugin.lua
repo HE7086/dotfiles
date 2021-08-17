@@ -4,6 +4,7 @@ return require('packer').startup(function(use)
     use {'tpope/vim-repeat'}
     use {'tpope/vim-commentary'}
     use {'tpope/vim-fugitive'}
+    use {'tommcdo/vim-exchange'}
     use {'terryma/vim-multiple-cursors'}
     use {'Konfekt/vim-CtrlXA'}
     use {'rakr/vim-one',
@@ -18,6 +19,9 @@ return require('packer').startup(function(use)
     -- }
 
     use {'skywind3000/asyncrun.vim'}
+    use {'Yggdroot/LeaderF',
+        run = ':LeaderfInstallCExtension'
+    }
 
     use {'mhinz/vim-startify',
         config = function() require('plugins.startify') end

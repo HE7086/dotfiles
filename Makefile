@@ -1,5 +1,6 @@
 # wildcard only directories
-dirs := $(filter-out root/,$(dir $(wildcard */.)))
+exclude_dirs := root/ other/
+dirs := $(filter-out $(exclude_dirs),$(dir $(wildcard */.)))
 
 .PHONY: all
 all:

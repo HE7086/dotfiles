@@ -12,4 +12,8 @@ if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then
     export SDL_IM_MODULE=fcitx
 
     setxkbmap -option caps:escape_shifted_capslock
+else
+    # fix x11 crashing when relogin from wayland
+    unset MOZ_ENABLE_WAYLAND
+    unset QT_QPA_PLATFORM
 fi

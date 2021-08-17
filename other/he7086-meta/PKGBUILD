@@ -22,7 +22,7 @@ depends=(
     # command line utilities
     'aria2' 'diff-so-fancy' 'fzf' 'htop' 'neofetch' 'thefuck' 'pdfgrep' 'pdftk' 'patch' 'xxd-standalone'
     'powertop' 'ranger' 'rsync' 'stow' 'tree'
-    'iperf3' 'net-tools' 'nmap' 'openbsd-netcat' 'smartmontools' 'strace' 'traceroute' 'lm_sensors'
+    'iperf3' 'net-tools' 'nmap' 'openbsd-netcat' 'smartmontools' 'strace' 'mtr' 'lm_sensors'
 
     # group: linux-tools
     'bpf' 'cgroup_event_listener' 'cpupower' 'hyperv' 'perf' 'tmon' 'turbostat' 'usbip' 'x86_energy_perf_policy'
@@ -43,6 +43,6 @@ depends=(
     'fcitx5' 'fcitx5-configtool' 'fcitx5-gtk' 'fcitx5-qt'
 
     # fonts
-    'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-fira-code' 'ttf-nerd-fonts-symbols' 'wqy-microhei' 'ttf-liberation'
+    'noto-fonts-cjk' 'noto-fonts-emoji' 'ttf-nerd-fonts-symbols' 'wqy-microhei' 'ttf-liberation'
 
 )
