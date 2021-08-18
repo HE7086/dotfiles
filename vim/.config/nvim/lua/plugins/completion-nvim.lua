@@ -20,3 +20,10 @@ map('n', 'g[',     '<CMD>lua vim.lsp.diagnostic.goto_prev()<CR>')
 map('n', 'g]',     '<CMD>lua vim.lsp.diagnostic.goto_next()<CR>')
 map('n', '<F18>',  '<CMD>lua vim.lsp.buf.rename()<CR>') -- shift F6
 map('n', '<A-CR>', '<CMD>lua vim.lsp.buf.code_action()<CR>')
+
+vim.g.completion_chain_complete_list = {
+    default = {
+        { complete_items = {'lsp', 'ts', 'snippet', 'tags'} },
+        { complete_items = {'buffers'} },
+    }
+}

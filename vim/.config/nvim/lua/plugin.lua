@@ -69,14 +69,11 @@ return require('packer').startup(function(use)
         config = function() require('plugins.lsp') end
     }
     use {'nvim-lua/completion-nvim',
-        config = function() require('plugins.completion-nvim') end
-    }
-    use {'nvim-treesitter/completion-treesitter',
+        config = function() require('plugins.completion-nvim') end,
         requires = {
-            {'nvim-lua/completion-nvim'},
-            {'nvim-treesitter/nvim-treesitter'},
-        },
-        config = function() require('plugins.completion-treesitter') end
+            {'nvim-treesitter/completion-treesitter'},
+            {'steelsojka/completion-buffers'},
+            {'kristijanhusak/completion-tags'}
+        }
     }
-
 end)
