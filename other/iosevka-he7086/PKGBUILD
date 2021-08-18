@@ -16,9 +16,9 @@ sha256sums=('20d351190be5f0bb68bd458ce549c1ed34e923e1e7718d8f3f129e3fc84ab5b9'
 build() {
     cp "private-build-plans.toml" "${_git_name}-${pkgver}/private-build-plans.toml"
     cd "${_git_name}-${pkgver}"
-    # npm install
-    # npm update
-    # npm run build -- ttf::iosevka-he7086
+    npm install
+    npm update
+    npm run build -- ttf::iosevka-he7086
 }
 
 package() {
