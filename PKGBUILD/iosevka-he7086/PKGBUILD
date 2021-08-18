@@ -10,8 +10,12 @@ makedepends=('git' 'ttfautohint' 'npm')
 source=("${_git_name}-${pkgver}.tar.gz"::"https://github.com/be5invis/Iosevka/archive/refs/tags/v${pkgver}.tar.gz"
         "private-build-plans.toml")
 
-sha256sums=('20d351190be5f0bb68bd458ce549c1ed34e923e1e7718d8f3f129e3fc84ab5b9'
+sha256sums=('SKIP'
             'c2e0370cf29229ca66c0992fe558f1c0e894e60d5bc9c134b9dd32cc9b38ac83')
+
+pkgver() {
+    curl --silent "https://api.github.com/repos/be5invis/Iosevka/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/'
+}
 
 build() {
     cp "private-build-plans.toml" "${_git_name}-${pkgver}/private-build-plans.toml"

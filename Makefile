@@ -1,5 +1,5 @@
 # wildcard only directories
-exclude_dirs := root/ other/
+exclude_dirs := root/ PKGBUILD/
 dirs := $(filter-out $(exclude_dirs),$(dir $(wildcard */.)))
 
 .PHONY: all
