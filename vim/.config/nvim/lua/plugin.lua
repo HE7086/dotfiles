@@ -20,7 +20,8 @@ return require('packer').startup(function(use)
 
     use {'skywind3000/asyncrun.vim'}
     use {'Yggdroot/LeaderF',
-        run = ':LeaderfInstallCExtension'
+        run = ':LeaderfInstallCExtension',
+        config = function() require('plugins.leaderf') end
     }
 
     use {'mhinz/vim-startify',
