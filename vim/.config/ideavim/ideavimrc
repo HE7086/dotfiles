@@ -45,6 +45,11 @@ noremap <A-j> <down>
 noremap <A-k> <up>
 noremap <A-l> <right>
 
+noremap! <A-h> <left>
+noremap! <A-j> <down>
+noremap! <A-k> <up>
+noremap! <A-l> <right>
+
 noremap L $
 noremap H ^
 
