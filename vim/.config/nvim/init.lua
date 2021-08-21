@@ -136,7 +136,7 @@ noremap('i', '{<CR>', '{<CR><CR>}<UP><END>')
 
 -- avoid misinput
 -- noremap_all('Q', '<nop>')  -- disable Ex mode entirely
-noremap_all('gQ', '<nop>')
+noremap('', 'gQ', '<nop>')
 noremap_all('<F1>', '<ESC>')
 cmd ':command! -nargs=0 W w'
 

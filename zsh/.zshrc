@@ -482,3 +482,16 @@ function clip() {
         xclip -selection c
     fi
 }
+
+#----------------------------------------------------------------------------------------------------
+# remove package recursively without touching other packages' optional deps
+#----------------------------------------------------------------------------------------------------
+function remove_packge() {
+    if [[ $# -ne 0 ]]; then
+        sudo pacman -R "$*"
+    fi
+
+    while [[ -n $(pacman -Qdtq) ]]; do
+        sudo pacman -R --noconfirm $(pacman -Qdtq)
+    done
+}
