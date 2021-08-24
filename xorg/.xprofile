@@ -12,3 +12,4 @@ export GTK_USE_PORTAL=1
 export ELECTRON_TRASH=gio
 
 export MOZ_DISABLE_RDD_SANDBOX=1
+export MOZ_X11_EGL=1
