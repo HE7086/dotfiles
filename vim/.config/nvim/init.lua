@@ -11,6 +11,7 @@ local noremap_all = require('util.keymap').noremap_all
 
 -- encoding
 o.fileencodings = 'utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1'
+g.ambiwidth = 'double'
 
 -- numbers
 o.number = true
