@@ -252,6 +252,9 @@ alias py='python'
 alias a='aria2c'
 alias svim='nvim --clean'
 alias pc='proxychains'
+# convert encoding: echo 'xxx' | conv
+# convmv -r -f gb18030 -t utf-8 <file>
+alias conv='iconv -f gb18030 -t utf-8'
 
 alias start='sudo systemctl start'
 alias stop='sudo systemctl stop'

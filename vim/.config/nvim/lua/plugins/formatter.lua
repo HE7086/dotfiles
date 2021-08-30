@@ -10,7 +10,7 @@ require('formatter').setup{
             function()
                 return {
                     exe = "clang-format",
-                    args = {},
+                    args = {"-style=LLVM"},
                     stdin = true,
                 }
             end

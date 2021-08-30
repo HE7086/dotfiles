@@ -1,33 +1,39 @@
 _git_name=Iosevka
-pkgname=ttf-iosevka-he7086
-pkgver=10.0.0
+pkgname=ttf-iosevka-he7086-git
+pkgver=10.1.1
 pkgrel=1
-pkgdesc='Typeface family designed for coding, terminal use and technical documents. Customized verion for he7086'
-arch=('any')
-url='https://typeof.net/Iosevka/'
-license=('OFL')
-makedepends=('git' 'ttfautohint' 'npm')
-source=("${_git_name}-${pkgver}.tar.gz"::"https://github.com/be5invis/Iosevka/archive/refs/tags/v${pkgver}.tar.gz"
-        "private-build-plans.toml")
+pkgdesc="Typeface family designed for coding, terminal use and technical documents. Customized verion for he7086."
+arch=("any")
+url="https://typeof.net/Iosevka/"
+license=("OFL")
+makedepends=("git" "ttfautohint" "npm")
+source=("private-build-plans.toml")
+sha256sums=("c2e0370cf29229ca66c0992fe558f1c0e894e60d5bc9c134b9dd32cc9b38ac83")
 
-sha256sums=('SKIP'
-            'c2e0370cf29229ca66c0992fe558f1c0e894e60d5bc9c134b9dd32cc9b38ac83')
+prepare() {
+    # makepkg won't support shallow clone in source array, so clone it manually.
+    if [[ -d "${_git_name}" ]]; then
+        (cd "${_git_name}" && git pull)
+    else
+        git clone --depth=1 https://github.com/be5invis/Iosevka.git
+    fi
+    cp "private-build-plans.toml" "${_git_name}/private-build-plans.toml"
+}
 
 pkgver() {
-    curl --silent "https://api.github.com/repos/be5invis/Iosevka/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/'
+    cd "${_git_name}"
+    git describe --tags | sed -E 's/.*v(.+)/\1/'
 }
 
 build() {
-    cp "private-build-plans.toml" "${_git_name}-${pkgver}/private-build-plans.toml"
-    cd "${_git_name}-${pkgver}"
+    cd "${_git_name}"
     npm install
     npm update
     npm run build -- ttf::iosevka-he7086
 }
 
 package() {
-    cd "${_git_name}-${pkgver}"
-
+    cd "${_git_name}"
     install -d ${pkgdir}/usr/share/fonts/TTF/
     install -m644 dist/iosevka-he7086/ttf/* ${pkgdir}/usr/share/fonts/TTF/
     install -D -m644 LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
