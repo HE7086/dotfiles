@@ -285,6 +285,7 @@ alias Rns='sudo pacman -Rns'
 alias Fy='sudo pacman -Fy'
 
 alias syu='paru -Syu'
+alias makepkg_native='makepkg --config ~/dotfile/PKGBUILD/makepkg_native.conf'
 
 # alias reboot2win='sudo grub-reboot 2 && reboot'
 alias reboot2firm='systemctl reboot --firmware-setup'
