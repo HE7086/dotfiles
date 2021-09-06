@@ -2,9 +2,9 @@
     editor = nvim
     pager = diff-so-fancy | less --tabs=4 -RFX
 [user]
-    email = HE7086@users.noreply.github.com
+    email = heyi7086@gmail.com
     name = HE7086
-    signingKey = 91D524E3EE5B0EF8
+    signingKey = FD7FEB2CA3C04008FA40C552D3863B6139271E43
 [github]
     user = HE7086
     email = HE7086@users.noreply.github.com
