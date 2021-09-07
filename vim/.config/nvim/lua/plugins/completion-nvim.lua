@@ -1,7 +1,8 @@
 local map = require('util.keymap').map
 
 vim.cmd [[autocmd BufEnter * lua require('completion').on_attach()]]
-vim.o.completeopt='menuone,noinsert,noselect'
+vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.g.completion_enable_snippet = 'UltiSnips'
 
 
 -- actually nvim-lspconfig configuration
@@ -23,7 +24,8 @@ map('n', '<A-CR>', '<CMD>lua vim.lsp.buf.code_action()<CR>')
 
 vim.g.completion_chain_complete_list = {
     default = {
-        { complete_items = {'lsp', 'ts', 'snippet', 'tags'} },
+        { complete_items = {'lsp', 'snippet'} },
+        { complete_items = {'ts', 'tags'} },
         { complete_items = {'buffers'} },
     }
 }

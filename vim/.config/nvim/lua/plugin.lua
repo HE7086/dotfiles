@@ -63,6 +63,11 @@ return require('packer').startup(function(use)
     -- use {'rktjmp/lush.nvim'}
     use {'killphi/vim-ebnf'}
 
+    use {'SirVer/ultisnips',
+        config = function() require('plugins.ultisnips') end,
+        requires = {{'honza/vim-snippets'}}
+    }
+
     ----- lsp plugins -----
     use {'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
