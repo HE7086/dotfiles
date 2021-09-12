@@ -8,5 +8,4 @@ require('gitsigns').setup{
     },
     update_debounce = 500,
     word_diff = false,
-    use_internal_diff = true,
 }

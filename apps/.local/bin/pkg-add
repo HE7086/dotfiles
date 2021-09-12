@@ -1,0 +1,30 @@
+#!/bin/bash
+
+REPO="$HOME/code/repo"
+REPO_NAME=he7086
+SERVER="toaster:/var/www/repo"
+
+for _arg in $@; do
+    # only match zst and xz packages
+    if [[ $_arg =~ .+\.pkg\.tar\.(zst|xz)$ ]]; then
+
+        if [[ -f "$_arg" ]]; then 
+            # add gpg sign if not present
+            [[ -f "$_arg.sig" ]] || gpg --detach-sign "$_arg"
+        else
+            echo "file not present: $_arg" 1>&2
+            continue
+        fi
+
+        # move package to repository directory, if not already inside repo
+        [[ "$_arg" -ef "$REPO/${_arg##*/}" ]] || mv --update "$_arg" "$_arg.sig" "$REPO" 
+
+        # add package to repo
+        repo-add --sign --remove "$REPO/$REPO_NAME.db.tar.gz" "$REPO/${_arg##*/}"
+    else
+        echo "unrecognized package: $_arg" 1>&2
+    fi
+done
+
+# upload to the server
+rsync --archive --verbose --partial --progress --delete $REPO $SERVER
