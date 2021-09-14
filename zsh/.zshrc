@@ -280,6 +280,7 @@ alias Qdt='pacman -Qdt'
 alias Qdtq='pacman -Qdtq'
 alias Fl='pacman -Fl'
 alias Fx='pacman -Fx'
+alias G='paru -G'
 
 alias S='sudo pacman -S'
 alias Syu='sudo pacman -Syu'
