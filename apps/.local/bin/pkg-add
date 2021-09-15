@@ -2,7 +2,7 @@
 
 REPO="$HOME/code/repo"
 REPO_NAME=he7086
-SERVER="toaster:/var/www/repo"
+SERVER="toaster:/var/www"
 
 for _arg in $@; do
     # only match zst and xz packages
