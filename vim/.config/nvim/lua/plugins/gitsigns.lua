@@ -2,7 +2,7 @@ require('gitsigns').setup{
     numhl = false,
     linehl = false,
     current_line_blame = false,
-    watch_index = {
+    watch_gitdir = {
         interval = 2000,
         follow_files = true
     },

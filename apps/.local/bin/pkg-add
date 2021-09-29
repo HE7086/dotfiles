@@ -4,9 +4,9 @@ REPO="$HOME/code/repo"
 REPO_NAME=he7086
 SERVER="toaster:/var/www"
 
-for _arg in $@; do
+for _arg in "$@"; do
     # only match zst and xz packages
-    if [[ $_arg =~ .+\.pkg\.tar\.(zst|xz)$ ]]; then
+    if [[ $_arg =~ ^.+\.pkg\.tar\.(zst|xz)$ ]]; then
 
         if [[ -f "$_arg" ]]; then 
             # add gpg sign if not present
@@ -27,4 +27,4 @@ for _arg in $@; do
 done
 
 # upload to the server
-rsync --archive --verbose --partial --progress --delete $REPO $SERVER
+rsync --archive --verbose --partial --progress --delete "$REPO" "$SERVER"
