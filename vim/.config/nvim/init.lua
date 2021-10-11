@@ -87,10 +87,14 @@ autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal wrap
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal linebreak
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap j gj
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap k gk
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap gj j
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap gk k
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap L g$
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap H g^
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap j gj
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap k gk
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap gj j
+autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap gk k
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap L g$
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap H g^
 augroup END
