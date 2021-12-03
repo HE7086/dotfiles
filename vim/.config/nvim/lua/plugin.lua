@@ -71,7 +71,6 @@ return require('packer').startup(function(use)
     ----- lsp plugins -----
     use {'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate',
-        branch = '0.5-compat', -- TODO: switch to master when 0.6 stable
         config = function() require('plugins.nvim-treesitter') end
     }
     use {'neovim/nvim-lspconfig',
