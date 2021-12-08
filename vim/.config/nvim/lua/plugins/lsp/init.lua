@@ -1,6 +1,6 @@
 require('plugins.lsp.bash-language-server')
 require('plugins.lsp.clangd')
-require('plugins.lsp.haskell-language-server')
+-- require('plugins.lsp.haskell-language-server')
 require('plugins.lsp.lua-language-server')
 require('plugins.lsp.pyright')
 require('plugins.lsp.texlab')

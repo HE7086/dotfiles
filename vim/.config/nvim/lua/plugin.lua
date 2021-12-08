@@ -76,12 +76,23 @@ return require('packer').startup(function(use)
     use {'neovim/nvim-lspconfig',
         config = function() require('plugins.lsp') end
     }
-    use {'nvim-lua/completion-nvim',
-        config = function() require('plugins.completion-nvim') end,
+    use {'hrsh7th/nvim-cmp',
+        config = function() require('plugins.cmp') end,
         requires = {
-            {'nvim-treesitter/completion-treesitter'},
-            {'steelsojka/completion-buffers'},
-            {'kristijanhusak/completion-tags'}
+            {'hrsh7th/cmp-nvim-lsp'},
+            {'hrsh7th/cmp-buffer'},
+            {'hrsh7th/cmp-path'},
+            {'hrsh7th/cmp-cmdline'},
+            {'SirVer/ultisnips'},
+            {'quangnguyen30192/cmp-nvim-ultisnips'},
         }
     }
+    -- use {'nvim-lua/completion-nvim',
+    --     config = function() require('plugins.completion-nvim') end,
+    --     requires = {
+    --         {'nvim-treesitter/completion-treesitter'},
+    --         {'steelsojka/completion-buffers'},
+    --         {'kristijanhusak/completion-tags'}
+    --     }
+    -- }
 end)
