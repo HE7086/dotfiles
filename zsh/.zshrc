@@ -296,6 +296,7 @@ alias reboot2firm='systemctl reboot --firmware-setup'
 alias reboot2win='systemctl reboot --boot-loader-entry=auto-windows'
 alias startVirtualCam='sudo modprobe v4l2loopback devices=1 video_nr=10 card_label="OBS Cam" exclusive_caps=1'
 alias fixkeymap='setxkbmap -option caps:escape_shifted_capslock'
+alias igtop='sudo intel_gpu_top'
 
 alias printarg='python -c "print(__import__(\"sys\").argv[1:])"'
 
