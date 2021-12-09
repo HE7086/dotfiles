@@ -84,7 +84,7 @@ return require('packer').startup(function(use)
             {'hrsh7th/cmp-path'},
             {'hrsh7th/cmp-cmdline'},
             {'SirVer/ultisnips'},
-            {'quangnguyen30192/cmp-nvim-ultisnips'},
+            {'quangnguyen30192/cmp-nvim-ultisnips'}
         }
     }
     -- use {'nvim-lua/completion-nvim',
@@ -95,4 +95,7 @@ return require('packer').startup(function(use)
     --         {'kristijanhusak/completion-tags'}
     --     }
     -- }
+    use {'windwp/nvim-autopairs',
+        config = function() require('nvim-autopairs').setup{} end
+    }
 end)

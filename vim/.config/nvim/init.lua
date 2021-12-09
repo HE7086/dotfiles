@@ -126,6 +126,7 @@ o.hidden = true
 o.mouse = 'a'
 o.lazyredraw = true
 o.updatetime = 500
+o.completeopt = 'menu,menuone,noselect'
 
 -------------------- Default Keymaps --------------------
 noremap('n', '<space><CR>', ':nohlsearch<CR>')
