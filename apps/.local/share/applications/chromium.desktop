@@ -1,0 +1,21 @@
+[Desktop Entry]
+Version=1.0
+Name=Chromium (vaapi)
+GenericName=Web Browser
+Comment=Access the Internet
+Exec=if [ "$XDG_SESSION_TYPE" = "wayland" ]; then /usr/bin/chromium --enable-features=UseOzonePlatform --ozone-platform=wayland %U ; else /usr/bin/env LIBVA_DRIVER_NAME=iHD /usr/bin/chromium %U ; fi
+StartupNotify=true
+Terminal=false
+Icon=chromium
+Type=Application
+Categories=Network;WebBrowser;
+MimeType=application/pdf;application/rdf+xml;application/rss+xml;application/xhtml+xml;application/xhtml_xml;application/xml;image/gif;image/jpeg;image/png;image/webp;text/html;text/xml;x-scheme-handler/http;x-scheme-handler/https;
+Actions=new-window;new-private-window;
+
+[Desktop Action new-window]
+Name=New Window (vaapi)
+Exec=if [ "$XDG_SESSION_TYPE" = "wayland" ]; then /usr/bin/chromium --enable-features=UseOzonePlatform --ozone-platform=wayland ; else /usr/bin/env LIBVA_DRIVER_NAME=iHD /usr/bin/chromium ; fi
+
+[Desktop Action new-private-window]
+Name=New Incognito Window (vaapi)
+Exec=if [ "$XDG_SESSION_TYPE" = "wayland" ]; then /usr/bin/chromium --enable-features=UseOzonePlatform --ozone-platform=wayland --incognito ; else /usr/bin/env LIBVA_DRIVER_NAME=iHD /usr/bin/chromium --incognito ; fi
