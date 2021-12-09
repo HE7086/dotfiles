@@ -97,6 +97,7 @@ autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap gj j
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap gk k
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap L g$
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap H g^
+autocmd BufRead,BufNewFile *.tex setlocal ft=tex
 augroup END
 ]])
 
@@ -155,7 +156,6 @@ autocmd BufRead,BufNewFile *.c nnoremap <F22> :w<CR>:term clang % -o test.out &&
 autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ -std=c++20 % -o test.out && ./test.out<CR>
 autocmd BufRead,BufNewFile *.py nnoremap <F22> :w<CR>:term python %<CR>
 autocmd BufRead,BufNewFile *.cprf nnoremap <F22> :w<CR>:term cyp <C-R>=expand('%:r')<CR>.cthy % <CR>
-autocmd BufRead,BufNewFile *.tex setlocal ft=latex
 augroup END
 ]])
 
