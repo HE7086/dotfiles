@@ -8,7 +8,7 @@ url="https://typeof.net/Iosevka/"
 license=("OFL")
 makedepends=("git" "ttfautohint" "npm")
 source=("private-build-plans.toml")
-sha256sums=("c2e0370cf29229ca66c0992fe558f1c0e894e60d5bc9c134b9dd32cc9b38ac83")
+sha256sums=('0a7cb03a07f6ae73b5011ec60af2f6bfe99d09ddd416c21edf9ee184eb527724')
 
 prepare() {
     # makepkg won't support shallow clone in source array, so clone it manually.
