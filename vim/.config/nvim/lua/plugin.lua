@@ -87,15 +87,4 @@ return require('packer').startup(function(use)
             {'quangnguyen30192/cmp-nvim-ultisnips'}
         }
     }
-    -- use {'nvim-lua/completion-nvim',
-    --     config = function() require('plugins.completion-nvim') end,
-    --     requires = {
-    --         {'nvim-treesitter/completion-treesitter'},
-    --         {'steelsojka/completion-buffers'},
-    --         {'kristijanhusak/completion-tags'}
-    --     }
-    -- }
-    use {'windwp/nvim-autopairs',
-        config = function() require('nvim-autopairs').setup{} end
-    }
 end)
