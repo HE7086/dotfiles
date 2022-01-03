@@ -1,0 +1,6 @@
+#!/bin/bash
+
+sync
+sudo umount "$1"
+sudo eject "$1"
+udisksctl power-off -b "$1"
