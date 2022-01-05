@@ -118,7 +118,7 @@ sources = cmp.config.sources({
 
 cmp.setup.cmdline('/', {
     completion = { autocomplete = false },
-    sources = {{ name = 'buffer', opts = { keyword_pattern = [=[[^[:blank:]].*]=] }}}
+    sources = {{ name = 'buffer', options = { keyword_pattern = [=[[^[:blank:]].*]=] }}}
 })
 
 cmp.setup.cmdline(':', {
