@@ -50,6 +50,7 @@ return require('packer').startup(function(use)
 
     use {'nvim-telescope/telescope.nvim',
         requires = {
+            {'nvim-telescope/telescope-file-browser.nvim'},
             {'nvim-lua/popup.nvim'},
             {'nvim-lua/plenary.nvim'},
         },
