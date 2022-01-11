@@ -1,22 +1,37 @@
 _git_name=Iosevka
 pkgname=ttf-iosevka-he7086
-pkgver=10.1.1
+pkgver=11.2.6
 pkgrel=1
-pkgdesc="Typeface family designed for coding, terminal use and technical documents. Customized verion for he7086."
+pkgdesc="Typeface family designed for coding, terminal use and technical documents. Customized verion for he7086 with nerd fonts."
 arch=("any")
 url="https://typeof.net/Iosevka/"
-license=("OFL")
-makedepends=("git" "ttfautohint" "npm")
+license=("custom")
+makedepends=("git" "ttfautohint" "npm" "fontforge" "python")
 source=("private-build-plans.toml")
 sha256sums=('0a7cb03a07f6ae73b5011ec60af2f6bfe99d09ddd416c21edf9ee184eb527724')
 
 prepare() {
     # makepkg won't support shallow clone in source array, so clone it manually.
     if [[ -d "${_git_name}" ]]; then
-        (cd "${_git_name}" && git pull)
+        git -C "${_git_name}" reset --hard
+        git -C "${_git_name}" clean -xdf
+        git -C "${_git_name}" pull
     else
         git clone --depth=1 https://github.com/be5invis/Iosevka.git
     fi
+
+    # nerd-fonts' repo is way too large, sparse checkout to save time
+    if [[ -d "nerd-fonts" ]]; then
+        git -C "nerd-fonts" reset --hard
+        git -C "nerd-fonts" clean -xdf
+        git -C "nerd-fonts" checkout master
+        git -C "nerd-fonts" pull
+    else
+        git clone --filter=blob:none --depth=1 --no-checkout https://github.com/ryanoasis/nerd-fonts.git
+        git -C "nerd-fonts" sparse-checkout set '/*' '!images' '!patched-fonts' '!src/unpatched-fonts'
+        git -C "nerd-fonts" checkout master
+    fi
+
     cp "private-build-plans.toml" "${_git_name}/private-build-plans.toml"
 }
 
@@ -26,15 +41,19 @@ pkgver() {
 }
 
 build() {
+    # build iosevka fonts
     cd "${_git_name}"
     npm install
     npm update
     npm run build -- ttf::iosevka-he7086
+
+    # patch fonts
+    find dist/iosevka-he7086/ttf/*.ttf | xargs -P `nproc` -I {} python "${srcdir}/nerd-fonts/font-patcher" --mono --careful --complete --outputdir "${srcdir}/output" {}
 }
 
 package() {
-    cd "${_git_name}"
-    install -d ${pkgdir}/usr/share/fonts/TTF/
-    install -m644 dist/iosevka-he7086/ttf/* ${pkgdir}/usr/share/fonts/TTF/
-    install -D -m644 LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
+    install -d "${pkgdir}/usr/share/fonts/TTF/"
+    install -m644 "${srcdir}"/output/* "${pkgdir}/usr/share/fonts/TTF/"
+    install -Dm644 "${_git_name}/LICENSE.md" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE_iosevka.md"
+    install -Dm644 "nerd-fonts/LICENSE" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE_nerd-fonts"
 }
