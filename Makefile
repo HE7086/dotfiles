@@ -5,7 +5,7 @@ dirs := $(filter-out $(exclude_dirs),$(dir $(wildcard */.)))
 .PHONY: all
 all:
 	@echo "installing packages..."
-	stow $(dirs) --target=$(HOME)
+	stow --no-folding $(dirs) --target=$(HOME)
 	@echo "run make root to install root packages"
 
 # packages that require previledges

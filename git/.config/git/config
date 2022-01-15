@@ -10,6 +10,8 @@
     email = HE7086@users.noreply.github.com
     username = HE7086
 
+[gpg]
+	program = gpg2
 [commit]
     gpgSign = true
 [tag]

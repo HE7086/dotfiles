@@ -2,7 +2,7 @@ dirs := $(dir $(wildcard */.))
 
 .PHONY: all
 all:
-	sudo stow $(dirs) --target=/
+	sudo stow --no-folding $(dirs) --target=/
 
 .PHONY: clean
 clean:
