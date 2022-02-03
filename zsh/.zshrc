@@ -504,3 +504,11 @@ function remove_packge() {
         sudo pacman -R --noconfirm $(pacman -Qdtq)
     done
 }
+
+#----------------------------------------------------------------------------------------------------
+# dd wrapper
+#----------------------------------------------------------------------------------------------------
+function dd_write_disk() {
+    sudo dd bs=4M if=$1 of=$2 conv=fsync oflag=direct status=progress
+    sync
+}
