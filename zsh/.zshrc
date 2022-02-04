@@ -80,6 +80,7 @@ else
     ln -s ~/.local/share/fzf/bin/fzf ~/.local/bin/fzf
     echo "fzf will be available for next shell instance"
 fi
+eval bindkey '^R' fzf-history-widget
 
 # prompt
 if [[ $TTY =~ "/dev/tty" ]]; then
@@ -305,10 +306,6 @@ alias grep='grep --color=auto'
 alias se='sudoedit'
 # enable appended alias
 alias sudo='sudo '
-
-# plugins
-eval $(thefuck --alias)
-eval bindkey '^R' fzf-history-widget
 
 #----------------------------------------------------------------------------------------------------
 # Functions

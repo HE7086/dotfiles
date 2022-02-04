@@ -31,7 +31,7 @@ export SSH_AUTH_SOCK
 
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
 
-if [[ "$HOST" = "HE-workstation" ]]; then
+if [[ `cat /etc/hostname` = "HE-workstation" ]]; then
     # machine specific variables for nvidia-vaapi-driver
     export MOZ_DISABLE_RDD_SANDBOX=1
     export MOZ_X11_EGL=1
