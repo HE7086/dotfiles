@@ -21,8 +21,6 @@ export SDL_IM_MODULE=fcitx
 
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 
-export GTK_USE_PORTAL=1
-
 # fix vscode delete freeze
 export ELECTRON_TRASH=gio
 
@@ -32,6 +30,8 @@ export SSH_AUTH_SOCK
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
 
 if [[ `cat /etc/hostname` = "HE-workstation" ]]; then
+    export GTK_USE_PORTAL=1
+
     # machine specific variables for nvidia-vaapi-driver
     export MOZ_DISABLE_RDD_SANDBOX=1
     export MOZ_X11_EGL=1
