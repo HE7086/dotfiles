@@ -1,0 +1,40 @@
+swipe:
+  4: 
+    threshold: 0.7
+    up: 
+      sendkey: "LEFTMETA+O"
+    down:
+      sendkey: "LEFTMETA+D"
+
+  3:
+    left:
+      sendkey: "LEFTALT+RIGHT"
+    right:
+      sendkey: "LEFTALT+LEFT"
+    up:
+      # begin: 
+      #   command: ydotool keydown Alt
+      # update: 
+      #   command: ydotool key Tab
+      #   interval: 5
+      # end: 
+      #   command: ydotool keyup Alt
+      sendkey: "LEFTALT+LEFTSHIFT+TAB"
+    down:
+      # begin: 
+      #   command: ydotool keydown Alt
+      # update: 
+      #   command: ydotool key Shift+Tab
+      #   interval: 5
+      # end: 
+      #   command: ydotool keyup Alt
+      sendkey: "LEFTALT+TAB"
+
+
+plugin:
+  inputs:
+    libinput_command_input:
+      enable-dwt: true
+      enable-tap: true
+      verbose: true
+      show-keycodes: true
