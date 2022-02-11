@@ -30,7 +30,7 @@ export SSH_AUTH_SOCK
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
 
 if [[ `cat /etc/hostname` = "HE-workstation" ]]; then
-    export GTK_USE_PORTAL=1
+    [[ "$XDG_SESSION_TYPE" = "wayland" ]] || export GTK_USE_PORTAL=1
 
     # machine specific variables for nvidia-vaapi-driver
     export MOZ_DISABLE_RDD_SANDBOX=1
