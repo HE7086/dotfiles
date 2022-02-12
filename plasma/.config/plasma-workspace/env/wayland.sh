@@ -4,15 +4,14 @@
 if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then
     export MOZ_ENABLE_WAYLAND=1
     export QT_QPA_PLATFORM=wayland
-
-    setxkbmap -option caps:escape_shifted_capslock
 else
     # fix x11 crashing when relogin from wayland
     unset MOZ_ENABLE_WAYLAND
     unset QT_QPA_PLATFORM
 fi
 
-# general environmental variables
+setxkbmap -option caps:escape_shifted_capslock
+
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
@@ -36,4 +35,8 @@ if [[ `cat /etc/hostname` = "HE-workstation" ]]; then
     export MOZ_DISABLE_RDD_SANDBOX=1
     export MOZ_X11_EGL=1
     export LIBVA_DRIVER_NAME=nvidia
+fi
+
+if [[ `cat /etc/hostname` = "HE-TP" ]]; then
+    export LIBVA_DRIVER_NAME=iHD
 fi
