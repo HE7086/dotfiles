@@ -1,0 +1,17 @@
+# Maintainer: HE7086 <heyi7086@gmail.com>
+
+pkgname=no-xbox-udev
+pkgver=1
+pkgrel=1
+pkgdesc="udev rules to disable xbox controller receiver"
+arch=('any')
+license=('MIT')
+depends=('systemd')
+url='https://repo.heyi.page'
+source=('01-xbox-receiver.rules')
+sha256sums=('871f4e9754ce8e8072196414cdf9e6eeb1b9912e8c1294db7c3371b9b1ddebc3')
+
+package() {
+    install -d ${pkgdir}/etc/udev/rules.d
+    install -m644 01-xbox-receiver.rules ${pkgdir}/etc/udev/rules.d/
+}
