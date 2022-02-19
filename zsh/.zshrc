@@ -285,6 +285,7 @@ alias Fx='pacman -Fx'
 alias G='paru -G'
 
 alias S='sudo pacman -S'
+alias Sa='paru -Sa'
 alias Syu='sudo pacman -Syu'
 alias R='sudo pacman -R'
 alias Rns='sudo pacman -Rns'
