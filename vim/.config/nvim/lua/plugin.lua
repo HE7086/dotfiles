@@ -61,6 +61,8 @@ return require('packer').startup(function(use)
         config = function() require('plugins.formatter') end
     }
 
+    use {'rust-lang/rust.vim'}
+
     -- use {'rktjmp/lush.nvim'}
     use {'killphi/vim-ebnf'}
 

@@ -157,6 +157,7 @@ autocmd BufRead,BufNewFile *.c nnoremap <F22> :w<CR>:term clang % -o test.out &&
 autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ -std=c++20 % -o test.out && ./test.out<CR>
 autocmd BufRead,BufNewFile *.py nnoremap <F22> :w<CR>:term python %<CR>
 autocmd BufRead,BufNewFile *.cprf nnoremap <F22> :w<CR>:term cyp <C-R>=expand('%:r')<CR>.cthy % <CR>
+autocmd BufRead,BufNewFile *.rs nnoremap <F22> :w<CR>:term cargo run<CR>
 augroup END
 ]])
 
