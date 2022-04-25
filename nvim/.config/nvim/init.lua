@@ -147,24 +147,12 @@ noremap("", "gQ", "<nop>")
 noremap_all("<F1>", "<ESC>")
 cmd(":command! -nargs=0 W w")
 
--- run code in terminal
-cmd([[
-augroup AutoRunCode
-autocmd!
-autocmd BufRead,BufNewFile *.sh nnoremap <F22> :w<CR>:term zsh %<CR>
-autocmd BufRead,BufNewFile *.hs nnoremap <F22> :w<CR>:term ghci %<CR>
-autocmd BufRead,BufNewFile *.c nnoremap <F22> :w<CR>:term clang % -o test.out && ./test.out<CR>
-autocmd BufRead,BufNewFile *.cpp nnoremap <F22> :w<CR>:term clang++ -std=c++20 % -o test.out && ./test.out<CR>
-autocmd BufRead,BufNewFile *.py nnoremap <F22> :w<CR>:term python %<CR>
-autocmd BufRead,BufNewFile *.cprf nnoremap <F22> :w<CR>:term cyp <C-R>=expand('%:r')<CR>.cthy % <CR>
-autocmd BufRead,BufNewFile *.rs nnoremap <F22> :w<CR>:term cargo run<CR>
-augroup END
-]])
-
 -------------------- Hand Crafted Plugins --------------------
 require("status_line")
+require("code_runner")
+noremap("n", "<F22>", "<CMD>lua require('code_runner').run()<CR>")
 
-map("n", "Q", ":lua Close_Floating_Windows()<CR>")
+map("n", "Q", "<CMD>lua Close_Floating_Windows()<CR>")
 -- close all the floating windows
 Close_Floating_Windows = function()
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
