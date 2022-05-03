@@ -1,4 +1,3 @@
-local cmd = vim.cmd -- execute vim script
 local fn = vim.fn -- invoke vim function
 
 local g = vim.g -- global variables
@@ -51,7 +50,7 @@ o.showmode = true
 o.list = false
 o.listchars = "eol:¶,tab:>_,trail:·,extends:¦,precedes:¦,space:·,nbsp:␣"
 o.cursorline = true
-cmd([[
+vim.cmd([[
 augroup AutoCursorline
 autocmd!
 autocmd InsertEnter * setlocal nocursorline
@@ -64,12 +63,12 @@ o.laststatus = 2
 o.showtabline = 1
 
 -- syntax highlighting
-cmd("syntax enable")
-cmd("filetype plugin indent on")
+vim.cmd("syntax enable")
+vim.cmd("filetype plugin indent on")
 
 -- clipboard and yank
 o.clipboard = o.clipboard .. "unnamedplus"
-cmd([[
+vim.cmd([[
 augroup YankHighLight
 autocmd!
 autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = true, timeout=300}
@@ -80,7 +79,7 @@ augroup END
 o.wrap = false
 o.foldenable = false
 -- auto wrap in plain-text files + keymaps
-cmd([[
+vim.cmd([[
 augroup AutoTextWrap
 autocmd!
 autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal wrap
@@ -114,7 +113,7 @@ o.autowrite = true
 
 -- terminal
 g.neoterm_autoscroll = 1
-cmd([[
+vim.cmd([[
 augroup TerminalAutoInsert
 autocmd!
 autocmd TermOpen term://* startinsert
@@ -145,7 +144,7 @@ noremap("i", "{<CR>", "{<CR><CR>}<UP><END>")
 -- noremap_all('Q', '<nop>')  -- disable Ex mode entirely
 noremap("", "gQ", "<nop>")
 noremap_all("<F1>", "<ESC>")
-cmd(":command! -nargs=0 W w")
+vim.cmd(":command! -nargs=0 W w")
 
 -------------------- Hand Crafted Plugins --------------------
 require("status_line")
@@ -155,11 +154,11 @@ noremap("n", "<F22>", "<CMD>lua require('code_runner').run()<CR>")
 map("n", "Q", "<CMD>lua Close_Floating_Windows()<CR>")
 -- close all the floating windows
 Close_Floating_Windows = function()
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		if vim.api.nvim_win_get_config(win).relative ~= "" then
-			vim.api.nvim_win_close(win, false)
-		end
-	end
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if vim.api.nvim_win_get_config(win).relative ~= "" then
+            vim.api.nvim_win_close(win, false)
+        end
+    end
 end
 
 -------------------- Plugins --------------------
@@ -167,16 +166,16 @@ end
 -- auto install packer.nvim
 local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
-	fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", "--depth=1", install_path })
-	-- run PackerInstall to install plugins
-	cmd("packadd packer.nvim")
-	-- first time will generate a lot of errors, just ignore
-	require("plugin").compile()
-	require("plugin").install()
+    fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", "--depth=1", install_path })
+    -- run PackerInstall to install plugins
+    vim.cmd("packadd packer.nvim")
+    -- first time will generate a lot of errors, just ignore
+    require("plugin").compile()
+    require("plugin").install()
 end
 
-cmd("packadd packer.nvim") -- enable packer.nvim
-cmd([[ 
+vim.cmd("packadd packer.nvim") -- enable packer.nvim
+vim.cmd([[ 
 augroup PackerAutoCompile
 autocmd!
 autocmd BufWritePost plugin.lua source <afile> | PackerCompile
@@ -186,7 +185,7 @@ augroup END
 require("plugin")
 
 -------------------- Plugins Settings --------------------
-cmd(":command! -nargs=0 Format format")
+vim.cmd(":command! -nargs=0 Format format")
 
 -------------------- END OF SETTINGS --------------------
-cmd("nohlsearch")
+vim.cmd("nohlsearch")

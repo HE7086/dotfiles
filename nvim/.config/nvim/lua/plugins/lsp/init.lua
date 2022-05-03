@@ -14,21 +14,21 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     signs = true,
 }
 )
-vim.cmd 'autocmd CursorHold * lua vim.diagnostic.get()'
-vim.cmd 'autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()'
+vim.cmd('autocmd CursorHold * lua vim.diagnostic.get()')
+vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
 
-local map = require('util.keymap').map
+local nmap = require('util.keymap').nmap
 
-map('n', 'gD', '<CMD>lua vim.lsp.buf.declaration()<CR>')
-map('n', 'gd', '<CMD>lua vim.lsp.buf.definition()<CR>')
-map('n', 'gt', '<CMD>lua vim.lsp.buf.type_definition()<CR>')
-map('n', 'gi', '<CMD>lua vim.lsp.buf.implementation()<CR>')
-map('n', 'gr', '<CMD>lua vim.lsp.buf.references()<CR>')
-map('n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>')
-map('n', '<C-k>', '<CMD>lua vim.lsp.buf.signature_help()<CR>')
-map('n', 'g[', '<CMD>lua vim.diagnostic.goto_prev()<CR>')
-map('n', 'g]', '<CMD>lua vim.diagnostic.goto_next()<CR>')
-map('n', '<F18>', '<CMD>lua vim.lsp.buf.rename()<CR>') -- shift F6
-map('n', '<A-CR>', '<CMD>lua vim.lsp.buf.code_action()<CR>')
-map('n', '<space><space>', '<CMD>lua vim.lsp.buf.formatting()<CR>')
-map('n', '<space>e', '<CMD>lua vim.diagnostic.open_float()<CR>')
+nmap('gD', '<CMD>lua vim.lsp.buf.declaration()<CR>')
+nmap('gd', '<CMD>lua vim.lsp.buf.definition()<CR>')
+nmap('gt', '<CMD>lua vim.lsp.buf.type_definition()<CR>')
+nmap('gi', '<CMD>lua vim.lsp.buf.implementation()<CR>')
+nmap('gr', '<CMD>lua vim.lsp.buf.references()<CR>')
+nmap('K', '<CMD>lua vim.lsp.buf.hover()<CR>')
+nmap('<C-k>', '<CMD>lua vim.lsp.buf.signature_help()<CR>')
+nmap('g[', '<CMD>lua vim.diagnostic.goto_prev()<CR>')
+nmap('g]', '<CMD>lua vim.diagnostic.goto_next()<CR>')
+nmap('<F18>', '<CMD>lua vim.lsp.buf.rename()<CR>') -- shift F6
+nmap('<A-CR>', '<CMD>lua vim.lsp.buf.code_action()<CR>')
+nmap('<space><space>', '<CMD>lua vim.lsp.buf.formatting()<CR>')
+nmap('<space>e', '<CMD>lua vim.diagnostic.open_float()<CR>')

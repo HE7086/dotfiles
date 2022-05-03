@@ -3,12 +3,12 @@ local api = vim.api
 
 -- highlight groups
 local colors = {
-    active        = '%#StatusLine#',
-    inactive      = '%#StatuslineNC#',
-    mode          = '%#StatusLineMode#',
-    git           = '%#StatusLineGit#',
-    filetype      = '%#StatusLineFiletype#',
-    line_col      = '%#StatusLineLineCol#',
+    active   = '%#StatusLine#',
+    inactive = '%#StatuslineNC#',
+    mode     = '%#StatusLineMode#',
+    git      = '%#StatusLineGit#',
+    filetype = '%#StatusLineFiletype#',
+    line_col = '%#StatusLineLineCol#',
 }
 
 -- if current window is less than N column
@@ -20,27 +20,27 @@ end
 local function mode()
     -- mode table
     local modes = setmetatable({
-        ['n']    = {'Normal',    'N'};
-        ['no']   = {'N-Pending', 'N-P'} ;
-        ['v']    = {'Visual',    'V' };
-        ['V']    = {'V-Line',    'V-L' };
-        ['\x16'] = {'V-Block',   'V-B'};
-        ['s']    = {'Select',    'S'};
-        ['S']    = {'S-Line',    'S-L'};
-        ['\x13'] = {'S-Block',   'S-B'};
-        ['i']    = {'Insert',    'I'};
-        ['ic']   = {'Insert',    'I'};
-        ['R']    = {'Replace',   'R'};
-        ['Rv']   = {'V-Replace', 'V-R'};
-        ['c']    = {'Command',   'C'};
-        ['cv']   = {'Vim-Ex',    'V-E'};
-        ['ce']   = {'Ex',        'E'};
-        ['r']    = {'Prompt',    'P'};
-        ['rm']   = {'More',      'M'};
-        ['r?']   = {'Confirm',   'C'};
-        ['!']    = {'Shell',     'S'};
-        ['t']    = {'Terminal',  'T'};
-    }, { __index = function() return {'Unknown', 'U'} end })
+        ['n']    = { 'Normal', 'N' };
+        ['no']   = { 'N-Pending', 'N-P' };
+        ['v']    = { 'Visual', 'V' };
+        ['V']    = { 'V-Line', 'V-L' };
+        ['\x16'] = { 'V-Block', 'V-B' };
+        ['s']    = { 'Select', 'S' };
+        ['S']    = { 'S-Line', 'S-L' };
+        ['\x13'] = { 'S-Block', 'S-B' };
+        ['i']    = { 'Insert', 'I' };
+        ['ic']   = { 'Insert', 'I' };
+        ['R']    = { 'Replace', 'R' };
+        ['Rv']   = { 'V-Replace', 'V-R' };
+        ['c']    = { 'Command', 'C' };
+        ['cv']   = { 'Vim-Ex', 'V-E' };
+        ['ce']   = { 'Ex', 'E' };
+        ['r']    = { 'Prompt', 'P' };
+        ['rm']   = { 'More', 'M' };
+        ['r?']   = { 'Confirm', 'C' };
+        ['!']    = { 'Shell', 'S' };
+        ['t']    = { 'Terminal', 'T' };
+    }, { __index = function() return { 'Unknown', 'U' } end })
 
     local current_mode = api.nvim_get_mode().mode
     if short_mode(80) then
@@ -53,7 +53,7 @@ end
 -- get git status, when long enough also file modification status
 local function git_status()
     -- use fallback because it doesn't set this variable on the initial `BufEnter`
-    local signs = vim.b.gitsigns_status_dict or {head = '', added = 0, changed = 0, removed = 0}
+    local signs = vim.b.gitsigns_status_dict or { head = '', added = 0, changed = 0, removed = 0 }
 
     if signs.head == '' then
         return ''
@@ -126,7 +126,7 @@ end
 -- get filetype with icons
 local function filetype()
     local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
-    local icon = require'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
+    local icon = require 'nvim-web-devicons'.get_icon(file_name, file_ext, { default = true })
 
     if vim.bo.filetype == '' then
         return ''
@@ -200,12 +200,12 @@ end
 
 StatusLineColorScheme = function()
     local highlights = {
-        {'StatusLine',         {bg = '#4b5263', fg = '#abb2bf'}},
-        {'StatuslineNC',       {bg = '#abb2bf', fg = '#4b5263'}},
-        {'StatusLineMode',     {bg = '#98c379', fg = '#181a1f', gui = 'bold'}},
-        {'StatusLineGit',      {bg = '#d19a66', fg = '#181a1f'}},
-        {'StatusLineFiletype', {bg = '#61afef', fg = '#181a1f'}},
-        {'StatusLineLineCol',  {bg = '#c678dd', fg = '#181a1f'}},
+        { 'StatusLine', { bg = '#4b5263', fg = '#abb2bf' } },
+        { 'StatuslineNC', { bg = '#abb2bf', fg = '#4b5263' } },
+        { 'StatusLineMode', { bg = '#98c379', fg = '#181a1f', gui = 'bold' } },
+        { 'StatusLineGit', { bg = '#d19a66', fg = '#181a1f' } },
+        { 'StatusLineFiletype', { bg = '#61afef', fg = '#181a1f' } },
+        { 'StatusLineLineCol', { bg = '#c678dd', fg = '#181a1f' } },
     }
     for _, highlight in pairs(highlights) do
         set_hl(highlight[1], highlight[2])
