@@ -257,7 +257,7 @@ alias svim='nvim --clean'
 alias pc='proxychains'
 # convert encoding: echo 'xxx' | conv
 # convmv -r -f gb18030 -t utf-8 <file>
-alias conv='iconv -f gb18030 -t utf-8'
+# alias conv='iconv -f gb18030 -t utf-8'
 
 alias start='sudo systemctl start'
 alias stop='sudo systemctl stop'
@@ -269,6 +269,7 @@ alias reload='sudo systemctl reload'
 
 alias cpr='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1'
 alias mvr='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 --remove-source-files'
+alias bkup='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 --delete'
 
 alias wget='wget --hsts-file="~/.cache/wget-hsts"'
 
