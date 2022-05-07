@@ -455,25 +455,25 @@ bindkey '^Z' fancy-ctrl-z
 #----------------------------------------------------------------------------------------------------
 # sudo command line
 #----------------------------------------------------------------------------------------------------
-# sudo-command-line() {
-#     [[ -z $BUFFER ]] && zle up-history
-#     [[ $BUFFER != sudo\ * && $UID -ne 0 ]] && {
-#       typeset -a bufs
-#       bufs=(${(z)BUFFER})
-#       while (( $+aliases[$bufs[1]] )); do
-#         local expanded=(${(z)aliases[$bufs[1]]})
-#         bufs[1,1]=($expanded)
-#         if [[ $bufs[1] == $expanded[1] ]]; then
-#           break
-#         fi
-#       done
-#       bufs=(sudo $bufs)
-#       BUFFER=$bufs
-#     }
-#     zle end-of-line
-# }
-# zle -N sudo-command-line
-# bindkey "\e\e" sudo-command-line
+sudo-command-line() {
+    [[ -z $BUFFER ]] && zle up-history
+    [[ $BUFFER != sudo\ * && $UID -ne 0 ]] && {
+      typeset -a bufs
+      bufs=(${(z)BUFFER})
+      while (( $+aliases[$bufs[1]] )); do
+        local expanded=(${(z)aliases[$bufs[1]]})
+        bufs[1,1]=($expanded)
+        if [[ $bufs[1] == $expanded[1] ]]; then
+          break
+        fi
+      done
+      bufs=(sudo $bufs)
+      BUFFER=$bufs
+    }
+    zle end-of-line
+}
+zle -N sudo-command-line
+bindkey "\e\e" sudo-command-line
 
 #----------------------------------------------------------------------------------------------------
 # pdfgrep
