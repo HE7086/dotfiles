@@ -4,6 +4,7 @@ set smartindent
 set autoindent
 
 set novisualbell
+set noerrorbells
 
 set number
 set relativenumber
