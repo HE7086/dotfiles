@@ -188,9 +188,9 @@ require("plugin")
 vim.cmd(":command! -nargs=0 Format format")
 
 -- auto switch to light theme in terminal
-if os.getenv("COLORFGBG") == "15;0" then
-    vim.cmd("setlocal bg=light")
-end
+-- if os.getenv("COLORFGBG") == "15;0" then
+--     vim.cmd("setlocal bg=light")
+-- end
 
 -------------------- END OF SETTINGS --------------------
 vim.cmd("nohlsearch")
