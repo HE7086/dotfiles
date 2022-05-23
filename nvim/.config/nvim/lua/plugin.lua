@@ -66,6 +66,16 @@ return require('packer').startup(function(use)
     -- use {'rktjmp/lush.nvim'}
     use {'killphi/vim-ebnf'}
 
+    use { 'lukas-reineke/indent-blankline.nvim',
+        config = function()
+            require("indent_blankline").setup {
+                space_char_blankline = " ",
+                show_current_context = true,
+                show_current_context_start = true,
+            }
+        end
+    }
+
     use {'SirVer/ultisnips',
         config = function() require('plugins.ultisnips') end,
         requires = {{'honza/vim-snippets'}}
