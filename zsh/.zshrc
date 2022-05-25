@@ -255,6 +255,7 @@ alias py='python'
 alias a='aria2c'
 alias svim='nvim --clean'
 alias pc='proxychains'
+alias nv='neovide'
 # convert encoding: echo 'xxx' | conv
 # convmv -r -f gb18030 -t utf-8 <file>
 # alias conv='iconv -f gb18030 -t utf-8'
@@ -512,4 +513,13 @@ function remove_packge() {
 function dd_write_disk() {
     sudo dd bs=4M if=$1 of=$2 conv=fsync oflag=direct status=progress
     sync
+}
+
+#----------------------------------------------------------------------------------------------------
+# config git repo for tum
+#----------------------------------------------------------------------------------------------------
+function git_tum_config() {
+    git config --local user.name "Yi He"
+    git config --local user.email "he0@in.tum.de"
+    git config --local user.signingkey B8B647960C108C728B9C6D88E8A5C24A502A0CD5
 }

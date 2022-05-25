@@ -147,6 +147,7 @@ noremap_all("<F1>", "<ESC>")
 vim.cmd(":command! -nargs=0 W w")
 
 -------------------- Hand Crafted Plugins --------------------
+require("neovide")
 require("status_line")
 require("code_runner")
 noremap("n", "<F22>", "<CMD>lua require('code_runner').run()<CR>")
