@@ -140,6 +140,9 @@ noremap("i", "(<CR>", "(<CR><CR>)<UP><END>")
 noremap("i", "[<CR>", "[<CR><CR>]<UP><END>")
 noremap("i", "{<CR>", "{<CR><CR>}<UP><END>")
 
+noremap("n", "<C-Tab>", "<CMD>tabnext<CR>")
+noremap("n", "<S-C-Tab>", "<CMD>tabprevious<CR>")
+
 -- avoid misinput
 -- noremap_all('Q', '<nop>')  -- disable Ex mode entirely
 noremap("", "gQ", "<nop>")
