@@ -76,10 +76,10 @@ return require('packer').startup(function(use)
         end
     }
 
-    use {'SirVer/ultisnips',
-        config = function() require('plugins.ultisnips') end,
-        requires = {{'honza/vim-snippets'}}
-    }
+    -- use {'SirVer/ultisnips',
+    --     config = function() require('plugins.ultisnips') end,
+    --     requires = {{'honza/vim-snippets'}}
+    -- }
 
     ----- lsp plugins -----
     use {'nvim-treesitter/nvim-treesitter',
@@ -96,8 +96,10 @@ return require('packer').startup(function(use)
             {'hrsh7th/cmp-buffer'},
             {'hrsh7th/cmp-path'},
             {'hrsh7th/cmp-cmdline'},
-            {'SirVer/ultisnips'},
-            {'quangnguyen30192/cmp-nvim-ultisnips'}
+            -- {'SirVer/ultisnips'},
+            -- {'quangnguyen30192/cmp-nvim-ultisnips'}
+            {'hrsh7th/cmp-vsnip'},
+            {'hrsh7th/vim-vsnip'},
         }
     }
 end)

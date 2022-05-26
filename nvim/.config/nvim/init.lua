@@ -151,6 +151,7 @@ require("neovide")
 require("status_line")
 require("code_runner")
 noremap("n", "<F22>", "<CMD>lua require('code_runner').run()<CR>")
+noremap("n", "<S-F10>", "<CMD>lua require('code_runner').run()<CR>")
 
 map("n", "Q", "<CMD>lua Close_Floating_Windows()<CR>")
 -- close all the floating windows
@@ -171,8 +172,8 @@ if fn.empty(fn.glob(install_path)) > 0 then
     -- run PackerInstall to install plugins
     vim.cmd("packadd packer.nvim")
     -- first time will generate a lot of errors, just ignore
-    require("plugin").compile()
-    require("plugin").install()
+    require("plugins").compile()
+    require("plugins").install()
 end
 
 vim.cmd("packadd packer.nvim") -- enable packer.nvim
@@ -183,7 +184,7 @@ autocmd BufWritePost plugin.lua source <afile> | PackerCompile
 augroup END
 ]]) -- auto compile when plugin config updates
 
-require("plugin")
+require("plugins")
 
 -------------------- Plugins Settings --------------------
 vim.cmd(":command! -nargs=0 Format format")

@@ -28,7 +28,8 @@ nmap('K', '<CMD>lua vim.lsp.buf.hover()<CR>')
 nmap('<C-k>', '<CMD>lua vim.lsp.buf.signature_help()<CR>')
 nmap('g[', '<CMD>lua vim.diagnostic.goto_prev()<CR>')
 nmap('g]', '<CMD>lua vim.diagnostic.goto_next()<CR>')
-nmap('<F18>', '<CMD>lua vim.lsp.buf.rename()<CR>') -- shift F6
+nmap('<F18>', '<CMD>lua vim.lsp.buf.rename()<CR>') -- shift F6 for terminal
+nmap('<S-F6>', '<CMD>lua vim.lsp.buf.rename()<CR>') -- shift F6 for gui
 nmap('<A-CR>', '<CMD>lua vim.lsp.buf.code_action()<CR>')
 nmap('<space><space>', '<CMD>lua vim.lsp.buf.formatting()<CR>')
 nmap('<space>e', '<CMD>lua vim.diagnostic.open_float()<CR>')
