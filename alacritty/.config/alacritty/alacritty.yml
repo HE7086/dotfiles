@@ -6,7 +6,8 @@ window:
 
 
 env:
-  TERM: xterm-256color
+  # TERM: xterm-256color
+  TERM: alacritty
 
 
 shell:
@@ -87,3 +88,15 @@ shemes:
       white: '#63686d'
 
 colors: *Breeze
+
+key_bindings:
+  - { key: Tab, mods: Control, chars: "\e[27;5;9~" }
+  - { key: Tab, mods: Control|Shift, chars: "\e[27;6;9~" }
+  - { key: Comma, mods: Control, command: { 
+        program: "xdg-open", 
+        args: [".config/alacritty/alacritty.yml"] 
+      }
+    }
+  # - { key: N, mods: Control|Shift, action: SpawnNewInstance }
+  - { key: N, mods: Control|Shift, chars: "\e[[CSn~" } # handled in tmux
+  - { key: T, mods: Control|Shift, chars: "\e[[CSt~" } # handled in tmux
