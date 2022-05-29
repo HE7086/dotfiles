@@ -1,3 +1,6 @@
+import:
+  - ~/.config/alacritty/local.yml
+
 window:
   dimensions:
     columns: 120
@@ -22,7 +25,8 @@ mouse:
 
 
 font:
-  size: 13
+  # override in local.yml
+  # size: 13
 
   normal:
     family: Iosevka HE7086
