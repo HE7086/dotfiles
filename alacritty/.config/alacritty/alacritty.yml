@@ -9,8 +9,8 @@ window:
 
 
 env:
-  # TERM: xterm-256color
-  TERM: alacritty
+  TERM: xterm-256color
+  # TERM: alacritty
 
 
 shell:
