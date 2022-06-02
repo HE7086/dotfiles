@@ -5,6 +5,10 @@ swipe:
       sendkey: "LEFTMETA+O"
     down:
       sendkey: "LEFTMETA+D"
+    left:
+      sendkey: "LEFTMETA+LEFTCTRL+TAB"
+    right:
+      sendkey: "LEFTMETA+LEFTSHIFT+LEFTCTRL+TAB"
 
   3:
     left:

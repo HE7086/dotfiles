@@ -13,6 +13,20 @@ return require('packer').startup(function(use)
             vim.cmd 'colorscheme one'
         end
     }
+
+    use {'cormacrelf/vim-colors-github',
+        -- config = function()
+        --     vim.cmd("colorscheme github")
+        --     vim.cmd("set bg=light")
+        -- end
+    }
+
+    -- use {'altercation/vim-colors-solarized',
+    --     config = function()
+    --         vim.cmd("colorscheme solarized")
+    --         vim.cmd("set bg=light")
+    --     end
+    -- }
     use {'kyazdani42/nvim-web-devicons'}
 
     -- use {'glepnir/galaxyline.nvim',
