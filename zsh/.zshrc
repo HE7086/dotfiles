@@ -89,61 +89,64 @@ if [[ $TTY =~ "/dev/tty" ]]; then
     autoload -Uz promptinit && promptinit
     prompt redhat
 else
-    #========================================
-    # powerlevel10k configs
-    #========================================
-    ## left prompts
-    #if [[ -z "$SSH_CONNECTION" ]]; then
-    #    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
-    #    POWERLEVEL9K_USER_DEFAULT_BACKGROUND='232'
-    #    POWERLEVEL9K_USER_DEFAULT_FOREGROUND='250'
-    #    POWERLEVEL9K_USER_ROOT_BACKGROUND='250'
-    #    POWERLEVEL9K_USER_ROOT_FOREGROUND='232'
-    #else
-    #    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host dir vcs)
-    #    POWERLEVEL9K_HOST_BACKGROUND='232'
-    #    POWERLEVEL9K_HOST_FOREGROUND='250'
-    #    POWERLEVEL9K_SSH_ICON="\uF489"
-    #fi
-    ## left colors
-    ## use some custom grey instead of black to avoid transparency
-    #POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='045'
-    #POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='000'
-    #POWERLEVEL9K_DIR_ETC_BACKGROUND='045'
-    #POWERLEVEL9K_DIR_ETC_FOREGROUND='000'
-    #POWERLEVEL9K_DIR_HOME_BACKGROUND='039'
-    #POWERLEVEL9K_DIR_HOME_FOREGROUND='000'
-    #POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='039'
-    #POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='000'
-    ## right prompts
-    #POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator dir_writable)
-    ## right colors
-    #POWERLEVEL9K_STATUS_OK_BACKGROUND='232'
-    #POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='232'
-    #POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='250'
-    #POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND='232'
-    #POWERLEVEL9K_VI_MODE_VISUAL_FOREGROUND='250'
-    ## only show error status
-    #POWERLEVEL9K_STATUS_OK=false
-    ## Vim mode indecator
-    #POWERLEVEL9K_VI_INSERT_MODE_STRING=''
-    #POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
-    ##POWERLEVEL9K_VI_VISUAL_MODE_STRING='V' #visual mode does not exist(?)
-    ## shorten the directory path TODO: fix this
-    #POWERLEVEL9K_SHORTEN_DIR_LENTH=1
-    #POWERLEVEL9K_SHORTEN_DELIMITER=""
-    #POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
-    #if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
-    #    source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-    #else
-    #    if [[ ! -f ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme ]]; then
-    #        [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
-    #        git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.local/share/zsh/plugins/powerlevel10k
-    #    fi
-    #    source ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
-    #fi
-
-    eval "$(starship init zsh)"
+    if (which starship > /dev/null);then
+        # use starship if avaliable
+        eval "$(starship init zsh)"
+    else
+        #========================================
+        # powerlevel10k configs
+        #========================================
+        # left prompts
+        if [[ -z "$SSH_CONNECTION" ]]; then
+            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
+            POWERLEVEL9K_USER_DEFAULT_BACKGROUND='232'
+            POWERLEVEL9K_USER_DEFAULT_FOREGROUND='250'
+            POWERLEVEL9K_USER_ROOT_BACKGROUND='250'
+            POWERLEVEL9K_USER_ROOT_FOREGROUND='232'
+        else
+            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host dir vcs)
+            POWERLEVEL9K_HOST_BACKGROUND='232'
+            POWERLEVEL9K_HOST_FOREGROUND='250'
+            POWERLEVEL9K_SSH_ICON="\uF489"
+        fi
+        # left colors
+        # use some custom grey instead of black to avoid transparency
+        POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='045'
+        POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='000'
+        POWERLEVEL9K_DIR_ETC_BACKGROUND='045'
+        POWERLEVEL9K_DIR_ETC_FOREGROUND='000'
+        POWERLEVEL9K_DIR_HOME_BACKGROUND='039'
+        POWERLEVEL9K_DIR_HOME_FOREGROUND='000'
+        POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='039'
+        POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='000'
+        # right prompts
+        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator dir_writable)
+        # right colors
+        POWERLEVEL9K_STATUS_OK_BACKGROUND='232'
+        POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='232'
+        POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='250'
+        POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND='232'
+        POWERLEVEL9K_VI_MODE_VISUAL_FOREGROUND='250'
+        # only show error status
+        POWERLEVEL9K_STATUS_OK=false
+        # Vim mode indecator
+        POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+        POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
+        #POWERLEVEL9K_VI_VISUAL_MODE_STRING='V' #visual mode does not exist(?)
+        # shorten the directory path TODO: fix this
+        POWERLEVEL9K_SHORTEN_DIR_LENTH=1
+        POWERLEVEL9K_SHORTEN_DELIMITER=""
+        POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
+        if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
+            source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+        else
+            if [[ ! -f ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme ]]; then
+                [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
+                git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.local/share/zsh/plugins/powerlevel10k
+            fi
+            source ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
+        fi
+    fi
 
     #========================================
     # prompt extensions

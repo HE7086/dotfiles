@@ -1,17 +1,20 @@
 add_newline = false
 
 format = """
-(fg:#1C4961)\
+$hostname\
 [ $directory](bg:#1C4961)\
 [\uE0B0](fg:#1C4961 bg:#2F79A1)\
-$git_branch\
+$git_branch$hg_branch\
 [\uE0B0](fg:#2F79A1 bg:#3A95C7)\
 $git_status\
-[\uE0B0](#3A95C7 bg:#40A9E0)\
-$time$sudo\
-[\uE0B0](#40A9E0 bg:none) \
+[\uE0B0](fg:#3A95C7 bg:#40A9E0)\
+$time\
+[\uE0B0](fg:#40A9E0 bg:none) \
 $all\
-$character
+$fill\
+$sudo\
+$line_break\
+$status$character
 """
 
 [status]
@@ -23,6 +26,13 @@ pipestatus = true
 [character]
 vicmd_symbol = "[❮](bold yellow)"
 
+[hostname]
+format = "[ $ssh_symbol$hostname ]($style)[\uE0B0](fg:black bg:#1C4961)"
+ssh_symbol = "\uF489 "
+style = "bold fg:white bg:black"
+
+[username]
+disabled = true
 
 [directory]
 style = "bg:#1C4961 fg:white"
@@ -42,5 +52,181 @@ style = "bg:#40A9E0 fg:white"
 
 [sudo]
 disabled = false
-format = "[\u26a1]($style)"
+format = "[\uE0B2](fg:#40A9E0)[\u26a1]($style)"
 style = "bold bg:#40A9E0 fg:white"
+
+[fill]
+symbol = " "
+
+[env_var]
+disabled = true
+
+[hg_branch]
+disabled = true
+
+[shlvl]
+#todo: tmux
+disabled = true
+
+[package]
+format = "[$symbol$version]($style)"
+disabled = false
+
+# disabled sections
+
+[aws]
+disabled = true
+
+[azure]
+disabled = true
+
+[battery]
+disabled = true
+
+[buf]
+disabled = true
+
+[c]
+disabled = true
+
+[cmake]
+disabled = true
+
+[cobol]
+disabled = true
+
+[conda]
+disabled = true
+
+[container]
+disabled = true
+
+[crystal]
+disabled = true
+
+[dart]
+disabled = true
+
+[deno]
+disabled = true
+
+[docker_context]
+disabled = true
+
+[dotnet]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[erlang]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[golang]
+disabled = true
+
+[haskell]
+disabled = true
+
+[helm]
+disabled = true
+
+[java]
+disabled = true
+
+[julia]
+disabled = true
+
+[kotlin]
+disabled = true
+
+[kubernetes]
+disabled = true
+
+[localip]
+disabled = true
+
+[lua]
+disabled = true
+
+[memory_usage]
+disabled = true
+
+[nim]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[openstack]
+disabled = true
+
+[perl]
+disabled = true
+
+[php]
+disabled = true
+
+[pulumi]
+disabled = true
+
+[purescript]
+disabled = true
+
+[python]
+disabled = true
+
+[rlang]
+disabled = true
+
+[red]
+disabled = true
+
+[ruby]
+disabled = true
+
+[rust]
+disabled = true
+
+[scala]
+disabled = true
+
+[shell]
+disabled = true
+
+[singularity]
+disabled = true
+
+[spack]
+disabled = true
+
+[swift]
+disabled = true
+
+[terraform]
+disabled = true
+
+[vagrant]
+disabled = true
+
+[vlang]
+disabled = true
+
+[vcsh]
+disabled = true
+
+[zig]
+disabled = true
+
