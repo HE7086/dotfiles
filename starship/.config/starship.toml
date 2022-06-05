@@ -35,7 +35,10 @@ style = "bold fg:white bg:black"
 disabled = true
 
 [directory]
+format = "[$path]($style)[ $read_only]($read_only_style)"
 style = "bg:#1C4961 fg:white"
+read_only_style = "bg:#1C4961 fg:red"
+truncation_symbol = "./"
 
 [git_branch]
 format = "[ $symbol$branch ]($style)"
