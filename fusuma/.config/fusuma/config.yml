@@ -3,12 +3,24 @@ swipe:
     threshold: 0.7
     up: 
       sendkey: "LEFTMETA+O"
+      keypress:
+        LEFTSHIFT:
+          sendkey: "LEFTMETA+LEFTSHIFT+LEFT"
     down:
       sendkey: "LEFTMETA+D"
+      keypress:
+        LEFTSHIFT:
+          sendkey: "LEFTMETA+LEFTSHIFT+RIGHT"
     left:
       sendkey: "LEFTMETA+LEFTCTRL+TAB"
+      keypress:
+        LEFTSHIFT:
+          sendkey: "LEFTMETA+LEFTCTRL+LEFTSHIFT+LEFT"
     right:
       sendkey: "LEFTMETA+LEFTSHIFT+LEFTCTRL+TAB"
+      keypress:
+        LEFTSHIFT:
+          sendkey: "LEFTMETA+LEFTCTRL+LEFTSHIFT+RIGHT"
 
   3:
     left:

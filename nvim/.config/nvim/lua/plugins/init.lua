@@ -76,6 +76,7 @@ return require('packer').startup(function(use)
     }
 
     use {'rust-lang/rust.vim'}
+    use {'shiracamus/vim-syntax-x86-objdump-d'}
 
     -- use {'rktjmp/lush.nvim'}
     use {'killphi/vim-ebnf'}
