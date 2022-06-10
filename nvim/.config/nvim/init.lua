@@ -166,6 +166,18 @@ Close_Floating_Windows = function()
     end
 end
 
+function ToggleLightMode()
+    if vim.o.background == "light" then
+        vim.o.background = "dark"
+        vim.cmd("color one")
+    else
+        vim.o.background = "light"
+        vim.cmd("color github")
+    end
+end
+
+vim.cmd(":command! -nargs=0 LM lua ToggleLightMode()")
+
 -------------------- Plugins --------------------
 
 -- auto install packer.nvim
