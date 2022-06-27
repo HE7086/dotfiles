@@ -15,12 +15,12 @@ swipe:
       sendkey: "LEFTMETA+LEFTCTRL+TAB"
       keypress:
         LEFTSHIFT:
-          sendkey: "LEFTMETA+LEFTCTRL+LEFTSHIFT+LEFT"
+          sendkey: "LEFTMETA+LEFTCTRL+LEFTSHIFT+RIGHT"
     right:
       sendkey: "LEFTMETA+LEFTSHIFT+LEFTCTRL+TAB"
       keypress:
         LEFTSHIFT:
-          sendkey: "LEFTMETA+LEFTCTRL+LEFTSHIFT+RIGHT"
+          sendkey: "LEFTMETA+LEFTCTRL+LEFTSHIFT+LEFT"
 
   3:
     left:

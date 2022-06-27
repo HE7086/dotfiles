@@ -72,7 +72,7 @@ disabled = true
 disabled = true
 
 [package]
-format = "[$symbol$version]($style)"
+format = "[$symbol$version ]($style)"
 disabled = false
 
 # disabled sections

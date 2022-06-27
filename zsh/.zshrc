@@ -545,3 +545,10 @@ function git_tum_config() {
     git config --local user.email "he0@in.tum.de"
     git config --local user.signingkey B8B647960C108C728B9C6D88E8A5C24A502A0CD5
 }
+
+#----------------------------------------------------------------------------------------------------
+# disassembly utility
+#----------------------------------------------------------------------------------------------------
+function disasm() {
+    objdump -d -C -w -Mintel $1 | vim -
+}

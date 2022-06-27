@@ -177,6 +177,7 @@ function ToggleLightMode()
 end
 
 vim.cmd(":command! -nargs=0 LM lua ToggleLightMode()")
+noremap("n", "<F10>", [[<CMD>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])
 
 -------------------- Plugins --------------------
 
