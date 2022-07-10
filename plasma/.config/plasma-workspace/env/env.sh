@@ -26,7 +26,7 @@ export ELECTRON_TRASH=gio
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
-export DEBUGINFOD_URLS="https://debuginfod.archlinux.org/"
+export DEBUGINFOD_URLS="https://debuginfod.archlinux.org https://repo.archlinuxcn.org"
 
 if [[ `cat /etc/hostname` = "HE-workstation" ]]; then
     if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then 
@@ -42,6 +42,6 @@ if [[ `cat /etc/hostname` = "HE-workstation" ]]; then
 fi
 
 if [[ `cat /etc/hostname` = "HE-TP" ]]; then
-    export MOZ_DISABLE_RDD_SANDBOX=1
+    # export MOZ_DISABLE_RDD_SANDBOX=1
     export LIBVA_DRIVER_NAME=iHD
 fi
