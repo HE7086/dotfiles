@@ -1,10 +1,11 @@
-require('plugins.lsp.bash-language-server')
+require('plugins.lsp.bash')
 require('plugins.lsp.clangd')
--- require('plugins.lsp.haskell-language-server')
-require('plugins.lsp.lua-language-server')
+-- require('plugins.lsp.haskell')
+require('plugins.lsp.lua')
 require('plugins.lsp.pyright')
 require('plugins.lsp.texlab')
 require('plugins.lsp.rust')
+require('plugins.lsp.cmake')
 
 -- auto show diagnostic hover
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
