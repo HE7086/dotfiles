@@ -4,10 +4,12 @@
 if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then
     export MOZ_ENABLE_WAYLAND=1
     export QT_QPA_PLATFORM=wayland
+    export _JAVA_AWT_WM_NONREPARENTING=1
 else
     # fix x11 crashing when relogin from wayland
     unset MOZ_ENABLE_WAYLAND
     unset QT_QPA_PLATFORM
+    unset _JAVA_AWT_WM_NONREPARENTING
 fi
 
 setxkbmap -option caps:escape_shifted_capslock
