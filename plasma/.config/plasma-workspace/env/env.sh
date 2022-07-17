@@ -1,5 +1,15 @@
 #!/bin/bash
 
+append_path () {
+    case ":$PATH:" in
+        *:"$1":*)
+            ;;
+        *)
+            PATH="${PATH:+$PATH:}$1"
+    esac
+}
+append_path "$HOME/.local/bin"
+
 # setting environmental variables under wayland
 if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then
     export MOZ_ENABLE_WAYLAND=1
