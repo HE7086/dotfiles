@@ -10,6 +10,7 @@ set -e
 
 _url=$1
 _dirname=${_url##*/}
+_dirname=${_dirname%%.git}
 
 # download only the metadata of the repository
 git clone --filter=blob:none --no-checkout --depth=1 --sparse $_url $_dirname
@@ -18,9 +19,9 @@ git clone --filter=blob:none --no-checkout --depth=1 --sparse $_url $_dirname
 _temp=$(mktemp)
 printf "# Enter required files/dirs for sparse checkout, separated in lines\n\n\n" > $_temp
 printf "#==================================" >> $_temp
-printf "# File list in the repository root:\n\n" >> $_temp
+printf "# Uncomment files or enter your own pattern:\n\n" >> $_temp
 # get file list of the repo root
-git -C $_dirname ls-tree HEAD | awk '{print $4}' - | sed 's/^/# /g' - >> $_temp
+git -C $_dirname ls-tree HEAD | awk '{print $4}' - | sed 's/^/# \//g' - >> $_temp
 
 [[ -z $EDITOR ]] && EDITOR=vim
 
