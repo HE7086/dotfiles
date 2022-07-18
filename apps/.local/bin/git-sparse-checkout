@@ -1,0 +1,36 @@
+#!/bin/bash
+
+if [[ $# -lt 1 ]]; then
+    echo "git sparse-checkout helper"
+    echo "    usage: $0 <url>"
+    exit
+fi
+
+set -e
+
+_url=$1
+_dirname=${_url##*/}
+
+# download only the metadata of the repository
+git clone --filter=blob:none --no-checkout --depth=1 --sparse $_url $_dirname
+
+# prepare message for editing
+_temp=$(mktemp)
+printf "# Enter required files/dirs for sparse checkout, separated in lines\n\n\n" > $_temp
+printf "#==================================" >> $_temp
+printf "# File list in the repository root:\n\n" >> $_temp
+# get file list of the repo root
+git -C $_dirname ls-tree HEAD | awk '{print $4}' - | sed 's/^/# /g' - >> $_temp
+
+[[ -z $EDITOR ]] && EDITOR=vim
+
+$EDITOR $_temp
+_files=$(cat $_temp | sed '/^#/d' | sed '/^\s*$/d' | xargs)
+
+[[ -z $_files ]] && printf "\033[0;31mNo files given! Will download all files except directories from root\n\033[0m"
+
+# actually download the required content
+git -C $_dirname sparse-checkout set --no-cone $_files
+git -C $_dirname checkout
+
+rm -f $_temp
