@@ -283,6 +283,8 @@ alias tm='tmux -2'
 # convmv -r -f gb18030 -t utf-8 <file>
 # alias conv='iconv -f gb18030 -t utf-8'
 
+alias maek='make'
+
 alias start='sudo systemctl start'
 alias stop='sudo systemctl stop'
 alias restart='sudo systemctl restart'
