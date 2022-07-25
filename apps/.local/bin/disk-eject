@@ -24,6 +24,11 @@ if [[ $_mnt =~ "[SWAP]" ]]; then
 fi
 
 sync
-sudo umount -fR "$_mnt"
+
+[[ -z "$_mnt" ]] || sudo umount -fR "$_mnt"
+
+# sudo pacman -S util-linux
 sudo eject "$_blk"
+
+# sudo pacman -S udisks2
 udisksctl power-off -b "$_blk"
