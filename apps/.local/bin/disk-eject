@@ -1,6 +1,29 @@
 #!/bin/bash
 
+if [[ $# -lt 1 ]]; then
+    echo "disk eject helper"
+    echo "    usage: $0 <block device>"
+    exit
+fi
+
+if [[ ! -b $1 ]]; then
+    echo "$1 is not a block device! aborting"
+    exit 1
+fi
+
+# get the name of the actual block device
+_blk="/dev/$(lsblk -no pkname "$1")"
+
+# get all the mountpoints of the device
+_mnt=$(lsblk -no MOUNTPOINTS "$_blk" | xargs)
+
+# manually swapoff?
+if [[ $_mnt =~ "[SWAP]" ]]; then
+    echo "$1 is used as SWAP! aborting"
+    exit 1
+fi
+
 sync
-sudo umount "$1"
-sudo eject "$1"
-udisksctl power-off -b "$1"
+sudo umount -fR "$_mnt"
+sudo eject "$_blk"
+udisksctl power-off -b "$_blk"
