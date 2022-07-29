@@ -3,27 +3,44 @@
 REPO="$HOME/code/repo"
 REPO_NAME=he7086
 SERVER="toaster:/var/www"
+ARCH=(x86_64 aarch64)
 
 for _arg in "$@"; do
     # only match zst and xz packages
-    if [[ $_arg =~ ^.+\.pkg\.tar\.(zst|xz)$ ]]; then
-
-        if [[ -f "$_arg" ]]; then 
-            # add gpg sign if not present
-            [[ -f "$_arg.sig" ]] || gpg --detach-sign "$_arg"
-        else
-            echo "file not present: $_arg" 1>&2
-            continue
-        fi
-
-        # move package to repository directory, if not already inside repo
-        [[ "$_arg" -ef "$REPO/${_arg##*/}" ]] || mv --update "$_arg" "$_arg.sig" "$REPO" 
-
-        # add package to repo
-        repo-add --sign --remove "$REPO/$REPO_NAME.db.tar.gz" "$REPO/${_arg##*/}"
-    else
-        echo "unrecognized package: $_arg" 1>&2
+    if [[ ! $_arg =~ ^.+\.pkg\.tar\.(zst|xz)$ ]]; then
+        echo "unrecognized package: ${_arg}" 1>&2
+        continue
     fi
+
+    if [[ ! -f "${_arg}" ]]; then 
+        echo "file not present: ${_arg}" 1>&2
+        continue
+    fi
+
+    # add gpg sign if not present
+    [[ -f "${_arg}.sig" ]] || gpg --detach-sign "${_arg}"
+
+    # xxx-1-1-arch.pkg.tar.zst -> arch
+    _arch=${_arg##*-}
+    _arch=${_arch%%.pkg.tar.*}
+
+    # /.../.../a.pkg.tar.zst -> a.pkg.tar.zst
+    _pkg=${_arg##*/}
+
+    # if the package has the arch "any", also add it to other architectures' repo
+    if [[ $_arch = "any" ]]; then
+        for arch in "${ARCH[@]}"; do
+            echo "copying any package ${_pkg} to ${arch}"
+            cp --update "${_arg}" "${_arg}.sig" "${REPO}/${arch}/"
+            repo-add --sign --remove "${REPO}/${arch}/${REPO_NAME}.db.tar.gz" "${REPO}/${arch}/${_pkg}"
+        done
+    fi
+
+    # move package to repository directory, if not already inside repo
+    [[ "${_arg}" -ef "${REPO}/${_arch}/${_pkg}" ]] || mv --update "${_arg}" "${_arg}.sig" "${REPO}/${_arch}/"
+
+    # add package to repo
+    repo-add --sign --remove "${REPO}/${_arch}/${REPO_NAME}.db.tar.gz" "${REPO}/${_arch}/${_pkg}"
 done
 
 # upload to the server
