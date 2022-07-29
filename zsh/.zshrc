@@ -96,6 +96,11 @@ else
         #========================================
         # powerlevel10k configs
         #========================================
+
+        POWERLEVEL9K_DISABLE_HOT_RELOAD=true 
+        POWERLEVEL9K_VCS_MAX_SYNC_LATENCY_SECONDS=0.003
+        POWERLEVEL9K_INSTANE_PROMPT=quiet
+
         # left prompts
         if [[ -z "$SSH_CONNECTION" ]]; then
             POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
@@ -159,20 +164,26 @@ else
     zle -N autosuggest-accept
 
     function check_plugin() {
-        if [[ -f /usr/share/zsh/plugins/"$1"/"$1".zsh ]]; then
-            source /usr/share/zsh/plugins/"$1"/"$1".zsh
+        if [[ -f /usr/share/zsh/plugins/"$2"/"$2".zsh ]]; then
+            source /usr/share/zsh/plugins/"$2"/"$2".zsh
         else
-            if [[ ! -f ~/.local/share/zsh/plugins/"$1"/"$1".zsh ]]; then
+            if [[ ! -d ~/.local/share/zsh/plugins/"$2" ]]; then
                 [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
-                git clone --depth=1 https://github.com/zsh-users/"$1".git ~/.local/share/zsh/plugins/"$1"
+                git clone --depth=1 https://github.com/"$1"/"$2".git ~/.local/share/zsh/plugins/"$2"
             fi
-            source ~/.local/share/zsh/plugins/"$1"/"$1".zsh
+            if [[ -z "$3" ]]; then
+                source ~/.local/share/zsh/plugins/"$2"/"$2".zsh
+            else
+                source ~/.local/share/zsh/plugins/"$2"/"$3".zsh
+            fi
         fi
     }
 
-    check_plugin zsh-syntax-highlighting
-    check_plugin zsh-autosuggestions
-    check_plugin zsh-history-substring-search
+    # check_plugin zsh-users zsh-syntax-highlighting
+    check_plugin zsh-users zsh-autosuggestions
+    check_plugin zsh-users zsh-history-substring-search
+
+    check_plugin z-shell F-Sy-H F-Sy-H.plugin
 
     unset -f check_plugin
 fi
