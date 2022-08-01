@@ -124,8 +124,8 @@ else
             newline
             prompt_char
         )
-        typeset -g POWERLEVEL9K_HOST_BACKGROUND='232'
-        typeset -g POWERLEVEL9K_HOST_FOREGROUND='250'
+        typeset -g POWERLEVEL9K_CONTEXT_BACKGROUND='232'
+        typeset -g POWERLEVEL9K_CONTEXT_FOREGROUND='250'
         typeset -g POWERLEVEL9K_SSH_ICON="\uF489"
     fi
 
