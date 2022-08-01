@@ -57,11 +57,7 @@ setopt share_history
 # autoload -Uz promptinit && promptinit
 # prompt redhat
 autoload -U colors && colors
-# only show right prompt on newest line
-setopt transient_rprompt
 setopt prompt_subst
-
-export PROMPT_EOL_MARK=$'\u23CE'
 
 #----------------------------------------------------------------------------------------------------
 # Plugin Settings
@@ -86,71 +82,127 @@ eval bindkey '^R' fzf-history-widget
 
 # prompt
 if [[ $TTY =~ "/dev/tty" ]]; then
+    # only show right prompt on newest line
+    setopt transient_rprompt
+
     autoload -Uz promptinit && promptinit
     prompt redhat
 else
-    if (which starship > /dev/null);then
-        # use starship if avaliable
-        eval "$(starship init zsh)"
+    export PROMPT_EOL_MARK=$'\u23CE'
+
+    #========================================
+    # powerlevel10k configs
+    #========================================
+
+    typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true 
+    typeset -g POWERLEVEL9K_INSTANE_PROMPT=quiet
+
+    # left prompts ====================
+    if [[ -z "$SSH_CONNECTION" ]]; then
+        typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+            user
+            dir
+            vcs
+            command_execution_time
+            newline
+            prompt_char
+        )
+        typeset -g POWERLEVEL9K_USER_DEFAULT_BACKGROUND='232'
+        typeset -g POWERLEVEL9K_USER_DEFAULT_FOREGROUND='250'
+        typeset -g POWERLEVEL9K_USER_ROOT_BACKGROUND='250'
+        typeset -g POWERLEVEL9K_USER_ROOT_FOREGROUND='232'
     else
-        #========================================
-        # powerlevel10k configs
-        #========================================
+        typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
+            context
+            dir
+            vcs
+            command_execution_time
+            newline
+            prompt_char
+        )
+        typeset -g POWERLEVEL9K_HOST_BACKGROUND='232'
+        typeset -g POWERLEVEL9K_HOST_FOREGROUND='250'
+        typeset -g POWERLEVEL9K_SSH_ICON="\uF489"
+    fi
 
-        POWERLEVEL9K_DISABLE_HOT_RELOAD=true 
-        POWERLEVEL9K_VCS_MAX_SYNC_LATENCY_SECONDS=0.003
-        POWERLEVEL9K_INSTANE_PROMPT=quiet
+    # dir
+    typeset -g POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='045'
+    typeset -g POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='000'
+    typeset -g POWERLEVEL9K_DIR_ETC_BACKGROUND='045'
+    typeset -g POWERLEVEL9K_DIR_ETC_FOREGROUND='000'
+    typeset -g POWERLEVEL9K_DIR_HOME_BACKGROUND='039'
+    typeset -g POWERLEVEL9K_DIR_HOME_FOREGROUND='000'
+    typeset -g POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='039'
+    typeset -g POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='000'
+    # shorten the directory path TODO: fix this
+    # typeset -g POWERLEVEL9K_SHORTEN_DIR_LENTH=1
+    # typeset -g POWERLEVEL9K_SHORTEN_DELIMITER=""
+    # typeset -g POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
+    typeset -g POWERLEVEL9K_DIR_SHOW_WRITABLE=v3
 
-        # left prompts
-        if [[ -z "$SSH_CONNECTION" ]]; then
-            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
-            POWERLEVEL9K_USER_DEFAULT_BACKGROUND='232'
-            POWERLEVEL9K_USER_DEFAULT_FOREGROUND='250'
-            POWERLEVEL9K_USER_ROOT_BACKGROUND='250'
-            POWERLEVEL9K_USER_ROOT_FOREGROUND='232'
-        else
-            POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(host dir vcs)
-            POWERLEVEL9K_HOST_BACKGROUND='232'
-            POWERLEVEL9K_HOST_FOREGROUND='250'
-            POWERLEVEL9K_SSH_ICON="\uF489"
+    # vcs
+    typeset -g POWERLEVEL9K_VCS_MAX_SYNC_LATENCY_SECONDS=0.003
+    typeset -g POWERLEVEL9K_VCS_BACKENDS=(git)
+
+    # command execution time
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='000'
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='231'
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=$'\uf43a'
+
+    # prompt char
+    typeset -g POWERLEVEL9K_LEFT_SEGMENT_END_SEPARATOR=''
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=''
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_LEFT_WHITESPACE=''
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_BACKGROUND='000'
+
+    # right prompts ====================
+    typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+        background_jobs
+        vi_mode 
+        status 
+        root_indicator 
+        dir_writable 
+        time
+    )
+    # export ZLE_RPROMPT_INDENT=0
+
+    # background jobs
+    typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=true
+    typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VISUAL_IDENTIFIER_EXPANSION=$'\uf444'
+
+    # Vim mode indecator
+    typeset -g POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='232'
+    typeset -g POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='250'
+    typeset -g POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND='232'
+    typeset -g POWERLEVEL9K_VI_MODE_VISUAL_FOREGROUND='250'
+    typeset -g POWERLEVEL9K_TIME_BACKGROUND='232'
+    typeset -g POWERLEVEL9K_TIME_FOREGROUND='250'
+    typeset -g POWERLEVEL9K_VI_INSERT_MODE_STRING=''
+    typeset -g POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
+    #POWERLEVEL9K_VI_VISUAL_MODE_STRING='V' #visual mode does not exist(?)
+
+    # status
+    typeset -g POWERLEVEL9K_STATUS_OK=false
+    typeset -g POWERLEVEL9K_STATUS_OK_PIPE=true
+    typeset -g POWERLEVEL9K_STATUS_OK_BACKGROUND='232'
+    typeset -g POWERLEVEL9K_STATUS_ERROR=true
+    typeset -g POWERLEVEL9K_STATUS_ERROR_SIGNAL=true
+    typeset -g POWERLEVEL9K_STATUS_VERBOSE_SIGNAME=true
+    typeset -g POWERLEVEL9K_STATUS_ERROR_VISUAL_IDENTIFIER_EXPANSION=$'\u2718'
+    typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE=true
+    typeset -g POWERLEVEL9K_STATUS_ERROR_PIPE_VISUAL_IDENTIFIER_EXPANSION=$'\u2718'
+
+    # auto install powerlevel10k
+    if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
+        source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
+    else
+        if [[ ! -f ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme ]]; then
+            [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
+            git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.local/share/zsh/plugins/powerlevel10k
         fi
-        # left colors
-        # use some custom grey instead of black to avoid transparency
-        POWERLEVEL9K_DIR_DEFAULT_BACKGROUND='045'
-        POWERLEVEL9K_DIR_DEFAULT_FOREGROUND='000'
-        POWERLEVEL9K_DIR_ETC_BACKGROUND='045'
-        POWERLEVEL9K_DIR_ETC_FOREGROUND='000'
-        POWERLEVEL9K_DIR_HOME_BACKGROUND='039'
-        POWERLEVEL9K_DIR_HOME_FOREGROUND='000'
-        POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND='039'
-        POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND='000'
-        # right prompts
-        POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(vi_mode status root_indicator dir_writable)
-        # right colors
-        POWERLEVEL9K_STATUS_OK_BACKGROUND='232'
-        POWERLEVEL9K_VI_MODE_NORMAL_BACKGROUND='232'
-        POWERLEVEL9K_VI_MODE_NORMAL_FOREGROUND='250'
-        POWERLEVEL9K_VI_MODE_VISUAL_BACKGROUND='232'
-        POWERLEVEL9K_VI_MODE_VISUAL_FOREGROUND='250'
-        # only show error status
-        POWERLEVEL9K_STATUS_OK=false
-        # Vim mode indecator
-        POWERLEVEL9K_VI_INSERT_MODE_STRING=''
-        POWERLEVEL9K_VI_COMMAND_MODE_STRING='N'
-        #POWERLEVEL9K_VI_VISUAL_MODE_STRING='V' #visual mode does not exist(?)
-        # shorten the directory path TODO: fix this
-        POWERLEVEL9K_SHORTEN_DIR_LENTH=1
-        POWERLEVEL9K_SHORTEN_DELIMITER=""
-        POWERLEVEL9K_SHORTEN_STRATEGY="truncate_to_last"
-        if [[ -f /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme ]]; then
-            source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-        else
-            if [[ ! -f ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme ]]; then
-                [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
-                git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.local/share/zsh/plugins/powerlevel10k
-            fi
-            source ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
-        fi
+        source ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
     fi
 
     #========================================
@@ -241,9 +293,9 @@ key[Shift-Tab]="${terminfo[kcbt]}"
 [[ -n "${key[PageDown]}"  ]] && bindkey -- "${key[PageDown]}"  end-of-buffer-or-history
 [[ -n "${key[Shift-Tab]}" ]] && bindkey -- "${key[Shift-Tab]}" reverse-menu-complete
 
-key[SEnter]=OM # manually setup since terminfo is not avaliable
-[[ -n "${key[SEnter]}"   ]] && bindkey "${key[SEnter]}"          accept-and-hold
-[[ -n "${key[SEnter]}"   ]] && bindkey -M vicmd "${key[SEnter]}" accept-and-hold
+# key[SEnter]=OM # manually setup since terminfo is not avaliable
+# [[ -n "${key[SEnter]}"   ]] && bindkey "${key[SEnter]}"          accept-and-hold
+# [[ -n "${key[SEnter]}"   ]] && bindkey -M vicmd "${key[SEnter]}" accept-and-hold
 
 # Finally, make sure the terminal is in application mode, when zle is
 # active. Only then are the values from $terminfo valid.
