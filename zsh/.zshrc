@@ -97,6 +97,10 @@ else
     typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true 
     typeset -g POWERLEVEL9K_INSTANE_PROMPT=quiet
 
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR=$'-'
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_BACKGROUND='000'
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND='240'
+
     # left prompts ====================
     if [[ -z "$SSH_CONNECTION" ]]; then
         typeset -g POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
@@ -166,7 +170,7 @@ else
         dir_writable 
         time
     )
-    # export ZLE_RPROMPT_INDENT=0
+    export ZLE_RPROMPT_INDENT=0
 
     # background jobs
     typeset -g POWERLEVEL9K_BACKGROUND_JOBS_VERBOSE=true
