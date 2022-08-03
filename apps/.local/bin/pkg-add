@@ -1,9 +1,13 @@
 #!/bin/bash
 
 REPO="$HOME/code/repo"
+REPO_DIR=repo
 REPO_NAME=he7086
 SERVER="toaster:/var/www"
 ARCH=(x86_64 aarch64)
+
+# upload to the server
+rsync --archive --verbose --partial --progress --delete "${SERVER}/${REPO_DIR}" "${REPO%%/${REPO_DIR}}"
 
 for _arg in "$@"; do
     # only match zst and xz packages
