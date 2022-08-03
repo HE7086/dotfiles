@@ -241,8 +241,8 @@ else
     unset -f check_plugin
 
     # auto install fast syntax highlighting
-    if [[ -f /usr/share/zsh/plugins/zsh-fast-syntax-highlight/F-Sy-H.plugin.zsh ]]; then
-        source /usr/share/zsh/plugins/zsh-fast-syntax-highlight/F-Sy-H.plugin.zsh
+    if [[ -f /usr/share/zsh/plugins/zsh-fast-syntax-highlighting/F-Sy-H.plugin.zsh ]]; then
+        source /usr/share/zsh/plugins/zsh-fast-syntax-highlighting/F-Sy-H.plugin.zsh
     else
         if [[ ! -f ~/.local/share/zsh/plugins/F-Sy-H/F-Sy-H.plugin.zsh ]]; then
             [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
