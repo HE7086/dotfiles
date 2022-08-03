@@ -1,0 +1,52 @@
+# Maintainer: HE7086 <heyi7086@gmail.com>
+
+pkgname=zsh-fast-syntax-highlight-git
+_pkgname=zsh-fast-syntax-highlight
+pkgver=r966.e7fea7c
+pkgrel=1
+pkgdesc='Feature-rich Syntax Highlighting for Zsh'
+arch=('any')
+url='https://github.com/z-shell/F-Sy-H'
+license=('BSD')
+depends=('zsh')
+makedepends=('git')
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+source=("git+${url}.git")
+sha512sums=('SKIP')
+
+_gitname='F-Sy-H'
+
+pkgver() {
+  cd "${_gitname}"
+  printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+  for file in $(grep -rwl "${_gitname}" --exclude-dir '.git' -e '→chroma'); do
+    sed -i 's/→//g' "${file}"
+  done
+}
+
+package() {
+  install -dm755 "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/{functions,share,share/test,themes,chroma}
+
+  install -m644 "${_gitname}"/functions/* "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/functions
+  install -m644 "${_gitname}"/share/*.zsh "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/share
+  install -m644 "${_gitname}"/share/test/* "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/share/test
+  install -m644 "${_gitname}"/themes/*.ini "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/themes
+  install -m644 "${_gitname}/→chroma"/*.ch "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/chroma
+
+  install -m644 "${_gitname}"/_fast-theme "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"
+  install -m644 "${_gitname}"/F-Sy-H.plugin.zsh "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"
+  install -m644 "${_gitname}"/fast-highlight "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"
+  install -m644 "${_gitname}"/fast-string-highlight "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"
+
+  install -dm755 "${pkgdir}/usr/share/licenses/${_pkgname}"
+  install -m644 "${_gitname}/LICENSE" "${pkgdir}/usr/share/licenses/${_pkgname}"
+
+  # install -dm755 "${pkgdir}/usr/share/doc/${_pkgname}/images"
+  # install -m644 "${_gitname}/docs"/*.md "${pkgdir}/usr/share/doc/${_pkgname}"
+  # install -m644 "${_gitname}/docs"/*.adoc "${pkgdir}/usr/share/doc/${_pkgname}"
+  # install -m644 "${_gitname}/docs/images"/* "${pkgdir}/usr/share/doc/${_pkgname}/images"
+}

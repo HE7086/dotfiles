@@ -220,25 +220,22 @@ else
     zle -N autosuggest-accept
 
     function check_plugin() {
-        if [[ -f /usr/share/zsh/plugins/"$2"/"$2".zsh ]]; then
-            source /usr/share/zsh/plugins/"$2"/"$2".zsh
+        if [[ -f /usr/share/zsh/plugins/"$2"/"$3".zsh ]]; then
+            source /usr/share/zsh/plugins/"$2"/"$3".zsh
         else
             if [[ ! -d ~/.local/share/zsh/plugins/"$2" ]]; then
                 [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
                 git clone --depth=1 https://github.com/"$1"/"$2".git ~/.local/share/zsh/plugins/"$2"
             fi
-            if [[ -z "$3" ]]; then
-                source ~/.local/share/zsh/plugins/"$2"/"$2".zsh
-            else
                 source ~/.local/share/zsh/plugins/"$2"/"$3".zsh
-            fi
         fi
     }
 
     # check_plugin zsh-users zsh-syntax-highlighting
-    check_plugin zsh-users zsh-autosuggestions
-    check_plugin zsh-users zsh-history-substring-search
+    check_plugin zsh-users zsh-autosuggestions zsh-autosuggestions
+    check_plugin zsh-users zsh-history-substring-search zsh-history-substring-search
 
+    # check_plugin z-shell zsh-fast-syntax-highlighting fast-syntax-highlighting.plugin
     check_plugin z-shell F-Sy-H F-Sy-H.plugin
 
     unset -f check_plugin
