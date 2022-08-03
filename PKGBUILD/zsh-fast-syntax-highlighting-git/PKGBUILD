@@ -1,7 +1,7 @@
 # Maintainer: HE7086 <heyi7086@gmail.com>
 
-pkgname=zsh-fast-syntax-highlight-git
-_pkgname=zsh-fast-syntax-highlight
+pkgname=zsh-fast-syntax-highlighting-git
+_pkgname=zsh-fast-syntax-highlighting
 pkgver=r966.e7fea7c
 pkgrel=1
 pkgdesc='Feature-rich Syntax Highlighting for Zsh'
@@ -29,24 +29,42 @@ prepare() {
 }
 
 package() {
-  install -dm755 "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/{functions,share,share/test,themes,chroma}
+  install -dm755 "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/{functions,share,themes,chroma}
 
   install -m644 "${_gitname}"/functions/* "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/functions
   install -m644 "${_gitname}"/share/*.zsh "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/share
-  install -m644 "${_gitname}"/share/test/* "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/share/test
   install -m644 "${_gitname}"/themes/*.ini "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/themes
   install -m644 "${_gitname}/→chroma"/*.ch "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/chroma
+
+  for file in "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/functions/*; do
+    zsh -fc "emulate zsh -o no_aliases && zcompile -R -- $file.zwc $file"
+  done
+
+  for file in "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/share/*.zsh; do
+    zsh -fc "emulate zsh -o no_aliases && zcompile -R -- $file.zwc $file"
+  done
 
   install -m644 "${_gitname}"/_fast-theme "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"
   install -m644 "${_gitname}"/F-Sy-H.plugin.zsh "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"
   install -m644 "${_gitname}"/fast-highlight "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"
   install -m644 "${_gitname}"/fast-string-highlight "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"
 
+  for file in "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/{_fast-theme,F-Sy-H.plugin.zsh,fast-{,string-}highlight}; do 
+    zsh -fc "emulate zsh -o no_aliases && zcompile -R -- $file.zwc $file"
+  done
+
   install -dm755 "${pkgdir}/usr/share/licenses/${_pkgname}"
   install -m644 "${_gitname}/LICENSE" "${pkgdir}/usr/share/licenses/${_pkgname}"
 
+  # docs
   # install -dm755 "${pkgdir}/usr/share/doc/${_pkgname}/images"
   # install -m644 "${_gitname}/docs"/*.md "${pkgdir}/usr/share/doc/${_pkgname}"
   # install -m644 "${_gitname}/docs"/*.adoc "${pkgdir}/usr/share/doc/${_pkgname}"
   # install -m644 "${_gitname}/docs/images"/* "${pkgdir}/usr/share/doc/${_pkgname}/images"
+
+  # tests
+  # install -dm755 "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/{tests,tests/_support,share/test}
+  # install -m644 "${_gitname}"/tests/*.zunit "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/tests
+  # install -m644 "${_gitname}/tests/_support"/* "${pkgdir}/usr/share/zsh/plugins/${_pkgname}/tests/_support"
+  # install -m644 "${_gitname}"/share/test/* "${pkgdir}/usr/share/zsh/plugins/${_pkgname}"/share/test
 }
