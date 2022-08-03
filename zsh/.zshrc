@@ -236,9 +236,20 @@ else
     check_plugin zsh-users zsh-history-substring-search zsh-history-substring-search
 
     # check_plugin z-shell zsh-fast-syntax-highlighting fast-syntax-highlighting.plugin
-    check_plugin z-shell F-Sy-H F-Sy-H.plugin
+    # check_plugin z-shell F-Sy-H F-Sy-H.plugin
 
     unset -f check_plugin
+
+    # auto install fast syntax highlighting
+    if [[ -f /usr/share/zsh/plugins/zsh-fast-syntax-highlight/F-Sy-H.plugin.zsh ]]; then
+        source /usr/share/zsh/plugins/zsh-fast-syntax-highlight/F-Sy-H.plugin.zsh
+    else
+        if [[ ! -f ~/.local/share/zsh/plugins/F-Sy-H/F-Sy-H.plugin.zsh ]]; then
+            [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
+            git clone --depth=1 https://github.com/z-shell/F-Sy-H.git ~/.local/share/zsh/plugins/F-Sy-H
+        fi
+        source ~/.local/share/zsh/plugins/F-Sy-H/F-Sy-H.plugin.zsh
+    fi
 fi
 
 #----------------------------------------------------------------------------------------------------
