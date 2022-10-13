@@ -35,7 +35,7 @@ export SSH_ASKPASS=/usr/bin/ksshaskpass
 # fix vscode delete freeze
 export ELECTRON_TRASH=gio
 
-eval $(gnome-keyring-daemon --start)
+# eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org https://repo.archlinuxcn.org"
