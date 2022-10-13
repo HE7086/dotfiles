@@ -56,4 +56,6 @@ fi
 if [[ `cat /etc/hostname` = "HE-TP" ]]; then
     # export MOZ_DISABLE_RDD_SANDBOX=1
     export LIBVA_DRIVER_NAME=iHD
+
+    export OPENCV_LOG_LEVEL=ERROR
 fi
