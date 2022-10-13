@@ -3,20 +3,20 @@
 
 pkgname=slack-wayland
 _name="slack"
-pkgver=4.27.156
+pkgver=4.28.184
 pkgrel=1
 pkgdesc="Slack Desktop with system Electron and Ozone enabled for native Wayland support"
 arch=('x86_64')
 url="https://slack.com/downloads"
 license=('custom:proprietary')
-depends=('electron17')
+depends=('electron20')
 optdepends=('libappindicator-gtk3: for notification indicator in the status bar on GNOME')
 provides=("${_name}" "${_name}-desktop")
 conflicts=("${_name}-desktop")
 source=("https://downloads.slack-edge.com/releases/linux/$pkgver/prod/x64/slack-desktop-$pkgver-amd64.deb"
         'slack-wayland.sh')
-sha256sums=('ff1b43fbff8a1ad3ebe2f4099bc65ccefa723f17cc070d0e13b8734f31614acd'
-            '644e6f339a2f616af59befcd301b57e6df3f08392ffca2746a6e8a35a8e655ff')
+sha256sums=('a8073dac725b33b966a8dc4e70e4a7aa7ba26f9cc9d11cb78401ab8bc0ca225a'
+            '49f63d23ceb994a3534d3d7e2b87cf146d41fd4bdea38f0cb4d6a042d44f7720')
 
 prepare() {
   bsdtar -xf data.tar.xz
