@@ -61,6 +61,7 @@ augroup END
 -- statusline
 o.laststatus = 2
 o.showtabline = 1
+o.cmdheight = 0 -- nvim 0.8
 
 -- syntax highlighting
 vim.cmd("syntax enable")

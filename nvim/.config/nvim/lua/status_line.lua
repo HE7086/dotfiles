@@ -173,13 +173,13 @@ Statusline = function(current_state)
     return state[current_state]
 end
 
-api.nvim_exec([[
+vim.cmd([[
 augroup Statusline
 autocmd!
 autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
 autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
 augroup END
-]], false)
+]])
 
 
 -------------------- color scheme --------------------
