@@ -36,24 +36,25 @@ export SSH_ASKPASS=/usr/bin/ksshaskpass
 export ELECTRON_TRASH=gio
 
 # eval $(gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK
+# export SSH_AUTH_SOCK
 
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org https://repo.archlinuxcn.org"
 
-if [[ `cat /etc/hostname` = "HE-workstation" ]]; then
+if [[ $(cat /etc/hostname) = "HE-workstation" ]]; then
     if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then 
         export EGL_PLATFORM=wayland
+        export GDK_SCALE=2
     else
-        export GTK_USE_PORTAL=1
+        export MOZ_X11_EGL=1
     fi
 
+    export GTK_USE_PORTAL=1
     # machine specific variables for nvidia-vaapi-driver
     export MOZ_DISABLE_RDD_SANDBOX=1
-    export MOZ_X11_EGL=1
     export LIBVA_DRIVER_NAME=nvidia
 fi
 
-if [[ `cat /etc/hostname` = "HE-TP" ]]; then
+if [[ $(cat /etc/hostname) = "HE-TP" ]]; then
     # export MOZ_DISABLE_RDD_SANDBOX=1
     export LIBVA_DRIVER_NAME=iHD
 

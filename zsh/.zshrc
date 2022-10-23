@@ -630,3 +630,18 @@ function git_tum_config() {
 function disasm() {
     objdump -d -C -w -Mintel $1 | vim -
 }
+
+function gui() {
+    if [[ $1 = "w" ]]; then
+        export XDG_SESSION_TYPE=wayland
+        export QT_QPA_PLATFORM=wayland
+        exec startplasma-wayland
+    else
+        # todo: fix this
+        export XDG_SESSION_TYPE=x11
+        export QT_QPA_PLATFORM=xcb
+        export DESKTOP_SESSION=plasma
+        export DISPLAY=:1
+        startplasma-x11
+    fi
+}
