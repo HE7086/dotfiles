@@ -7,10 +7,15 @@ return require('packer').startup(function(use)
     use {'tommcdo/vim-exchange'}
     use {'terryma/vim-multiple-cursors'}
     use {'Konfekt/vim-CtrlXA'}
-    use {'rakr/vim-one',
+    -- use {'rakr/vim-one',
+    --     config = function()
+    --         vim.g.one_allow_italics = 1
+    --         vim.cmd 'colorscheme one'
+    --     end
+    -- }
+    use {'navarasu/onedark.nvim',
         config = function()
-            vim.g.one_allow_italics = 1
-            vim.cmd 'colorscheme one'
+            vim.cmd("colorscheme onedark")
         end
     }
 
