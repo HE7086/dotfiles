@@ -73,6 +73,7 @@ if (which fzf > /dev/null); then
         source ~/.local/share/fzf/shell/key-bindings.zsh
     fi
 else
+    [[ -d ~/.local/bin ]] || mkdir -p ~/.local/bin
     git clone --depth=1 https://github.com/junegunn/fzf.git ~/.local/share/fzf
     ~/.local/share/fzf/install --no-bash --no-fish --no-key-bindings --no-completion --no-update-rc --bin
     ln -s ~/.local/share/fzf/bin/fzf ~/.local/bin/fzf
