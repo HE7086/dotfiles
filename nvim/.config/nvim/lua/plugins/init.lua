@@ -115,6 +115,7 @@ return require('packer').startup(function(use)
             -- {'quangnguyen30192/cmp-nvim-ultisnips'}
             {'hrsh7th/cmp-vsnip'},
             {'hrsh7th/vim-vsnip'},
+            {'onsails/lspkind.nvim'},
         }
     }
 end)

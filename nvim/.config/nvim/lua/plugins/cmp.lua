@@ -43,7 +43,7 @@ cmp.setup({
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete({}),
         ["<C-e>"] = cmp.mapping.abort(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true}),
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
     },
 
     sources = cmp.config.sources({
@@ -52,6 +52,26 @@ cmp.setup({
     }, {
         { name = "buffer" },
     }),
+
+    -- window = {
+    --     completion = {
+    --         winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+    --         col_offset = -3,
+    --         side_padding = 0,
+    --     },
+    -- },
+
+    -- formatting = {
+    --     fields = { "kind", "abbr", "menu" },
+    --     format = function(entry, vim_item)
+    --         local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
+    --         local strings = vim.split(kind.kind, "%s", { trimempty = true })
+    --         kind.kind = " " .. strings[1] .. " "
+    --         kind.menu = "    (" .. strings[2] .. ")"
+
+    --         return kind
+    --     end,
+    -- },
 })
 -- local t = function(str)
 --     return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -171,44 +191,97 @@ cmp.setup({
 --     }),
 -- })
 
-cmp.setup.cmdline("/", {
-    completion = { autocomplete = false },
-    sources = {
-        { name = "buffer",
-            -- options = { keyword_pattern = [=[[^[:blank:]].*]=] }
-        }
-    },
+cmp.setup.cmdline({ "/", "?" }, {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = { {
+        name = "buffer",
+    } },
 })
 
 cmp.setup.cmdline(":", {
-    completion = { autocomplete = false },
+    mapping = cmp.mapping.preset.cmdline(),
     sources = cmp.config.sources({ { name = "path" } }, { { name = "cmdline" } }),
 })
 
 cmp.setup({
     view = {
-        entries = "native",
+        entries = "custom", -- "native"
     },
     experimental = {
         ghost_text = true,
     },
 })
 
-vim.cmd([[
-" gray
-highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
-" blue
-highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
-highlight! CmpItemAbbrMatchFuzzy guibg=NONE guifg=#569CD6
-" light blue
-highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindInterface guibg=NONE guifg=#9CDCFE
-highlight! CmpItemKindText guibg=NONE guifg=#9CDCFE
-" pink
-highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
-highlight! CmpItemKindMethod guibg=NONE guifg=#C586C0
-" front
-highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindProperty guibg=NONE guifg=#D4D4D4
-highlight! CmpItemKindUnit guibg=NONE guifg=#D4D4D4
-]])
+local hi = vim.api.nvim_set_hl
+hi(0, "CmpItemAbbrDeprecated", { fg = "#808080", bg = "NONE", strikethrough = true })
+hi(0, "CmpItemAbbrMatch", { fg = "#569CD6", bg = "NONE" })
+hi(0, "CmpItemAbbrMatchFuzzy", { link = "CmpItemAbbrMatch" })
+hi(0, "CmpItemKindVariable", { fg = "#9CDCFE", bg = "NONE" })
+hi(0, "CmpItemKindInterface", { link = "CmpItemKindVariable" })
+hi(0, "CmpItemKindText", { link = "CmpItemKindVariable" })
+hi(0, "CmpItemKindFunction", { fg = "#C586C0", bg = "NONE" })
+hi(0, "CmpItemKindMethod", { link = "CmpItemKindFunction" })
+hi(0, "CmpItemKindKeyword", { fg = "#D4D4D4", bg = "NONE" })
+hi(0, "CmpItemKindProperty", { link = "CmpItemKindKeyword" })
+hi(0, "CmpItemKindUnit", { link = "CmpItemKindKeyword" })
+
+-- hi(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
+-- hi(0, "Pmenu", { fg = "#C5CDD9", bg = "#22252A" })
+
+-- hi(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
+-- hi(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bg = "NONE", bold = true })
+-- hi(0, "CmpItemAbbrMatchFuzzy", { link = "CmpItemAbbrMatch" })
+-- hi(0, "CmpItemMenu", { fg = "#C792EA", bg = "NONE", italic = true })
+
+-- hi(0, "CmpItemKindField", { fg = "#EED8DA", bg = "#B5585F" })
+-- hi(0, "CmpItemKindProperty", { fg = "#EED8DA", bg = "#B5585F" })
+-- hi(0, "CmpItemKindEvent", { fg = "#EED8DA", bg = "#B5585F" })
+
+-- hi(0, "CmpItemKindText", { fg = "#C3E88D", bg = "#9FBD73" })
+-- hi(0, "CmpItemKindEnum", { fg = "#C3E88D", bg = "#9FBD73" })
+-- hi(0, "CmpItemKindKeyword", { fg = "#C3E88D", bg = "#9FBD73" })
+
+-- hi(0, "CmpItemKindConstant", { fg = "#FFE082", bg = "#D4BB6C" })
+-- hi(0, "CmpItemKindConstructor", { fg = "#FFE082", bg = "#D4BB6C" })
+-- hi(0, "CmpItemKindReference", { fg = "#FFE082", bg = "#D4BB6C" })
+
+-- hi(0, "CmpItemKindFunction", { fg = "#EADFF0", bg = "#A377BF" })
+-- hi(0, "CmpItemKindStruct", { fg = "#EADFF0", bg = "#A377BF" })
+-- hi(0, "CmpItemKindClass", { fg = "#EADFF0", bg = "#A377BF" })
+-- hi(0, "CmpItemKindModule", { fg = "#EADFF0", bg = "#A377BF" })
+-- hi(0, "CmpItemKindOperator", { fg = "#EADFF0", bg = "#A377BF" })
+
+-- hi(0, "CmpItemKindVariable", { fg = "#C5CDD9", bg = "#7E8294" })
+-- hi(0, "CmpItemKindFile", { fg = "#C5CDD9", bg = "#7E8294" })
+
+-- hi(0, "CmpItemKindUnit", { fg = "#F5EBD9", bg = "#D4A959" })
+-- hi(0, "CmpItemKindSnippet", { fg = "#F5EBD9", bg = "#D4A959" })
+-- hi(0, "CmpItemKindFolder", { fg = "#F5EBD9", bg = "#D4A959" })
+
+-- hi(0, "CmpItemKindMethod", { fg = "#DDE5F5", bg = "#6C8ED4" })
+-- hi(0, "CmpItemKindValue", { fg = "#DDE5F5", bg = "#6C8ED4" })
+-- hi(0, "CmpItemKindEnumMember", { fg = "#DDE5F5", bg = "#6C8ED4" })
+
+-- hi(0, "CmpItemKindInterface", { fg = "#D8EEEB", bg = "#58B5A8" })
+-- hi(0, "CmpItemKindColor", { fg = "#D8EEEB", bg = "#58B5A8" })
+-- hi(0, "CmpItemKindTypeParameter", { fg = "#D8EEEB", bg = "#58B5A8" })
+
+-- vim.cmd([[
+-- " gray
+-- highlight! CmpItemAbbrDeprecated guibg=NONE gui=strikethrough guifg=#808080
+-- " blue
+-- highlight! CmpItemAbbrMatch guibg=NONE guifg=#569CD6
+-- highlight! link CmpItemAbbrMatchFuzzy CmpItemAbbrMatch
+-- " light blue
+-- highlight! CmpItemKindVariable guibg=NONE guifg=#9CDCFE
+-- highlight! link CmpItemKindInterface CmpItemKindVariable
+-- highlight! link CmpItemKindText CmpItemKindVariable
+-- " pink
+-- highlight! CmpItemKindFunction guibg=NONE guifg=#C586C0
+-- highlight! link CmpItemKindMethod CmpItemKindFunction
+-- " front
+-- highlight! CmpItemKindKeyword guibg=NONE guifg=#D4D4D4
+-- highlight! link CmpItemKindProperty CmpItemKindKeyword
+-- highlight! link CmpItemKindUnit CmpItemKindKeyword
+-- ]])
+

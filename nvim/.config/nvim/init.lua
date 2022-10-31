@@ -4,6 +4,9 @@ local g = vim.g -- global variables
 
 local o = vim.o -- editor option
 
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
 local map = require("util.keymap").map
 local noremap = require("util.keymap").noremap
 local noremap_all = require("util.keymap").noremap_all
@@ -50,13 +53,22 @@ o.showmode = true
 o.list = false
 o.listchars = "eol:¶,tab:>_,trail:·,extends:¦,precedes:¦,space:·,nbsp:␣"
 o.cursorline = true
-vim.cmd([[
-augroup AutoCursorline
-autocmd!
-autocmd InsertEnter * setlocal nocursorline
-autocmd InsertLeave * setlocal cursorline
-augroup END
-]])
+
+augroup("AutoCursorline", { clear = true })
+autocmd("InsertEnter", {
+    group = "AutoCursorline",
+    pattern = "*",
+    callback = function()
+        vim.wo.cursorline = false
+    end,
+})
+autocmd("InsertLeave", {
+    group = "AutoCursorline",
+    pattern = "*",
+    callback = function()
+        vim.wo.cursorline = true
+    end,
+})
 
 -- statusline
 o.laststatus = 2
@@ -69,37 +81,43 @@ vim.cmd("filetype plugin indent on")
 
 -- clipboard and yank
 o.clipboard = o.clipboard .. "unnamedplus"
-vim.cmd([[
-augroup YankHighLight
-autocmd!
-autocmd TextYankPost * lua vim.highlight.on_yank {on_visual = true, timeout=300}
-augroup END
-]])
+augroup("YankHighLight", { clear = true })
+autocmd("TextYankPost", {
+    group = "YankHighLight",
+    pattern = "*",
+    callback = function()
+        vim.highlight.on_yank {
+            on_visual = true,
+            timeout = 300
+        }
+    end
+})
 
 -- wrapping and folding
 o.wrap = false
 o.foldenable = false
 -- auto wrap in plain-text files + keymaps
-vim.cmd([[
-augroup AutoTextWrap
-autocmd!
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal wrap
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex setlocal linebreak
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap j gj
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap k gk
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap gj j
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap gk k
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap L g$
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex nnoremap H g^
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap j gj
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap k gk
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap gj j
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap gk k
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap L g$
-autocmd BufRead,BufNewFile *.txt,*.md,*.tex vnoremap H g^
-autocmd BufRead,BufNewFile *.tex setlocal ft=tex
-augroup END
-]])
+augroup("AutoTextWrap", { clear = true })
+autocmd({ "BufRead", "BufNewFile" }, {
+    group = "AutoTextWrap",
+    pattern = { "*.txt", "*.tex", "*.md" },
+    callback = function()
+        vim.wo.wrap = true
+        vim.wo.linebreak = true
+        noremap("n", "j", "gj")
+        noremap("n", "k", "gk")
+        noremap("n", "gj", "j")
+        noremap("n", "gk", "k")
+        noremap("n", "L", "g$")
+        noremap("n", "H", "g^")
+        noremap("v", "j", "gj")
+        noremap("v", "k", "gk")
+        noremap("v", "gj", "j")
+        noremap("v", "gk", "k")
+        noremap("v", "L", "g$")
+        noremap("v", "H", "g^")
+    end
+})
 
 -- bells
 o.errorbells = false
@@ -114,12 +132,12 @@ o.autowrite = true
 
 -- terminal
 g.neoterm_autoscroll = 1
-vim.cmd([[
-augroup TerminalAutoInsert
-autocmd!
-autocmd TermOpen term://* startinsert
-augroup END
-]])
+augroup("TerminalAutoInsert", { clear = true })
+autocmd("TermOpen", {
+    group = "TerminalAutoInsert",
+    pattern = "term://*",
+    command = "startinsert"
+})
 
 -- misc
 o.hidden = true
@@ -178,7 +196,8 @@ function ToggleLightMode()
 end
 
 vim.cmd(":command! -nargs=0 LM lua ToggleLightMode()")
-noremap("n", "<F10>", [[<CMD>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])
+noremap("n", "<F10>",
+    [[<CMD>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])
 
 -------------------- Plugins --------------------
 
@@ -194,12 +213,12 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 vim.cmd("packadd packer.nvim") -- enable packer.nvim
-vim.cmd([[ 
-augroup PackerAutoCompile
-autocmd!
-autocmd BufWritePost plugin.lua source <afile> | PackerCompile
-augroup END
-]]) -- auto compile when plugin config updates
+augroup("PackerAutoCompile", { clear = true })
+autocmd("BufWritePost", {
+    group = "PackerAutoCompile",
+    pattern = "plugin.lua",
+    command = "source <afile> | PackerCompile"
+}) -- auto compile when plugin config updates
 
 require("plugins")
 

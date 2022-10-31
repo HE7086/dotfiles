@@ -1,5 +1,9 @@
 local fn = vim.fn
 local api = vim.api
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
+local M = {}
 
 -- highlight groups
 local colors = {
@@ -173,14 +177,17 @@ Statusline = function(current_state)
     return state[current_state]
 end
 
-vim.cmd([[
-augroup Statusline
-autocmd!
-autocmd WinEnter,BufEnter * setlocal statusline=%!v:lua.Statusline('active')
-autocmd WinLeave,BufLeave * setlocal statusline=%!v:lua.Statusline('inactive')
-augroup END
-]])
-
+augroup("StatusLine", { clear = true })
+autocmd({ "WinEnter", "BufEnter" }, {
+    group = "StatusLine",
+    pattern = "*",
+    command = "setlocal statusline=%!v:lua.Statusline('active')"
+})
+autocmd({ "WinLeave", "BufLeave" }, {
+    group = "StatusLine",
+    pattern = "*",
+    command = "setlocal statusline=%!v:lua.Statusline('inactive')"
+})
 
 -------------------- color scheme --------------------
 
@@ -213,9 +220,9 @@ StatusLineColorScheme = function()
 end
 
 -- automatically load the status line
-vim.cmd([[
-augroup StatusLineColor
-autocmd!
-autocmd ColorScheme * call v:lua.StatusLineColorScheme()
-augroup END
-]])
+augroup("StatusLineColor", { clear = true })
+autocmd("ColorScheme", {
+    group = "StatusLineColor",
+    pattern = "*",
+    command = "call v:lua.StatusLineColorScheme()"
+})
