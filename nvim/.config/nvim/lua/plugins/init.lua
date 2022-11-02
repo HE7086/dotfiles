@@ -156,6 +156,8 @@ return require('packer').startup(function(use)
         }
     }
 
+    use { vim.fn.stdpath("config") .. "/myplugins" }
+
     if bootstrap then
         require("packer").sync()
     end

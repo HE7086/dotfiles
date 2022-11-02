@@ -175,9 +175,6 @@ noremap_all("<F1>", "<ESC>")
 command("W", "w", { nargs = 0 })
 
 -------------------- Hand Crafted Plugins --------------------
-require("neovide")
-require("status_line")
-require("code_runner")
 noremap("n", "<F22>", "<CMD>lua require('code_runner').run()<CR>")
 noremap("n", "<S-F10>", "<CMD>lua require('code_runner').run()<CR>")
 

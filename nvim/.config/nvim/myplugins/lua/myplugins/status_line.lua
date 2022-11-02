@@ -215,6 +215,8 @@ function M.MyStatusLineColorScheme()
     hi(0, "MyStatusLineLineCol", { bg = "#c678dd", fg = "#181a1f" })
 end
 
+M.MyStatusLineColorScheme()
+
 -- automatically load the status line
 augroup("MyStatusLineColor", { clear = true })
 autocmd("ColorScheme", {
