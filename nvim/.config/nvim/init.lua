@@ -207,26 +207,15 @@ noremap("n", "<F10>",
 
 -------------------- Plugins --------------------
 
--- auto install packer.nvim
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", "--depth=1", install_path })
-    -- run PackerInstall to install plugins
-    vim.api.nvim_command("packadd packer.nvim")
-    -- first time will generate a lot of errors, just ignore
-    require("plugins").compile()
-    require("plugins").install()
-end
-
+require("plugins")
 vim.api.nvim_command("packadd packer.nvim") -- enable packer.nvim
+
 augroup("PackerAutoCompile", { clear = true })
 autocmd("BufWritePost", {
     group = "PackerAutoCompile",
     pattern = "init.lua",
     command = "source <afile> | PackerCompile"
 }) -- auto compile when plugin config updates
-
-require("plugins")
 
 -------------------- Plugins Settings --------------------
 command("Format", "format", { nargs = 0 })

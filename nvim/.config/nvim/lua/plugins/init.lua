@@ -1,3 +1,17 @@
+-- auto install packer.nvim
+local check_packer = function()
+    local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+    if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+        vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", "--depth=1", install_path })
+        -- run PackerInstall to install plugins
+        vim.api.nvim_command("packadd packer.nvim")
+        -- first time will generate a lot of errors, just ignore
+        return true
+    end
+    return false
+end
+local bootstrap = check_packer()
+
 return require('packer').startup(function(use)
     use { 'wbthomason/packer.nvim' }
     use { 'tpope/vim-surround' }
@@ -141,4 +155,8 @@ return require('packer').startup(function(use)
             { 'onsails/lspkind.nvim' },
         }
     }
+
+    if bootstrap then
+        require("packer").sync()
+    end
 end)
