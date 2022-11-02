@@ -1,5 +1,3 @@
-local fn = vim.fn
-local api = vim.api
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -17,7 +15,7 @@ M.colors = {
 
 -- if current window is less than N column
 function M.short_mode(width)
-    return width > api.nvim_win_get_width(0)
+    return width > vim.api.nvim_win_get_width(0)
 end
 
 -- string representation of current mode
@@ -50,7 +48,7 @@ function M.mode()
         end
     })
 
-    local current_mode = api.nvim_get_mode().mode
+    local current_mode = vim.api.nvim_get_mode().mode
     if M.short_mode(80) then
         return string.format(" %-3s ", modes[current_mode][2])
     else
@@ -89,8 +87,9 @@ end
 
 -- get filename information. when lsp is loading, show that instead
 function M.filename_lsp()
-    local lsp = vim.lsp.util.get_progress_messages()[1]
-    if lsp then
+    local message = vim.lsp.util.get_progress_messages()
+    if #message > 0 then
+        local lsp = message[#message]
         local name = lsp.name or ""
         local msg = lsp.message or ""
         local percentage = lsp.percentage or 0
@@ -133,7 +132,7 @@ end
 
 -- get filetype with icons
 function M.filetype()
-    local file_name, file_ext = fn.expand("%:t"), fn.expand("%:e")
+    local file_name, file_ext = vim.fn.expand("%:t"), vim.fn.expand("%:e")
     local icon = require("nvim-web-devicons").get_icon(file_name, file_ext, { default = true })
 
     if vim.bo.filetype == "" then
@@ -173,33 +172,36 @@ function M.set_inactive()
     return M.colors.inactive .. "%= %F %="
 end
 
-function M.MyStatusline(current_state)
-    local state = setmetatable({
-        ["active"]   = M.set_active(),
-        ["inactive"] = M.set_inactive(),
-    }, {
-        __index = function()
-            return M.set_active()
-        end
-    })
-    return state[current_state]
-end
-
 augroup("MyStatusLine", { clear = true })
-autocmd({ "WinEnter", "BufEnter" }, {
+autocmd({ "WinEnter", "BufEnter", "BufWritePost" }, {
     group = "MyStatusLine",
     pattern = "*",
     callback = function()
-        vim.o.statusline = M.MyStatusline("active")
+        vim.wo.statusline = M.set_active()
+    end,
+})
+autocmd("User", {
+    group = "MyStatusLine",
+    pattern = {"LspProgressUpdate", "LspRequest", "GitSignsUpdate" },
+    callback = function()
+        vim.wo.statusline = M.set_active()
+        -- automatically clears lsp message in 2 seconds
+        vim.defer_fn(function()
+            vim.wo.statusline = M.set_active()
+        end, 2000)
     end,
 })
 autocmd({ "WinLeave", "BufLeave" }, {
     group = "MyStatusLine",
     pattern = "*",
     callback = function()
-        vim.o.statusline = M.MyStatusline("inactive")
+        vim.wo.statusline = M.set_inactive()
     end,
 })
+local timer = vim.loop.new_timer()
+timer:start(2000, 0, vim.schedule_wrap(function()
+    vim.wo.statusline = M.set_active()
+end))
 
 -------------------- color scheme --------------------
 
@@ -218,9 +220,7 @@ augroup("MyStatusLineColor", { clear = true })
 autocmd("ColorScheme", {
     group = "MyStatusLineColor",
     pattern = "*",
-    callback = function()
-        M.MyStatusLineColorScheme()
-    end,
+    callback = M.MyStatusLineColorScheme
 })
 
 return M

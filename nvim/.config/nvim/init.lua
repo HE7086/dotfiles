@@ -222,7 +222,7 @@ vim.api.nvim_command("packadd packer.nvim") -- enable packer.nvim
 augroup("PackerAutoCompile", { clear = true })
 autocmd("BufWritePost", {
     group = "PackerAutoCompile",
-    pattern = "plugin.lua",
+    pattern = "init.lua",
     command = "source <afile> | PackerCompile"
 }) -- auto compile when plugin config updates
 

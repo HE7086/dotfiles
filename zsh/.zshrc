@@ -343,6 +343,7 @@ alias ls='exa'
 alias l='exa -lF'
 alias ll='exa -laFH@'
 alias la='exa -laF'
+alias laa='exa -laaF'
 alias lr='exa -TF'
 
 alias ra='ranger'
