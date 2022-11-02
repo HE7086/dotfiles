@@ -86,7 +86,7 @@ vim.cmd("syntax enable")
 vim.cmd("filetype plugin indent on")
 
 -- clipboard and yank
-o.clipboard = o.clipboard .. "unnamedplus"
+o.clipboard = "unnamedplus"
 augroup("YankHighLight", { clear = true })
 autocmd("TextYankPost", {
     group = "YankHighLight",
@@ -235,6 +235,10 @@ command("Format", "format", { nargs = 0 })
 -- if os.getenv("COLORFGBG") == "15;0" then
 --     vim.cmd("setlocal bg=light")
 -- end
+
+if vim.fn.empty(vim.fn.glob(vim.fn.stdpath("config") .. "/lua/local_config.lua")) == 0 then
+    require('local_config')
+end
 
 -------------------- END OF SETTINGS --------------------
 vim.g.hlsearch = false -- does this work?

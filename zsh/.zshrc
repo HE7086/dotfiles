@@ -42,6 +42,7 @@ setopt rm_star_silent
 HISTORY_IGNORE="(ls|l|ll|cd|pwd|exit|vim|.|..|...)"
 HISTSIZE=10000
 SAVEHIST=10000
+HISTFILE=~/.cache/zsh/zsh_history
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt hist_find_no_dups
@@ -353,6 +354,7 @@ alias sl='ls'
 alias py='python'
 alias a='aria2c'
 alias svim='nvim --clean'
+alias vim=nvim
 alias pc='proxychains'
 alias nv='neovide'
 alias tm='tmux -2'
