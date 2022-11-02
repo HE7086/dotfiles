@@ -6,6 +6,7 @@ local o = vim.o -- editor option
 
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
+local command = vim.api.nvim_create_user_command
 
 local map = require("util.keymap").map
 local noremap = require("util.keymap").noremap
@@ -73,7 +74,12 @@ autocmd("InsertLeave", {
 -- statusline
 o.laststatus = 2
 o.showtabline = 1
-o.cmdheight = 0 -- nvim 0.8
+
+if vim.fn.has("nvim-0.8") then
+    o.cmdheight = 0
+else
+    o.cmdheight = 1
+end
 
 -- syntax highlighting
 vim.cmd("syntax enable")
@@ -166,7 +172,7 @@ noremap("n", "<S-C-Tab>", "<CMD>tabprevious<CR>")
 -- noremap_all('Q', '<nop>')  -- disable Ex mode entirely
 noremap("", "gQ", "<nop>")
 noremap_all("<F1>", "<ESC>")
-vim.cmd(":command! -nargs=0 W w")
+command("W", "w", { nargs = 0 })
 
 -------------------- Hand Crafted Plugins --------------------
 require("neovide")
@@ -177,7 +183,7 @@ noremap("n", "<S-F10>", "<CMD>lua require('code_runner').run()<CR>")
 
 map("n", "Q", "<CMD>lua Close_Floating_Windows()<CR>")
 -- close all the floating windows
-Close_Floating_Windows = function()
+function Close_Floating_Windows()
     for _, win in ipairs(vim.api.nvim_list_wins()) do
         if vim.api.nvim_win_get_config(win).relative ~= "" then
             vim.api.nvim_win_close(win, false)
@@ -188,14 +194,14 @@ end
 function ToggleLightMode()
     if vim.o.background == "light" then
         vim.o.background = "dark"
-        vim.cmd("color one")
+        vim.api.nvim_command("colorscheme onedark")
     else
         vim.o.background = "light"
-        vim.cmd("color github")
+        vim.api.nvim_command("colorscheme github")
     end
 end
 
-vim.cmd(":command! -nargs=0 LM lua ToggleLightMode()")
+command("LM", "lua ToggleLightMode()", { nargs = 0 })
 noremap("n", "<F10>",
     [[<CMD>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])
 
@@ -206,13 +212,13 @@ local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if fn.empty(fn.glob(install_path)) > 0 then
     fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", "--depth=1", install_path })
     -- run PackerInstall to install plugins
-    vim.cmd("packadd packer.nvim")
+    vim.api.nvim_command("packadd packer.nvim")
     -- first time will generate a lot of errors, just ignore
     require("plugins").compile()
     require("plugins").install()
 end
 
-vim.cmd("packadd packer.nvim") -- enable packer.nvim
+vim.api.nvim_command("packadd packer.nvim") -- enable packer.nvim
 augroup("PackerAutoCompile", { clear = true })
 autocmd("BufWritePost", {
     group = "PackerAutoCompile",
@@ -223,7 +229,7 @@ autocmd("BufWritePost", {
 require("plugins")
 
 -------------------- Plugins Settings --------------------
-vim.cmd(":command! -nargs=0 Format format")
+command("Format", "format", { nargs = 0 })
 
 -- auto switch to light theme in terminal
 -- if os.getenv("COLORFGBG") == "15;0" then
@@ -231,4 +237,4 @@ vim.cmd(":command! -nargs=0 Format format")
 -- end
 
 -------------------- END OF SETTINGS --------------------
-vim.cmd("nohlsearch")
+vim.g.hlsearch = false -- does this work?

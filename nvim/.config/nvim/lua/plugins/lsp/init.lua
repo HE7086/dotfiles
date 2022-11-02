@@ -15,8 +15,21 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     signs = true,
 }
 )
-vim.cmd('autocmd CursorHold * lua vim.diagnostic.get()')
-vim.cmd('autocmd CursorHoldI * silent! lua vim.lsp.buf.signature_help()')
+vim.api.nvim_create_augroup("lspCursorHold", { clear = true })
+vim.api.nvim_create_autocmd("CursorHold", {
+    group = "lspCursorHold",
+    pattern = "*",
+    callback = function()
+        vim.diagnostic.get()
+    end
+})
+vim.api.nvim_create_autocmd("CursorHoldI", {
+    group = "lspCursorHold",
+    pattern = "*",
+    callback = function()
+        vim.lsp.buf.signature_help()
+    end
+})
 
 local nmap = require('util.keymap').nmap
 

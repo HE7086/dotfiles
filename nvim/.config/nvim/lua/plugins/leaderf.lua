@@ -14,4 +14,4 @@ g.Lf_StlSeparator = {
 
 g.Lf_FollowLinks = 1
 
-g.Lf_CacheDirectory = os.getenv('HOME') .. '/.cache/LeaderF'
+g.Lf_CacheDirectory = vim.fn.stdpath("cache") .. '/LeaderF'
