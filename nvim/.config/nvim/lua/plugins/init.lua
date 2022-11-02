@@ -15,7 +15,7 @@ return require('packer').startup(function(use)
     -- }
     use { 'navarasu/onedark.nvim',
         config = function()
-            vim.api.nvim_cmd("colorscheme onedark")
+            vim.api.nvim_command("colorscheme onedark")
         end
     }
 
