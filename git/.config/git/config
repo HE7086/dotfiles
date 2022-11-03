@@ -1,6 +1,7 @@
 [core]
     editor = nvim
     pager = diff-so-fancy | less --tabs=4 -RFX
+    autocrlf = input
 [user]
     email = heyi7086@gmail.com
     name = HE7086

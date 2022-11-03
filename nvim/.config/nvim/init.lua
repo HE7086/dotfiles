@@ -1,7 +1,4 @@
-local fn = vim.fn -- invoke vim function
-
 local g = vim.g -- global variables
-
 local o = vim.o -- editor option
 
 local augroup = vim.api.nvim_create_augroup

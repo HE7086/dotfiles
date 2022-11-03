@@ -75,6 +75,7 @@ if (which fzf > /dev/null); then
     fi
 else
     [[ -d ~/.local/bin ]] || mkdir -p ~/.local/bin
+    [[ -d ~/.local/share ]] || mkdir -p ~/.local/share
     git clone --depth=1 https://github.com/junegunn/fzf.git ~/.local/share/fzf
     ~/.local/share/fzf/install --no-bash --no-fish --no-key-bindings --no-completion --no-update-rc --bin
     ln -s ~/.local/share/fzf/bin/fzf ~/.local/bin/fzf
@@ -205,7 +206,7 @@ else
         source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
     else
         if [[ ! -f ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme ]]; then
-            [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
+            [[ -d ~/.local/share/zsh/plugins ]] || mkdir -p ~/.local/share/zsh/plugins
             git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.local/share/zsh/plugins/powerlevel10k
         fi
         source ~/.local/share/zsh/plugins/powerlevel10k/powerlevel10k.zsh-theme
@@ -226,10 +227,10 @@ else
             source /usr/share/zsh/plugins/"$2"/"$3".zsh
         else
             if [[ ! -d ~/.local/share/zsh/plugins/"$2" ]]; then
-                [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
+                [[ -d ~/.local/share/zsh/plugins ]] || mkdir -p ~/.local/share/zsh/plugins
                 git clone --depth=1 https://github.com/"$1"/"$2".git ~/.local/share/zsh/plugins/"$2"
             fi
-                source ~/.local/share/zsh/plugins/"$2"/"$3".zsh
+            source ~/.local/share/zsh/plugins/"$2"/"$3".zsh
         fi
     }
 
@@ -247,7 +248,7 @@ else
         source /usr/share/zsh/plugins/zsh-fast-syntax-highlighting/F-Sy-H.plugin.zsh
     else
         if [[ ! -f ~/.local/share/zsh/plugins/F-Sy-H/F-Sy-H.plugin.zsh ]]; then
-            [[ ! -d ~/.local/share/zsh/plugins ]] && mkdir -p ~/.local/share/zsh/plugins
+            [[ -d ~/.local/share/zsh/plugins ]] || mkdir -p ~/.local/share/zsh/plugins
             git clone --depth=1 https://github.com/z-shell/F-Sy-H.git ~/.local/share/zsh/plugins/F-Sy-H
         fi
         source ~/.local/share/zsh/plugins/F-Sy-H/F-Sy-H.plugin.zsh

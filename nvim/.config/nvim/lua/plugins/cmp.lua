@@ -56,13 +56,13 @@ cmp.setup({
     window = {
         completion = {
             winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
-            col_offset = -3,
-            side_padding = 0,
+            col_offset = -1,
+            side_padding = 1,
         },
     },
 
     formatting = {
-        fields = { "kind", "abbr", "menu" },
+        fields = { "abbr", "kind" },
         format = function(entry, vim_item)
             local kind = require("lspkind").cmp_format({
                 preset = "codicons",
@@ -73,8 +73,7 @@ cmp.setup({
                 maxwidth = 50
             })(entry, vim_item)
             local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. strings[1] .. " "
-            kind.menu = "    (" .. strings[2] .. ")"
+            kind.kind = strings[1] .. "  " .. strings[2]
 
             return kind
         end,
@@ -108,39 +107,40 @@ hi(0, "PmenuSel", { bg = "#282C34", fg = "NONE" })
 hi(0, "Pmenu", { fg = "#C5CDD9", bg = "#22252A" })
 
 hi(0, "CmpItemAbbrDeprecated", { fg = "#7E8294", bg = "NONE", strikethrough = true })
-hi(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bg = "NONE", bold = true })
-hi(0, "CmpItemAbbrMatchFuzzy", { link = "CmpItemAbbrMatch" })
 hi(0, "CmpItemMenu", { fg = "#C792EA", bg = "NONE", italic = true })
 
-hi(0, "CmpItemKindField", { fg = "#EED8DA", bg = "#B5585F" })
+hi(0, "CmpItemAbbrMatch", { fg = "#82AAFF", bg = "NONE", bold = true })
+hi(0, "CmpItemAbbrMatchFuzzy", { link = "CmpItemAbbrMatch" })
+
+hi(0, "CmpItemKindField", { fg = "#B5585F", bg = "NONE" })
 hi(0, "CmpItemKindProperty", { link = "CmpItemKindField" })
 hi(0, "CmpItemKindEvent", { link = "CmpItemKindField" })
 
-hi(0, "CmpItemKindText", { fg = "#C3E88D", bg = "#9FBD73" })
+hi(0, "CmpItemKindText", { fg = "#9FBD73", bg = "NONE" })
 hi(0, "CmpItemKindEnum", { link = "CmpItemKindText" })
 hi(0, "CmpItemKindKeyword", { link = "CmpItemKindText" })
 
-hi(0, "CmpItemKindConstant", { fg = "#FFE082", bg = "#D4BB6C" })
+hi(0, "CmpItemKindConstant", { fg = "#D4BB6C", bg = "NONE" })
 hi(0, "CmpItemKindConstructor", { link = "CmpItemKindConstant" })
 hi(0, "CmpItemKindReference", { link = "CmpItemKindConstant" })
 
-hi(0, "CmpItemKindFunction", { fg = "#EADFF0", bg = "#A377BF" })
+hi(0, "CmpItemKindFunction", { fg = "#A377BF", bg = "NONE" })
 hi(0, "CmpItemKindStruct", { link = "CmpItemKindFunction" })
 hi(0, "CmpItemKindClass", { link = "CmpItemKindFunction" })
 hi(0, "CmpItemKindModule", { link = "CmpItemKindFunction" })
 hi(0, "CmpItemKindOperator", { link = "CmpItemKindFunction" })
 
-hi(0, "CmpItemKindVariable", { fg = "#C5CDD9", bg = "#7E8294" })
+hi(0, "CmpItemKindVariable", { fg = "#7E8294", bg = "NONE" })
 hi(0, "CmpItemKindFile", { link = "CmpItemKindVariable" })
 
-hi(0, "CmpItemKindUnit", { fg = "#F5EBD9", bg = "#D4A959" })
+hi(0, "CmpItemKindUnit", { fg = "#D4A959", bg = "NONE" })
 hi(0, "CmpItemKindSnippet", { link = "CmpItemKindUnit" })
 hi(0, "CmpItemKindFolder", { link = "CmpItemKindUnit" })
 
-hi(0, "CmpItemKindMethod", { fg = "#DDE5F5", bg = "#6C8ED4" })
+hi(0, "CmpItemKindMethod", { fg = "#6C8ED4", bg = "NONE" })
 hi(0, "CmpItemKindValue", { link = "CmpItemKindMethod" })
 hi(0, "CmpItemKindEnumMember", { link = "CmpItemKindMethod" })
 
-hi(0, "CmpItemKindInterface", { fg = "#D8EEEB", bg = "#58B5A8" })
+hi(0, "CmpItemKindInterface", { fg = "#58B5A8", bg = "NONE" })
 hi(0, "CmpItemKindColor", { link = "CmpItemKindInterface" })
 hi(0, "CmpItemKindTypeParameter", { link = "CmpItemKindInterface" })
