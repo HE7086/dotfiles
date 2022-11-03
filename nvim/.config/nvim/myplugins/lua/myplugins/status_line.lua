@@ -173,7 +173,7 @@ function M.set_inactive()
 end
 
 augroup("MyStatusLine", { clear = true })
-autocmd({ "WinEnter", "BufEnter", "BufWritePost" }, {
+autocmd({ "WinEnter", "BufEnter", "BufWritePost", "ModeChanged" }, {
     group = "MyStatusLine",
     pattern = "*",
     callback = function()
