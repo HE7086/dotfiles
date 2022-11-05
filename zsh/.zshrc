@@ -655,7 +655,7 @@ function gui() {
 
 #----------------------------------------------------------------------------------------------------
 # auto compile zshrc
-if [[ ~/.zshrc -nt ~/.zshrc.zwc ]]; then
+if [[ ~/.zshrc -nt ~/.zshrc.zwc ]] || [[ ! -e ~/.zshrc.zwc ]]; then
     zcompile -R ~/.zshrc
     zcompile -R ~/.zshenv
 fi
