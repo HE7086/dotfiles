@@ -1,7 +1,10 @@
+# setup cache directory if not exist
+[[ -d ~/.cache/zsh ]] || mkdir -p ~/.cache/zsh;
+
 #----------------------------------------------------------------------------------------------------
 # completion settings
 #----------------------------------------------------------------------------------------------------
-autoload -Uz compinit && compinit -d $ZCOMPDUMPFILE
+autoload -Uz compinit && compinit -d ~/.cache/zsh/zcompdump
 setopt globdots
 
 setopt complete_aliases
@@ -17,6 +20,7 @@ zstyle ':completion:*' list-colors ''
 zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(..)'
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
+zstyle ':completion:*' cache-path ~/.cache/zsh/zcompcache
 
 # cd options
 setopt autocd
@@ -32,9 +36,6 @@ setopt magic_equal_subst
 
 # rm option
 setopt rm_star_silent
-
-# setup cache directory if not exist
-[[ -d ~/.cache/zsh ]] || mkdir -p ~/.cache/zsh;
 
 #----------------------------------------------------------------------------------------------------
 # history settings
@@ -650,3 +651,11 @@ function gui() {
         startplasma-x11
     fi
 }
+
+
+#----------------------------------------------------------------------------------------------------
+# auto compile zshrc
+if [[ ~/.zshrc -nt ~/.zshrc.zwc ]]; then
+    zcompile -R ~/.zshrc
+    zcompile -R ~/.zshenv
+fi

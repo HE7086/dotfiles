@@ -1,9 +1,9 @@
 If:
   PathMatch: .*\.cpp
   CompileFlags:
-    Add: [-std=c++20]
+    Add: [-std=c++23]
 
 If:
   PathMatch: .*\.c
   CompileFlags:
-    Add: [-std=c11]
+    Add: [-std=c17]
