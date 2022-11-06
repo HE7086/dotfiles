@@ -1,6 +1,9 @@
 # setup cache directory if not exist
 [[ -d ~/.cache/zsh ]] || mkdir -p ~/.cache/zsh;
 
+export MANPAGER='sh -c "col -bx | bat -pl man"'
+export MANROFFOPT='-c'
+
 #----------------------------------------------------------------------------------------------------
 # completion settings
 #----------------------------------------------------------------------------------------------------
@@ -31,6 +34,7 @@ setopt pushd_minus
 setopt interactive_comments
 setopt auto_continue
 # setopt extended_glob
+# setopt no_bare_glob_qual
 setopt listpacked
 setopt magic_equal_subst
 
@@ -220,8 +224,11 @@ else
     ZSH_AUTOSUGGEST_STRATEGY=(completion history)
     ZSH_AUTOSUGGEST_USE_ASYNC=1
     ZSH_AUTOSUGGEST_BUFFER_MAX_SIZE=20
+    ZSH_AUTOSUGGEST_MANUAL_REBIND=1
     autoload autosuggest-accept
     zle -N autosuggest-accept
+
+    HISTORY_SUBSTRING_SEARCH_FUZZY=1
 
     function check_plugin() {
         if [[ -f /usr/share/zsh/plugins/"$2"/"$3".zsh ]]; then
@@ -273,6 +280,9 @@ zle -N history-substring-search-down
 # bindkey "$terminfo[kcud1]" history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
+
+bindkey ' ' magic-space
+bindkey '^Q' push-line
 
 autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
 zle -N up-line-or-beginning-search
@@ -655,7 +665,6 @@ function gui() {
 
 #----------------------------------------------------------------------------------------------------
 # auto compile zshrc
-if [[ ~/.zshrc -nt ~/.zshrc.zwc ]] || [[ ! -e ~/.zshrc.zwc ]]; then
-    zcompile -R ~/.zshrc
-    zcompile -R ~/.zshenv
+if [[ $ZDOTDIR/.zshrc -nt $ZDOTDIR/.zshrc.zwc ]] || [[ ! -e $ZDOTDIR/.zshrc.zwc ]]; then
+    zcompile -R $ZDOTDIR/.zshrc
 fi

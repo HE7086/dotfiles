@@ -1,19 +1,20 @@
 # wildcard only directories
-exclude_dirs := root/ PKGBUILD/
-dirs := $(filter-out $(exclude_dirs),$(dir $(wildcard */.)))
+exclude_dirs := root PKGBUILD
+pkgs := $(filter-out $(exclude_dirs),$(dir $(wildcard */.)))
+pkgs := $(patsubst %/,%,$(pkgs))
 
 .PHONY: all
-all:
-	@echo "installing packages..."
-	stow --no-folding $(dirs) --target=$(HOME)
-	@echo "run make root to install root packages"
+all: $(pkgs)
 
-# packages that require previledges
-root:
-	@echo "installing root packages..."
-	$(MAKE) -C root all
+.PHONY: $(pkgs)
+$(pkgs): %:
+	@echo "installing package $@"
+	stow --no-folding $@ --target=$(HOME)
+
+.PHONY: test
+test:
+	@echo $(pkgs)
 
 .PHONY: clean
 clean:
-	stow --delete $(dirs) --target=$(HOME)
-
+	stow --delete $(pkgs) --target=$(HOME)
