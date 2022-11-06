@@ -129,7 +129,7 @@ return require('packer').startup(function(use)
 
     ----- lsp plugins -----
     use { 'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
+        -- run = ':TSUpdate',
         config = function()
             require('plugins.nvim-treesitter')
         end

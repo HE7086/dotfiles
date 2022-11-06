@@ -172,9 +172,6 @@ noremap_all("<F1>", "<ESC>")
 command("W", "w", { nargs = 0 })
 
 -------------------- Hand Crafted Plugins --------------------
-noremap("n", "<F22>", "<CMD>lua require('code_runner').run()<CR>")
-noremap("n", "<S-F10>", "<CMD>lua require('code_runner').run()<CR>")
-
 map("n", "Q", "<CMD>lua Close_Floating_Windows()<CR>")
 -- close all the floating windows
 function Close_Floating_Windows()
@@ -207,7 +204,7 @@ vim.api.nvim_command("packadd packer.nvim") -- enable packer.nvim
 augroup("PackerAutoCompile", { clear = true })
 autocmd("BufWritePost", {
     group = "PackerAutoCompile",
-    pattern = "init.lua",
+    pattern = "nvim/**/*.lua",
     command = "source <afile> | PackerCompile"
 }) -- auto compile when plugin config updates
 

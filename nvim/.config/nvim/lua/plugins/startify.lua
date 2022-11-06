@@ -5,5 +5,6 @@ vim.g.startify_lists = {
 }
 vim.g.startify_bookmarks = {
     { v = '~/.config/nvim/init.lua' },
+    { p = '~/.config/nvim/lua/plugins/init.lua' },
     { z = '~/.zshrc' },
 }
