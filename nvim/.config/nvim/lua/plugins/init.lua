@@ -29,7 +29,14 @@ return require('packer').startup(function(use)
     -- }
     use { 'navarasu/onedark.nvim',
         config = function()
-            vim.api.nvim_command("colorscheme onedark")
+            require('onedark').setup {
+                highlights = {
+                    PmenuSel = { bg = "#282C34", fg = "NONE" },
+                    Pmenu = { fg = "#C5CDD9", bg = "#22252A" }
+                }
+            }
+            require('onedark').load()
+            -- vim.api.nvim_command("colorscheme onedark")
         end
     }
 
