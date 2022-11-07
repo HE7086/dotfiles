@@ -11,7 +11,7 @@ local noremap_all = require("util.keymap").noremap_all
 
 -- encoding
 o.fileencodings = "utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1"
-o.ambiwidth = "double"
+o.ambiwidth = "single"
 
 -- numbers
 o.number = true
@@ -50,7 +50,7 @@ o.termguicolors = true
 o.showmode = true
 o.list = false
 -- conflict with ambiwidth = double
--- o.listchars = "eol:¶,tab:>_,trail:·,extends:¦,precedes:¦,space:·,nbsp:¯"
+o.listchars = "eol:¶,tab:>_,trail:·,extends:¦,precedes:¦,space:·,nbsp:¯"
 o.cursorline = true
 
 augroup("AutoCursorline", { clear = true })
