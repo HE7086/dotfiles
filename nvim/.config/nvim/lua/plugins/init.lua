@@ -12,7 +12,7 @@ local check_packer = function()
 end
 local bootstrap = check_packer()
 
-return require('packer').startup(function(use)
+require('packer').startup({function(use)
     use { 'wbthomason/packer.nvim' }
     use { 'tpope/vim-surround' }
     use { 'tpope/vim-repeat' }
@@ -63,7 +63,10 @@ return require('packer').startup(function(use)
 
     use { 'skywind3000/asyncrun.vim' }
     use { 'Yggdroot/LeaderF',
-        run = ':LeaderfInstallCExtension',
+        run = function()
+            vim.g.Lf_CacheDirectory = vim.fn.stdpath("cache") .. '/LeaderF'
+            vim.api.nvim_command('LeaderfInstallCExtension')
+        end,
         config = function()
             require('plugins.leaderf')
         end
@@ -168,4 +171,7 @@ return require('packer').startup(function(use)
     if bootstrap then
         require("packer").sync()
     end
-end)
+end,
+config = {
+    display = { open_fn = require('packer.util').float },
+}})

@@ -11,7 +11,7 @@ local noremap_all = require("util.keymap").noremap_all
 
 -- encoding
 o.fileencodings = "utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1"
-g.ambiwidth = "double"
+o.ambiwidth = "double"
 
 -- numbers
 o.number = true
@@ -49,7 +49,8 @@ o.sidescrolloff = 8
 o.termguicolors = true
 o.showmode = true
 o.list = false
-o.listchars = "eol:¶,tab:>_,trail:·,extends:¦,precedes:¦,space:·,nbsp:␣"
+-- conflict with ambiwidth = double
+-- o.listchars = "eol:¶,tab:>_,trail:·,extends:¦,precedes:¦,space:·,nbsp:¯"
 o.cursorline = true
 
 augroup("AutoCursorline", { clear = true })
@@ -199,7 +200,7 @@ noremap("n", "<F10>",
 -------------------- Plugins --------------------
 
 require("plugins")
-vim.api.nvim_command("packadd packer.nvim") -- enable packer.nvim
+-- vim.api.nvim_command("packadd packer.nvim") -- enable packer.nvim
 
 augroup("PackerAutoCompile", { clear = true })
 autocmd("BufWritePost", {
