@@ -11,6 +11,9 @@
     email = HE7086@users.noreply.github.com
     username = HE7086
 
+[init]
+	defaultBranch = main
+
 [gpg]
 	program = gpg2
 [commit]
