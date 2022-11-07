@@ -3,7 +3,7 @@ export EDITOR=nvim
 export LESSHISTFILE=-
 export GPG_TTY=$TTY
 
-typeset -U path
+typeset -U PATH path
 path=(
     ~/.local/bin
     $path

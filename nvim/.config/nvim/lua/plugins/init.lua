@@ -64,10 +64,10 @@ require('packer').startup({function(use)
     use { 'skywind3000/asyncrun.vim' }
     use { 'Yggdroot/LeaderF',
         run = function()
-            vim.g.Lf_CacheDirectory = vim.fn.stdpath("cache") .. '/LeaderF'
             vim.api.nvim_command('LeaderfInstallCExtension')
         end,
         config = function()
+            vim.g.Lf_CacheDirectory = vim.fn.stdpath("cache") .. '/LeaderF'
             require('plugins.leaderf')
         end
     }
