@@ -1,26 +1,17 @@
-# DotFile
+# Dotfiles
 
+* This repo contains dotfiles I use on all of my linux machines (Mainly Archlinux)
 * controlled by GNU stow
-* install dotfiles with `make`
-* automatically create symbolic link
-* install single file with `stow <package name> --target=$HOME`
-* install single file to root with `sudo stow <package name> --target=/`
+* install all dotfiles with `make`
+* install single file with `make <package>`, e.g. `make zsh`
 
-## required additional packages
-* shell
+## recommend additional packages
+* shell (automatic installation by zsh)
 ```
 fzf
-thefuck
 zsh-autosuggestions
 zsh-completions
 zsh-history-substring-search
-zsh-syntax-highlighting
+zsh-fast-syntax-highlighting
 zsh-theme-powerlevel10k
-```
-
-* LSP
-```
-bash-language-server
-clangd
-haskell-language-server
 ```
