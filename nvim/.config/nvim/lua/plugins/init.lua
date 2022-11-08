@@ -121,6 +121,7 @@ require('packer').startup({function(use)
 
     -- use {'rktjmp/lush.nvim'}
     use { 'killphi/vim-ebnf' }
+    use { 'LnL7/vim-nix' }
 
     use { 'lukas-reineke/indent-blankline.nvim',
         config = function()
