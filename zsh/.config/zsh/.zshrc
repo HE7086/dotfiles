@@ -105,7 +105,7 @@ else
     typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true 
     typeset -g POWERLEVEL9K_INSTANE_PROMPT=quiet
 
-    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR=$'-'
+    typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR='-'
     # typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_BACKGROUND='000'
     typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_FOREGROUND='240'
 
@@ -158,9 +158,10 @@ else
 
     # command execution time
     typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_THRESHOLD=3
-    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='232'
-    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='231'
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_BACKGROUND='' #'232'
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_FOREGROUND='250'
     typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_VISUAL_IDENTIFIER_EXPANSION=$'\uf43a'
+    typeset -g POWERLEVEL9K_COMMAND_EXECUTION_TIME_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=''
 
     # prompt char
     typeset -g POWERLEVEL9K_LEFT_SEGMENT_END_SEPARATOR=''
@@ -556,7 +557,7 @@ fi
 # Fancy Ctrl Z
 #----------------------------------------------------------------------------------------------------
 
-fancy-ctrl-z () {
+function fancy-ctrl-z () {
 if [[ $#BUFFER -eq 0 ]]; then
     BUFFER="fg"
     zle accept-line -w
@@ -572,7 +573,7 @@ bindkey '^Z' fancy-ctrl-z
 #----------------------------------------------------------------------------------------------------
 # sudo command line
 #----------------------------------------------------------------------------------------------------
-sudo-command-line() {
+function sudo-command-line() {
     [[ -z $BUFFER ]] && zle up-history
     [[ $BUFFER != sudo\ * && $UID -ne 0 ]] && {
       typeset -a bufs
