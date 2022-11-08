@@ -1,6 +1,10 @@
 local wezterm = require("wezterm")
 
 return {
+    audible_bell = "Disabled",
+    initial_rows = 40,
+    initial_cols = 100,
+
     -- font
     font = wezterm.font_with_fallback {
         "Iosevka HE7086",
