@@ -11,7 +11,7 @@ return {
         "Noto Sans CJK SC",
         "codicon",
     },
-    font_size = 8,
+    font_size = 16,
 
     -- tab
     hide_tab_bar_if_only_one_tab = true,

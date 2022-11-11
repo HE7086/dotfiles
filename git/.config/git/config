@@ -3,7 +3,7 @@
     pager = diff-so-fancy | less --tabs=4 -RFX
     autocrlf = input
 [user]
-    email = heyi7086@gmail.com
+    email = me@heyi7086.com
     name = HE7086
     signingKey = A5959A3CA955ACCCFE6BEC5991869A806C6DB6CD
 [github]

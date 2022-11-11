@@ -205,7 +205,7 @@ require("plugins")
 augroup("PackerAutoCompile", { clear = true })
 autocmd("BufWritePost", {
     group = "PackerAutoCompile",
-    pattern = "*.lua",
+    pattern = "*/nvim/*.lua",
     command = "source <afile> | PackerCompile"
 }) -- auto compile when plugin config updates
 
