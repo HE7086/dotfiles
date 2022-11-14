@@ -1,6 +1,5 @@
 [core]
     editor = nvim
-    pager = diff-so-fancy | less --tabs=4 -RFX
     autocrlf = input
 [user]
     email = me@heyi7086.com
@@ -50,6 +49,7 @@
     trustExitCode = true
 
 [alias]
+    df = !git diff --name-only --relative --diff-filter=d | xargs bat --diff
     lg = log --abbrev-commit --graph 
     cl = clone --recursive --depth=1 --shallow-submodules
     yolo = !git add -A && git commit -m \"$(curl -Ls http://whatthecommit.com/index.txt)\" && git push

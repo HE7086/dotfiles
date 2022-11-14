@@ -45,7 +45,7 @@ export DEBUGINFOD_URLS="https://debuginfod.archlinux.org https://repo.archlinuxc
 if [[ $(cat /etc/hostname) = "HE-workstation" ]]; then
     if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then 
         export EGL_PLATFORM=wayland
-        export GDK_SCALE=2
+        # export GDK_SCALE=2
     else
         export MOZ_X11_EGL=1
     fi
