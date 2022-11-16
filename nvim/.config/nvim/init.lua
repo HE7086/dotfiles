@@ -73,11 +73,11 @@ autocmd("InsertLeave", {
 o.laststatus = 2
 o.showtabline = 1
 
-if vim.fn.has("nvim-0.8") then
-    o.cmdheight = 0
-else
-    o.cmdheight = 1
-end
+-- if vim.fn.has("nvim-0.8") then
+--     o.cmdheight = 0
+-- else
+--     o.cmdheight = 1
+-- end
 
 -- syntax highlighting
 vim.cmd("syntax enable")
@@ -128,7 +128,7 @@ o.errorbells = false
 o.visualbell = false
 
 -- backup and undofiles
-o.undofile = false
+o.undofile = true
 o.backup = false
 o.swapfile = false
 o.autoread = true

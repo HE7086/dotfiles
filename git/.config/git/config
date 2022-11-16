@@ -11,16 +11,17 @@
     username = HE7086
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [gpg]
-	program = gpg2
+    program = gpg2
 [commit]
     gpgSign = true
 [tag]
     gpgSign = true
 [push]
     recurseSubmodules = no
+    autoSetupRemote = true
 [pull]
     rebase = true
     ff = only

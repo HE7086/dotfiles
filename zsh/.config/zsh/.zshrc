@@ -1,3 +1,7 @@
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # setup cache directory if not exist
 [[ -d ~/.cache/zsh ]] || mkdir -p ~/.cache/zsh;
 
@@ -10,6 +14,7 @@ export MANROFFOPT='-c'
 autoload -Uz compinit && compinit -d ~/.cache/zsh/zcompdump
 setopt globdots
 
+setopt correct
 setopt complete_aliases
 setopt auto_menu
 setopt complete_in_word
@@ -24,6 +29,8 @@ zstyle -e ':completion:*' special-dirs '[[ $PREFIX = (../)#(|.|..) ]] && reply=(
 zstyle ':completion:*:*:kill:*' menu yes select
 zstyle ':completion:*:kill:*'   force-list always
 zstyle ':completion:*' cache-path ~/.cache/zsh/zcompcache
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' accept-exact '*(N)'
 
 # cd options
 setopt autocd
@@ -41,6 +48,7 @@ setopt magic_equal_subst
 # rm option
 setopt rm_star_silent
 
+setopt numeric_glob_sort
 #----------------------------------------------------------------------------------------------------
 # history settings
 #----------------------------------------------------------------------------------------------------
@@ -54,8 +62,8 @@ setopt hist_find_no_dups
 setopt hist_save_no_dups
 setopt hist_verify
 setopt hist_reduce_blanks
-setopt inc_append_history
 setopt share_history
+setopt append_history
 
 #----------------------------------------------------------------------------------------------------
 # prompt settings
@@ -103,7 +111,7 @@ else
     #========================================
 
     typeset -g POWERLEVEL9K_DISABLE_HOT_RELOAD=true 
-    typeset -g POWERLEVEL9K_INSTANE_PROMPT=quiet
+    typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 
     typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_CHAR='-'
     # typeset -g POWERLEVEL9K_MULTILINE_FIRST_PROMPT_GAP_BACKGROUND='000'
@@ -291,6 +299,7 @@ zle -N down-line-or-beginning-search
 
 # create a zkbd compatible hash;
 # to add other keys to this hash, see: man 5 terminfo
+zmodload zsh/terminfo
 typeset -g -A key
 
 key[Home]="${terminfo[khome]}"
