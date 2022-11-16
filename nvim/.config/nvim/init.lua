@@ -221,5 +221,13 @@ if vim.fn.empty(vim.fn.glob(vim.fn.stdpath("config") .. "/lua/local_config.lua")
     require('local_config')
 end
 
+-------------------- Temporary Settings --------------------
+autocmd("FileType", {
+    pattern = "PKGBUILD",
+    callback = function()
+        vim.diagnostic.disable()
+    end
+})
+
 -------------------- END OF SETTINGS --------------------
 vim.g.hlsearch = false -- does this work?
