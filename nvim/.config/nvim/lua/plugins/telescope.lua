@@ -1,7 +1,8 @@
 local noremap = require('util.keymap').noremap
 local actions = require('telescope.actions')
+local telescope = require('telescope')
 
-require('telescope').setup{
+telescope.setup {
     pickers = {
         buffers = {
             on_complete = { function() vim.cmd 'stopinsert' end },
@@ -28,8 +29,22 @@ require('telescope').setup{
                 }
             }
         },
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+        }
     }
 }
+telescope.load_extension('fzf')
 
-noremap('n', '<F2>', '<CMD>lua require("telescope").extensions.file_browser.file_browser()<CR>')
-noremap('n', '<F3>', '<CMD>Telescope buffers<CR>')
+noremap('n', '<F2>', function()
+    require('telescope').extensions.file_browser.file_browser()
+end)
+noremap('n', '<F3>', function()
+    require('telescope.builtin').buffers()
+end)
+noremap('n', '<space>/', function()
+    require('telescope.builtin').live_grep { grep_open_files = true }
+end)

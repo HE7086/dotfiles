@@ -39,17 +39,17 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 local nmap = require('util.keymap').nmap
 
-nmap('gD', '<CMD>lua vim.lsp.buf.declaration()<CR>')
-nmap('gd', '<CMD>lua vim.lsp.buf.definition()<CR>')
-nmap('gt', '<CMD>lua vim.lsp.buf.type_definition()<CR>')
-nmap('gi', '<CMD>lua vim.lsp.buf.implementation()<CR>')
-nmap('gr', '<CMD>lua vim.lsp.buf.references()<CR>')
-nmap('K', '<CMD>lua vim.lsp.buf.hover()<CR>')
-nmap('<C-k>', '<CMD>lua vim.lsp.buf.signature_help()<CR>')
-nmap('g[', '<CMD>lua vim.diagnostic.goto_prev()<CR>')
-nmap('g]', '<CMD>lua vim.diagnostic.goto_next()<CR>')
-nmap('<F18>', '<CMD>lua vim.lsp.buf.rename()<CR>') -- shift F6 for terminal
-nmap('<S-F6>', '<CMD>lua vim.lsp.buf.rename()<CR>') -- shift F6 for gui
-nmap('<A-CR>', '<CMD>lua vim.lsp.buf.code_action()<CR>')
-nmap('<space><space>', '<CMD>lua vim.lsp.buf.format {async = true}<CR>')
-nmap('<space>e', '<CMD>lua vim.diagnostic.open_float()<CR>')
+nmap('gD', vim.lsp.buf.declaration)
+nmap('gd', vim.lsp.buf.definition)
+nmap('gt', vim.lsp.buf.type_definition)
+nmap('gi', vim.lsp.buf.implementation)
+nmap('gr', vim.lsp.buf.references)
+nmap('K', vim.lsp.buf.hover)
+nmap('<C-k>', vim.lsp.buf.signature_help)
+nmap('g[', vim.diagnostic.goto_prev)
+nmap('g]', vim.diagnostic.goto_next)
+nmap('<F18>', vim.lsp.buf.rename) -- shift F6 for terminal
+nmap('<S-F6>', vim.lsp.buf.rename) -- shift F6 for gui
+nmap('<A-CR>', vim.lsp.buf.code_action)
+nmap('<space><space>', function() vim.lsp.buf.format { async = true } end)
+nmap('<space>e', vim.diagnostic.open_float)

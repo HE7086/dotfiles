@@ -35,15 +35,6 @@ require("packer").startup({ function(use)
     use { "kyazdani42/nvim-web-devicons" }
 
     use { "skywind3000/asyncrun.vim" }
-    use { "Yggdroot/LeaderF",
-        run = function()
-            vim.api.nvim_command("LeaderfInstallCExtension")
-        end,
-        config = function()
-            vim.g.Lf_CacheDirectory = vim.fn.stdpath("cache") .. "/LeaderF"
-            pcall(require, "plugins.leaderf")
-        end
-    }
 
     use { "mhinz/vim-startify",
         config = function()
@@ -62,7 +53,7 @@ require("packer").startup({ function(use)
 
     use { "iamcco/markdown-preview.nvim",
         run = function()
-            vim.fn["mkdp#util#install"]()
+            pcall(vim.fn["mkdp#util#install"])
         end,
         ft = { "markdown" },
         cmd = {
@@ -76,6 +67,7 @@ require("packer").startup({ function(use)
             { "nvim-telescope/telescope-file-browser.nvim" },
             { "nvim-lua/popup.nvim" },
             { "nvim-lua/plenary.nvim" },
+            { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' },
         },
         config = function()
             pcall(require, "plugins.telescope")
@@ -120,20 +112,21 @@ require("packer").startup({ function(use)
             { "onsails/lspkind.nvim" },
         }
     }
-    use { "folke/trouble.nvim",
-        requires = "kyazdani42/nvim-web-devicons",
-        config = function()
-            require("trouble").setup {}
-        end
-    }
+    -- use { "folke/trouble.nvim",
+    --     requires = "kyazdani42/nvim-web-devicons",
+    --     opt = true,
+    --     event = "LspAttach",
+    --     config = function()
+    --         pcall(require, "plugins.trouble")
+    --     end
+    -- }
     use { "williamboman/mason.nvim",
         requires = {
             { "neovim/nvim-lspconfig" },
             { "williamboman/mason-lspconfig.nvim" },
         },
         config = function()
-            require("mason").setup()
-            require("mason-lspconfig").setup()
+            pcall(require, "plugins.mason")
         end
     }
 
@@ -146,4 +139,5 @@ end,
     config = {
         display = { open_fn = require("packer.util").float },
         profile = { enable = true },
-    } })
+    }
+})
