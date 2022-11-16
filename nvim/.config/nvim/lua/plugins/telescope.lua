@@ -14,7 +14,11 @@ telescope.setup {
                     ['h'] = actions.move_to_bottom + actions.select_default + actions.center,
                 }
             }
-        }
+        },
+        live_grep = {
+            theme = "ivy",
+            previewer = false,
+        },
     },
     extensions = {
         file_browser = {
@@ -46,5 +50,9 @@ noremap('n', '<F3>', function()
     require('telescope.builtin').buffers()
 end)
 noremap('n', '<space>/', function()
-    require('telescope.builtin').live_grep { grep_open_files = true }
+    require('telescope.builtin').live_grep {
+        -- cwd = require('telescope.utils').buffer_dir(),
+        grep_open_files = true,
+        -- disable_coordinates = true,
+    }
 end)
