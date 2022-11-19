@@ -673,6 +673,10 @@ function gui() {
 }
 
 
+function mkd() {
+    mkdir -p $1 && cd $1
+}
+
 #----------------------------------------------------------------------------------------------------
 # auto compile zshrc
 if [[ $ZDOTDIR/.zshrc -nt $ZDOTDIR/.zshrc.zwc ]] || [[ ! -e $ZDOTDIR/.zshrc.zwc ]]; then
