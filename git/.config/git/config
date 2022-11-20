@@ -50,6 +50,11 @@
     trustExitCode = true
 
 [alias]
+    p = push --tags
+    a = add -A
+    cm = commit
+    st = status --show-stash
+    pl = pull --recurse-submodules
     df = !git diff --name-only --relative --diff-filter=d | xargs bat --diff
     lg = log --abbrev-commit --graph 
     cl = clone --recursive --depth=1 --shallow-submodules
