@@ -9,7 +9,7 @@ all: $(pkgs)
 .PHONY: $(pkgs)
 $(pkgs): %:
 	@echo "installing package $@"
-	stow --no-folding $@ --target=$(HOME)
+	@stow -v --no-folding $@ --target=$(HOME)
 
 .PHONY: test
 test:
@@ -17,4 +17,4 @@ test:
 
 .PHONY: clean
 clean:
-	stow --delete $(pkgs) --target=$(HOME)
+	@stow --delete $(pkgs) --target=$(HOME)

@@ -81,7 +81,7 @@ function M.git_status()
         if str ~= " " then
             str = str .. "| "
         end
-        return str .. " " .. signs.head .. " "
+        return str .. "" .. signs.head .. "  "
     end
 end
 
@@ -140,7 +140,7 @@ function M.filetype()
     elseif M.short_mode(80) then
         return string.format("%s", vim.bo.filetype)
     else
-        return string.format(" %s %s ", icon, vim.bo.filetype)
+        return string.format(" %s %s  ", icon, vim.bo.filetype)
     end
 end
 

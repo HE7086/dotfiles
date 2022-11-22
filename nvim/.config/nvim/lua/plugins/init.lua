@@ -18,7 +18,7 @@ require("packer").startup({ function(use)
     use { "tpope/vim-commentary" }
     use { "tpope/vim-fugitive" }
     use { "tommcdo/vim-exchange" }
-    use { "terryma/vim-multiple-cursors" }
+    use { "terryma/vim-multiple-cursors" } -- remove this causes markdown preview fail to install, but why?
     use { "Konfekt/vim-CtrlXA" }
 
     use { "rust-lang/rust.vim" }
