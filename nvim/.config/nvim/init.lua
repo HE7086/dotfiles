@@ -152,12 +152,15 @@ o.completeopt = "menu,menuone,noselect"
 
 -------------------- Default Keymaps --------------------
 noremap("n", "<space><CR>", ":nohlsearch<CR>")
-noremap("", "H", "^")
-noremap("", "L", "$")
+-- noremap("", "H", "^")
+-- noremap("", "L", "$")
 noremap("i", "<A-h>", "<left>")
 noremap("i", "<A-j>", "<down>")
 noremap("i", "<A-k>", "<up>")
 noremap("i", "<A-l>", "<right>")
+
+noremap_all("<C-a>", "<Home>")
+noremap_all("<C-e>", "<End>")
 
 noremap("i", "(<CR>", "(<CR><CR>)<UP><END>")
 noremap("i", "[<CR>", "[<CR><CR>]<UP><END>")
