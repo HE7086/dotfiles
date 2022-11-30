@@ -159,8 +159,8 @@ noremap("i", "<A-j>", "<down>")
 noremap("i", "<A-k>", "<up>")
 noremap("i", "<A-l>", "<right>")
 
-noremap_all("<C-a>", "<Home>")
-noremap_all("<C-e>", "<End>")
+noremap("i", "<C-a>", "<Home>")
+noremap("i", "<C-e>", "<End>")
 
 noremap("i", "(<CR>", "(<CR><CR>)<UP><END>")
 noremap("i", "[<CR>", "[<CR><CR>]<UP><END>")
