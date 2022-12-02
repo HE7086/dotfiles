@@ -51,8 +51,8 @@ noremap! <A-j> <down>
 noremap! <A-k> <up>
 noremap! <A-l> <right>
 
-noremap L $
-noremap H ^
+" noremap L $
+" noremap H ^
 
 nmap == <Action>(ReformatCode)
 " nmap p <Action>(PutTextAfterCursorAction)
