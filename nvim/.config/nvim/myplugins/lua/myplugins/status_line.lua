@@ -81,7 +81,7 @@ function M.git_status()
         if str ~= " " then
             str = str .. "| "
         end
-        return str .. "" .. signs.head .. "  "
+        return str .. " " .. signs.head .. "  "
     end
 end
 

@@ -59,6 +59,12 @@ return {
         selection_bg = "#31363b",
 
         cursor_border = "#ffffff",
+
+    },
+
+    inactive_pane_hsb = {
+        saturation = 1,
+        brightness = 1,
     },
 
     keys = {
