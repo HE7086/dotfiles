@@ -115,6 +115,20 @@ return {
             mods = "ALT",
             action = wezterm.action.DisableDefaultAssignment,
         },
+        {
+            key = "Insert",
+            mods = "SHIFT",
+            action = wezterm.action.PasteFrom "Clipboard",
+        },
+        {
+            key = "Insert",
+            mods = "CTRL",
+            action = wezterm.action.CopyTo "Clipboard",
+        },
+        {
+            key = "Insert",
+            mods = "CTRL|SHIFT",
+            action = wezterm.action.PasteFrom "PrimarySelection",
+        },
     },
-
 }
