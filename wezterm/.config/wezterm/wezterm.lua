@@ -1,4 +1,5 @@
 local wezterm = require("wezterm")
+local local_config = require("local")
 
 return {
     audible_bell = "Disabled",
@@ -11,7 +12,7 @@ return {
         "Noto Sans CJK SC",
         "codicon",
     },
-    font_size = 12,
+    font_size = local_config.font_size,
 
     -- tab
     hide_tab_bar_if_only_one_tab = true,
