@@ -109,6 +109,11 @@ return {
             mods = "CTRL|SHIFT",
             action = wezterm.action.RotatePanes "Clockwise",
         },
+        {
+            key = "Enter",
+            mods = "ALT",
+            action = wezterm.action.DisableDefaultAssignment,
+        },
     },
 
 }
