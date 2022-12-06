@@ -387,6 +387,7 @@ alias tm='tmux -2'
 alias maek='make'
 
 alias status='systemctl status'
+alias ustatus='systemctl --user status'
 
 alias ustart='systemctl --user start'
 alias ustop='systemctl --user stop'
