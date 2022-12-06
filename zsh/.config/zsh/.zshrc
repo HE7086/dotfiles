@@ -673,12 +673,7 @@ function gui() {
         export QT_QPA_PLATFORM=wayland
         exec startplasma-wayland
     else
-        # todo: fix this
-        export XDG_SESSION_TYPE=x11
-        export QT_QPA_PLATFORM=xcb
-        export DESKTOP_SESSION=plasma
-        export DISPLAY=:1
-        startplasma-x11
+        startx ~/.config/X11/xinitrc
     fi
 }
 
