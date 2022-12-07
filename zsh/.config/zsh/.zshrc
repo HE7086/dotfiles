@@ -123,6 +123,7 @@ else
             user
             dir
             vcs
+            virtualenv
             command_execution_time
             newline
             prompt_char
@@ -136,6 +137,7 @@ else
             context
             dir
             vcs
+            virtualenv
             command_execution_time
             newline
             prompt_char

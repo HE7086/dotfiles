@@ -3,7 +3,7 @@
 REPO="$HOME/code/repo"
 REPO_DIR=repo
 REPO_NAME=he7086
-SERVER="armtoaster:/var/www"
+SERVER="toaster:/var/www"
 ARCH=(x86_64 aarch64)
 
 # download from the server
