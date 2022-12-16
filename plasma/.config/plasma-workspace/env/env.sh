@@ -54,6 +54,7 @@ if [[ $(cat /etc/hostname) = "HE-workstation" ]]; then
     # machine specific variables for nvidia-vaapi-driver
     export MOZ_DISABLE_RDD_SANDBOX=1
     export LIBVA_DRIVER_NAME=nvidia
+    export NVD_BACKEND=direct
 fi
 
 if [[ $(cat /etc/hostname) = "HE-TP" ]]; then
