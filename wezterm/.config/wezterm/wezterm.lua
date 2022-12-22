@@ -2,9 +2,14 @@ local wezterm = require("wezterm")
 local local_config = require("local")
 
 return {
+
+    default_prog = { '/usr/bin/zsh' },
+
     audible_bell = "Disabled",
     initial_rows = 40,
     initial_cols = 100,
+
+    scrollback_lines = 10000,
 
     -- font
     font = wezterm.font_with_fallback {
@@ -12,7 +17,7 @@ return {
         "Noto Sans CJK SC",
         "codicon",
     },
-    font_size = local_config.font_size,
+    font_size = local_config.font_size or 14,
 
     -- tab
     hide_tab_bar_if_only_one_tab = true,
