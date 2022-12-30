@@ -3,6 +3,10 @@ local local_config = require("local")
 
 return {
 
+    -- special workaround since enable_wayland is a boolean
+    enable_wayland = local_config.enable_wayland and true or local_config.enable_wayland,
+    front_end = local_config.front_end or "OpenGL",
+
     default_prog = { '/usr/bin/zsh' },
 
     audible_bell = "Disabled",
