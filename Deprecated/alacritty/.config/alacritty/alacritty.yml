@@ -13,11 +13,11 @@ env:
   # TERM: alacritty
 
 
-# shell:
-#   program: /usr/bin/tmux
-#   args:
-#     - -l
-#     - "-2"
+shell:
+  program: /usr/bin/tmux
+  args:
+    - -l
+    - "-2"
 
 
 mouse:
@@ -102,5 +102,5 @@ key_bindings:
       }
     }
   - { key: N, mods: Control|Shift, action: SpawnNewInstance }
-  # - { key: N, mods: Control|Shift, chars: "\e[[CSn~" } # handled in tmux
+  - { key: N, mods: Control|Shift, chars: "\e[[CSn~" } # handled in tmux
   - { key: T, mods: Control|Shift, chars: "\e[[CSt~" } # handled in tmux
