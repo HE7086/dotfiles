@@ -37,7 +37,7 @@ export SSH_ASKPASS=/usr/bin/ksshaskpass
 # fix vscode delete freeze
 export ELECTRON_TRASH=gio
 
-eval $(ssh-agent)
+# eval $(ssh-agent)
 # eval $(gnome-keyring-daemon --start)
 # export SSH_AUTH_SOCK
 
