@@ -8,6 +8,7 @@
     nodejs
     cmake
     gnumake
+    gdb
 
     zsh
     fzf
