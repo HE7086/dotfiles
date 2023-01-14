@@ -673,7 +673,7 @@ function gui() {
     if [[ $1 = "w" ]]; then
         export XDG_SESSION_TYPE=wayland
         export QT_QPA_PLATFORM=wayland
-        exec startplasma-wayland
+        startplasma-wayland
     else
         startx ~/.config/X11/xinitrc
     fi
