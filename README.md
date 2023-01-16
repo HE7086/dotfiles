@@ -4,6 +4,7 @@
 * controlled by GNU stow
 * install all dotfiles with `make`
 * install single file with `make <package>`, e.g. `make zsh`
+* **Note**: Most of the commit messages are randomly generated using `git yolo`, they do not make any sense ;)
 
 ## recommend additional packages
 * shell (automatic installation by zsh)
