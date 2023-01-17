@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Qt Debug Console
+Comment=Open Qt Debug Console
+Exec=qdbus org.kde.KWin /KWin org.kde.KWin.showDebugConsole
+Icon=qdbusviewer
+Terminal=false
+Type=Application
+Categories=System;
