@@ -87,6 +87,17 @@ require("packer").startup({ function(use)
     }
 
     ----- lsp plugins -----
+    use { "nvim-treesitter/nvim-treesitter-context",
+        config = function()
+            pcall(require, "plugins.nvim-treesitter-context")
+        end,
+        cmd = {
+            "TSContextEnable",
+            "TSContextDisable",
+            "TSContextToggle",
+        },
+        requires = { "nvim-treesitter/nvim-treesitter" }
+    }
     use { "nvim-treesitter/nvim-treesitter",
         -- run = ":TSUpdate",
         config = function()
