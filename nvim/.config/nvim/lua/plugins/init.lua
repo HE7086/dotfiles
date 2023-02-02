@@ -1,58 +1,62 @@
--- auto install packer.nvim
-local check_packer = function()
-    local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-    if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-        vim.fn.system({ "git", "clone", "https://github.com/wbthomason/packer.nvim", "--depth=1", install_path })
-        -- run PackerInstall to install plugins
-        vim.api.nvim_command("packadd packer.nvim")
-        return true
-    end
-    return false
+-- bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
 end
-local bootstrap = check_packer()
+vim.opt.rtp:prepend(lazypath)
 
-require("packer").startup({ function(use)
-    use { "wbthomason/packer.nvim" }
-    use { "tpope/vim-surround" }
-    use { "tpope/vim-repeat" }
-    use { "tpope/vim-commentary" }
-    use { "tpope/vim-fugitive" }
-    use { "tommcdo/vim-exchange" }
-    use { "terryma/vim-multiple-cursors" } -- remove this causes markdown preview fail to install, but why?
-    use { "Konfekt/vim-CtrlXA" }
+require("lazy").setup({
+    { "tpope/vim-surround" },
+    { "tpope/vim-repeat" },
+    { "tpope/vim-commentary" },
+    { "tpope/vim-fugitive" },
+    { "tommcdo/vim-exchange" },
+    { "terryma/vim-multiple-cursors" },
+    { "Konfekt/vim-CtrlXA" },
 
-    use { "rust-lang/rust.vim" }
-    use { "HE7086/objdump.vim" }
-    use { "killphi/vim-ebnf" }
-    use { "LnL7/vim-nix" }
+    { "rust-lang/rust.vim" },
+    { "HE7086/objdump.vim" },
+    { "killphi/vim-ebnf" },
+    { "LnL7/vim-nix" },
 
-    use { "navarasu/onedark.nvim",
+    { "navarasu/onedark.nvim",
         config = function()
             pcall(require, "plugins.onedark")
         end
-    }
-    use { "cormacrelf/vim-colors-github" }
-    use { "kyazdani42/nvim-web-devicons" }
+    },
+    { "cormacrelf/vim-colors-github",
+        lazy = true
+    },
+    { "kyazdani42/nvim-web-devicons" },
 
-    use { "skywind3000/asyncrun.vim" }
+    { "skywind3000/asyncrun.vim",
+        lazy = true
+    },
 
-    use { "mhinz/vim-startify",
+    { "mhinz/vim-startify",
         config = function()
             pcall(require, "plugins.startify")
         end
-    }
+    },
 
-    use { "lewis6991/gitsigns.nvim",
-        requires = {
+    { "lewis6991/gitsigns.nvim",
+        dependencies = {
             { "nvim-lua/plenary.nvim" },
         },
         config = function()
             pcall(require, "plugins.gitsigns")
         end
-    }
+    },
 
-    use { "iamcco/markdown-preview.nvim",
-        run = function()
+    { "iamcco/markdown-preview.nvim",
+        build = function()
             pcall(vim.fn["mkdp#util#install"])
         end,
         ft = { "markdown" },
@@ -60,10 +64,10 @@ require("packer").startup({ function(use)
             "MarkdownPreview",
             "MarkdownPreviewToggle"
         }
-    }
+    },
 
-    use { "nvim-telescope/telescope.nvim",
-        requires = {
+    { "nvim-telescope/telescope.nvim",
+        dependencies = {
             { "nvim-telescope/telescope-file-browser.nvim" },
             { "nvim-lua/popup.nvim" },
             { "nvim-lua/plenary.nvim" },
@@ -72,22 +76,22 @@ require("packer").startup({ function(use)
         config = function()
             pcall(require, "plugins.telescope")
         end
-    }
+    },
 
-    use { "mhartington/formatter.nvim",
+    { "mhartington/formatter.nvim",
         config = function()
             pcall(require, "plugins.formatter")
         end
-    }
+    },
 
-    use { "lukas-reineke/indent-blankline.nvim",
+    { "lukas-reineke/indent-blankline.nvim",
         config = function()
             pcall(require, "plugins.indent-blankline")
         end
-    }
+    },
 
     ----- lsp plugins -----
-    use { "nvim-treesitter/nvim-treesitter-context",
+    { "nvim-treesitter/nvim-treesitter-context",
         config = function()
             pcall(require, "plugins.nvim-treesitter-context")
         end,
@@ -96,24 +100,25 @@ require("packer").startup({ function(use)
             "TSContextDisable",
             "TSContextToggle",
         },
-        requires = { "nvim-treesitter/nvim-treesitter" }
-    }
-    use { "nvim-treesitter/nvim-treesitter",
+        dependencies = { "nvim-treesitter/nvim-treesitter" }
+    },
+    { "nvim-treesitter/nvim-treesitter",
         -- run = ":TSUpdate",
         config = function()
             pcall(require, "plugins.nvim-treesitter")
         end
-    }
-    use { "neovim/nvim-lspconfig",
+    },
+    { "neovim/nvim-lspconfig",
         config = function()
             pcall(require, "plugins.lsp")
         end
-    }
-    use { "hrsh7th/nvim-cmp",
+    },
+    { "hrsh7th/nvim-cmp",
         config = function()
             pcall(require, "plugins.cmp")
         end,
-        requires = {
+        event = "InsertEnter",
+        dependencies = {
             { "hrsh7th/cmp-nvim-lsp" },
             { "hrsh7th/cmp-buffer" },
             { "hrsh7th/cmp-path" },
@@ -122,33 +127,25 @@ require("packer").startup({ function(use)
             { "hrsh7th/vim-vsnip" },
             { "onsails/lspkind.nvim" },
         }
-    }
-    -- use { "folke/trouble.nvim",
-    --     requires = "kyazdani42/nvim-web-devicons",
+    },
+    -- { "folke/trouble.nvim",
+    --     dependencies = "kyazdani42/nvim-web-devicons",
     --     opt = true,
     --     event = "LspAttach",
     --     config = function()
     --         pcall(require, "plugins.trouble")
     --     end
     -- }
-    use { "williamboman/mason.nvim",
-        requires = {
+    { "williamboman/mason.nvim",
+        dependencies = {
             { "neovim/nvim-lspconfig" },
             { "williamboman/mason-lspconfig.nvim" },
         },
         config = function()
             pcall(require, "plugins.mason")
         end
-    }
+    },
 
-    use { vim.fn.stdpath("config") .. "/myplugins" }
+    { dir = vim.fn.stdpath("config") .. "/myplugins" },
 
-    if bootstrap then
-        require("packer").sync()
-    end
-end,
-    config = {
-        display = { open_fn = require("packer.util").float },
-        profile = { enable = true },
-    }
 })

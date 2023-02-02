@@ -205,12 +205,12 @@ noremap("n", "<F10>",
 require("plugins")
 -- vim.api.nvim_command("packadd packer.nvim") -- enable packer.nvim
 
-augroup("PackerAutoCompile", { clear = true })
-autocmd("BufWritePost", {
-    group = "PackerAutoCompile",
-    pattern = "*/nvim/*.lua",
-    command = "source <afile> | PackerCompile"
-}) -- auto compile when plugin config updates
+-- augroup("PackerAutoCompile", { clear = true })
+-- autocmd("BufWritePost", {
+--     group = "PackerAutoCompile",
+--     pattern = "*/nvim/*.lua",
+--     command = "source <afile> | PackerCompile"
+-- }) -- auto compile when plugin config updates
 
 -------------------- Plugins Settings --------------------
 command("Format", "format", { nargs = 0 })
