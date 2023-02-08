@@ -234,5 +234,7 @@ autocmd("FileType", {
 
 vim.filetype.add({extension = {wgsl = "wgsl"}})
 
+command("LU", "Lazy update", {})
+
 -------------------- END OF SETTINGS --------------------
 vim.g.hlsearch = false -- does this work?
