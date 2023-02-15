@@ -64,3 +64,5 @@ if [[ $(cat /etc/hostname) = "HE-TP" ]]; then
 
     export OPENCV_LOG_LEVEL=ERROR
 fi
+
+dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=KDE XDG_SESSION_TYPE=wayland DISPLAY XAUTHORITY
