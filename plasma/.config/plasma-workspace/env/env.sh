@@ -51,7 +51,7 @@ if [[ $(cat /etc/hostname) = "HE-workstation" ]]; then
         export MOZ_X11_EGL=1
     fi
 
-    # export GTK_USE_PORTAL=1
+    export GTK_USE_PORTAL=1
     # machine specific variables for nvidia-vaapi-driver
     export MOZ_DISABLE_RDD_SANDBOX=1
     export LIBVA_DRIVER_NAME=nvidia
@@ -65,4 +65,4 @@ if [[ $(cat /etc/hostname) = "HE-TP" ]]; then
     export OPENCV_LOG_LEVEL=ERROR
 fi
 
-dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=KDE XDG_SESSION_TYPE=wayland DISPLAY XAUTHORITY
+dbus-update-activation-environment --systemd XDG_CURRENT_DESKTOP=KDE XDG_SESSION_TYPE DISPLAY XAUTHORITY

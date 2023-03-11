@@ -438,7 +438,16 @@ alias syu='paru -Syu'
 
 # alias reboot2win='sudo grub-reboot 2 && reboot'
 alias rbt2firm='systemctl reboot --firmware-setup'
-alias rbt2win='systemctl reboot --boot-loader-entry=auto-windows'
+# alias rbt2win='systemctl reboot --boot-loader-entry=auto-windows'
+function rbt2win() {
+    if [[ -f /usr/bin/grub-reboot ]]; then
+        sudo grub-reboot "$(grep -i windows /boot/grub/grub.cfg|cut -d"'" -f2)" 
+        sudo reboot
+    else
+        systemctl reboot --boot-loader-entry=auto-windows
+    fi
+
+}
 alias fixkeymap='setxkbmap -option caps:escape_shifted_capslock'
 alias igtop='sudo intel_gpu_top'
 
