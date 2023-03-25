@@ -228,7 +228,7 @@ end
 autocmd("FileType", {
     pattern = "PKGBUILD",
     callback = function()
-        vim.diagnostic.disable()
+        vim.api.nvim_command("LspStop")
     end
 })
 
