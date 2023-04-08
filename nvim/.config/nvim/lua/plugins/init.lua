@@ -12,7 +12,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({
+local plugins = {
     { "tpope/vim-surround" },
     { "tpope/vim-repeat" },
     { "tpope/vim-commentary" },
@@ -147,5 +147,10 @@ require("lazy").setup({
     },
 
     { dir = vim.fn.stdpath("config") .. "/myplugins" },
+}
 
-})
+local opts = {
+    concurrency = 16,
+}
+
+require("lazy").setup(plugins, opts)
