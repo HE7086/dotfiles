@@ -62,7 +62,8 @@
     pl = pull --recurse-submodules
     df = !git diff --name-only --relative --diff-filter=d | xargs bat --diff
     lg = log --abbrev-commit --graph 
-    cl = clone --recursive --depth=1 --shallow-submodules
+    cl = clone --recursive
+    cla = clone --recursive --depth=1 --shallow-submodules
     yolo = !git add -A && git commit -m \"$(curl -Ls http://whatthecommit.com/index.txt)\" && git push
     amend = !git add -A && git commit --amend --no-edit
     cr = !git reset --hard && git clean -xdf
