@@ -28,7 +28,7 @@ local plugins = {
 
     { "navarasu/onedark.nvim",
         config = function()
-            pcall(require, "plugins.onedark")
+            require("plugins.onedark")
         end
     },
     { "cormacrelf/vim-colors-github",
@@ -42,7 +42,7 @@ local plugins = {
 
     { "mhinz/vim-startify",
         config = function()
-            pcall(require, "plugins.startify")
+            require("plugins.startify")
         end
     },
 
@@ -51,13 +51,13 @@ local plugins = {
             { "nvim-lua/plenary.nvim" },
         },
         config = function()
-            pcall(require, "plugins.gitsigns")
+            require("plugins.gitsigns")
         end
     },
 
     { "iamcco/markdown-preview.nvim",
         build = function()
-            pcall(vim.fn["mkdp#util#install"])
+            vim.fn["mkdp#util#install"]()
         end,
         ft = { "markdown" },
         cmd = {
@@ -80,20 +80,20 @@ local plugins = {
 
     { "mhartington/formatter.nvim",
         config = function()
-            pcall(require, "plugins.formatter")
+            require("plugins.formatter")
         end
     },
 
     { "lukas-reineke/indent-blankline.nvim",
         config = function()
-            pcall(require, "plugins.indent-blankline")
+            require("plugins.indent-blankline")
         end
     },
 
     ----- lsp plugins -----
     { "nvim-treesitter/nvim-treesitter-context",
         config = function()
-            pcall(require, "plugins.nvim-treesitter-context")
+            require("plugins.nvim-treesitter-context")
         end,
         cmd = {
             "TSContextEnable",
@@ -105,17 +105,17 @@ local plugins = {
     { "nvim-treesitter/nvim-treesitter",
         -- run = ":TSUpdate",
         config = function()
-            pcall(require, "plugins.nvim-treesitter")
+            require("plugins.nvim-treesitter")
         end
     },
     { "neovim/nvim-lspconfig",
         config = function()
-            pcall(require, "plugins.lsp")
+            require("plugins.lsp")
         end
     },
     { "hrsh7th/nvim-cmp",
         config = function()
-            pcall(require, "plugins.cmp")
+            require("plugins.cmp")
         end,
         event = "InsertEnter",
         dependencies = {
@@ -133,7 +133,7 @@ local plugins = {
     --     opt = true,
     --     event = "LspAttach",
     --     config = function()
-    --         pcall(require, "plugins.trouble")
+    --         require("plugins.trouble")
     --     end
     -- }
     { "williamboman/mason.nvim",
@@ -142,7 +142,7 @@ local plugins = {
             { "williamboman/mason-lspconfig.nvim" },
         },
         config = function()
-            pcall(require, "plugins.mason")
+            require("plugins.mason")
         end
     },
 
