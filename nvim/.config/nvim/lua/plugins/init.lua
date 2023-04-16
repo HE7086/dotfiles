@@ -128,14 +128,6 @@ local plugins = {
             { "onsails/lspkind.nvim" },
         }
     },
-    -- { "folke/trouble.nvim",
-    --     dependencies = "kyazdani42/nvim-web-devicons",
-    --     opt = true,
-    --     event = "LspAttach",
-    --     config = function()
-    --         require("plugins.trouble")
-    --     end
-    -- }
     { "williamboman/mason.nvim",
         dependencies = {
             { "neovim/nvim-lspconfig" },
@@ -144,6 +136,17 @@ local plugins = {
         config = function()
             require("plugins.mason")
         end
+    },
+    { "folke/trouble.nvim",
+        dependencies = "kyazdani42/nvim-web-devicons",
+        lazy = true,
+        event = "LspAttach",
+        -- config = function()
+        --     require("plugins.trouble")
+        -- end
+    },
+    { "folke/noice.nvim",
+        lazy = true
     },
 
     { dir = vim.fn.stdpath("config") .. "/myplugins" },
