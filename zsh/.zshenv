@@ -5,6 +5,7 @@ export GPG_TTY=$TTY
 
 typeset -U PATH path
 path=(
+    ~/.nix-profile/bin
     ~/.local/bin
     $path
 )
