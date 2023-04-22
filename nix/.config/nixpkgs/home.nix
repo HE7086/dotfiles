@@ -2,6 +2,9 @@
 
 {
   programs.home-manager.enable = true;
+  home.stateVersion = "22.05";
+  home.username = "yihe";
+  home.homeDirectory = "/home/yihe";
   home.packages = with pkgs; [
     gcc
     python3
@@ -30,6 +33,8 @@
     qemu
     # qemu-utils
 
+    rustup
+    rust-analyzer
   ];
 }
 
