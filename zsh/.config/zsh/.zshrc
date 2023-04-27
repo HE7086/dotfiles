@@ -693,6 +693,11 @@ function mkd() {
     mkdir -p $1 && cd $1
 }
 
+function perflame() {
+    [[ $# -ge 1 ]] && perf record --call-graph=dwarf $@
+    perf script | stackcollapse-perf | flamegraph | imv -f -
+}
+
 #----------------------------------------------------------------------------------------------------
 # auto compile zshrc
 if [[ $ZDOTDIR/.zshrc -nt $ZDOTDIR/.zshrc.zwc ]] || [[ ! -e $ZDOTDIR/.zshrc.zwc ]]; then
