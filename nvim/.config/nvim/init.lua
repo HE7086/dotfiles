@@ -197,8 +197,9 @@ function ToggleLightMode()
 end
 
 command("LM", "lua ToggleLightMode()", { nargs = 0 })
-noremap("n", "<F10>",
-    [[<CMD>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])
+-- noremap("n", "<F10>",
+--     [[<CMD>echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>]])
+noremap("n", "<F10>", "<CMD>Inspect<CR>")
 
 -------------------- Plugins --------------------
 

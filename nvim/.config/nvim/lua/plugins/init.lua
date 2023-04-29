@@ -148,6 +148,11 @@ local plugins = {
     { "folke/noice.nvim",
         lazy = true
     },
+    { "m-demare/hlargs.nvim",
+        config = function()
+            require('hlargs').setup()
+        end
+    },
 
     { dir = vim.fn.stdpath("config") .. "/myplugins" },
 }
