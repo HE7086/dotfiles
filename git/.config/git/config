@@ -55,7 +55,7 @@
 ;   insteadOf = https://gitlab.com
 
 [alias]
-    p = push --tags
+    p = push --force-with-lease
     a = add -A
     cm = commit
     st = status --show-stash
