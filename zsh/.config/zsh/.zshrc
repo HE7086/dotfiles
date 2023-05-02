@@ -688,7 +688,6 @@ function gui() {
     fi
 }
 
-
 function mkd() {
     mkdir -p $1 && cd $1
 }
@@ -697,6 +696,34 @@ function perflame() {
     [[ $# -ge 1 ]] && perf record --call-graph=dwarf $@
     perf script | stackcollapse-perf | flamegraph | imv -
 }
+
+# function bkup() {
+#     [[ $# -lt 2 ]] && echo "usage: bkup <src> <dst>" && return 0;
+
+#     SRC=$1
+#     HOST=${2%:*}
+#     DIR=${2#*:}
+#     RSYNC='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 --delete'
+
+#     if ssh $HOST "test -e $DIR/lastupdate"; then
+#         REMOTE_TIMESTAMP=$(ssh $HOST "cat $DIR/lastupdate")
+#         LASTUPDATE=$(cat "$SRC/lastupdate")
+
+#         if [[ $REMOTE_TIMESTAMP -gt $LASTUPDATE ]]; then
+#             echo "Remote is newer than local!"
+#             $(RSYNC)
+#         else
+#             echo "Local is newer than remote!"
+#             $(RSYNC) "$1" "$2"
+#         fi
+#     else
+#         echo "Remote timestamp not found."
+#         return 1
+#     fi
+
+#     echo $(date +%s) > "$SRC/lastupdate"
+
+# }
 
 #----------------------------------------------------------------------------------------------------
 # auto compile zshrc
