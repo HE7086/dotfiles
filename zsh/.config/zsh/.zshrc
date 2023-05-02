@@ -694,7 +694,8 @@ function mkd() {
 
 function perflame() {
     [[ $# -ge 1 ]] && perf record --call-graph=dwarf $@
-    perf script | stackcollapse-perf | flamegraph | imv -
+    # perf script | stackcollapse-perf | flamegraph | imv -
+    perf script | stackcollapse-perf | curl --data-binary @- "https://flamegraph.com" | jq ".url" | xargs xdg-open
 }
 
 # function bkup() {
