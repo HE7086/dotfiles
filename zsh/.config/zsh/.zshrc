@@ -695,7 +695,7 @@ function mkd() {
 
 function perflame() {
     [[ $# -ge 1 ]] && perf record --call-graph=dwarf $@
-    perf script | stackcollapse-perf | flamegraph | imv -f -
+    perf script | stackcollapse-perf | flamegraph | imv -
 }
 
 #----------------------------------------------------------------------------------------------------
