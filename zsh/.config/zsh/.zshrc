@@ -442,7 +442,7 @@ alias rbt2firm='systemctl reboot --firmware-setup'
 function rbt2win() {
     if [[ -f /usr/bin/grub-reboot ]]; then
         sudo grub-reboot "$(grep -i windows /boot/grub/grub.cfg|cut -d"'" -f2)" 
-        sudo reboot
+        reboot
     else
         systemctl reboot --boot-loader-entry=auto-windows
     fi
@@ -693,7 +693,7 @@ function mkd() {
 }
 
 function perflame() {
-    [[ $# -ge 1 ]] && perf record --call-graph=dwarf $@
+    [[ $# -ge 1 ]] && perf record -z --call-graph=dwarf $@
     # perf script | stackcollapse-perf | flamegraph | imv -
     perf script | stackcollapse-perf | curl --data-binary @- "https://flamegraph.com" | jq ".url" | xargs xdg-open
 }

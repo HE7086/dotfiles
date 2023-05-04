@@ -153,6 +153,7 @@ local plugins = {
             require('hlargs').setup()
         end
     },
+    { "imsnif/kdl.vim" },
 
     { dir = vim.fn.stdpath("config") .. "/myplugins" },
 }
