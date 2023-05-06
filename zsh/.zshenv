@@ -13,8 +13,3 @@ path=(
     ~/.local/bin
     $path
 )
-
-fpath=(
-    $HOME/dotfiles/Submodules/zsh-completions/src
-    $fpath
-)

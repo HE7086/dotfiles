@@ -95,6 +95,7 @@ auto_source $ZDOTDIR/plugins.zsh
 auto_source $ZDOTDIR/keys.zsh
 auto_source $ZDOTDIR/alias.zsh
 auto_source $ZDOTDIR/functions.zsh
+
 unset -f auto_source
 
 #----------------------------------------------------------------------------------------------------
