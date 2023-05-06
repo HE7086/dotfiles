@@ -1,9 +1,8 @@
 name: "Update Submodules"
 on:
-  repository_dispatch:
   workflow_dispatch:
   schedule:
-    - cron:  '12 12 * * 7'
+    - cron:  '12 12 * * 1'
 jobs:
   update-submodules:
     runs-on: ubuntu-latest
