@@ -1,0 +1,33 @@
+name: "Update Submodules"
+on:
+  repository_dispatch:
+  workflow_dispatch:
+  schedule:
+    - cron:  '12 12 * * 7'
+jobs:
+  update-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Import GPG key
+        uses: crazy-max/ghaction-import-gpg@v5
+        with:
+          gpg_private_key: ${{ secrets.BOT_KEY }}
+          git_user_signingkey: true
+          git_commit_gpgsign: true
+
+      - name: Update Submodules
+        run: |
+          git submodule update --init --recursive
+          git submodule update --recursive --remote
+
+      - name: Commit
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with: 
+          commit_message: "Update Submodules"
+          commit_user_name: HE7086
+          commit_user_email: me@heyi7086.com
+          commit_author: HE7086 <me@heyi7086.com>
