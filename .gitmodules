@@ -1,18 +1,18 @@
 [submodule "Submodules/zsh-history-substring-search"]
 	path = Submodules/zsh-history-substring-search
-	url = git@github.com:zsh-users/zsh-history-substring-search.git
+	url = https://github.com/zsh-users/zsh-history-substring-search.git
 [submodule "Submodules/zsh-autosuggestions"]
 	path = Submodules/zsh-autosuggestions
-	url = git@github.com:zsh-users/zsh-autosuggestions.git
+	url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule "Submodules/zsh-completions"]
 	path = Submodules/zsh-completions
-	url = git@github.com:zsh-users/zsh-completions.git
+	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "Submodules/fast-syntax-highlighting"]
 	path = Submodules/fast-syntax-highlighting
-	url = git@github.com:zdharma-continuum/fast-syntax-highlighting.git
+	url = https://hub.com/zdharma-continuum/fast-syntax-highlighting.git
 [submodule "Submodules/powerlevel10k"]
 	path = Submodules/powerlevel10k
-	url = git@github.com:romkatv/powerlevel10k.git
+	url = https://github.com/romkatv/powerlevel10k.git
 [submodule "Submodules/fzf"]
 	path = Submodules/fzf
-	url = git@github.com:junegunn/fzf.git
+	url = https://github.com/junegunn/fzf.git
