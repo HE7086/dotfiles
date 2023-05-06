@@ -9,7 +9,7 @@
 	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "Submodules/fast-syntax-highlighting"]
 	path = Submodules/fast-syntax-highlighting
-	url = https://hub.com/zdharma-continuum/fast-syntax-highlighting.git
+	url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
 [submodule "Submodules/powerlevel10k"]
 	path = Submodules/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
