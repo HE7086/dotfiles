@@ -13,8 +13,6 @@
 [init]
     defaultBranch = main
 
-[gpg]
-    program = gpg2
 [commit]
     gpgSign = true
 [tag]

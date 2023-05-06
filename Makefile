@@ -1,5 +1,5 @@
 # wildcard only directories
-exclude_dirs := root/ PKGBUILD/ Deprecated/
+exclude_dirs := root/ PKGBUILD/ Deprecated/ Submodules/
 pkgs := $(filter-out $(exclude_dirs),$(dir $(wildcard */.)))
 pkgs := $(patsubst %/,%,$(pkgs))
 
