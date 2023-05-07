@@ -143,11 +143,13 @@ else
     auto_compile ~/dotfiles/Submodules/fast-syntax-highlighting/fast-string-highlight
     auto_compile ~/dotfiles/Submodules/fast-syntax-highlighting/fast-highlight
 
+    auto_source ~/dotfiles/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    auto_compile ~/dotfiles/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 fi
 
 # universal plugins
-auto_source ~/dotfiles/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-auto_compile ~/dotfiles/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+auto_source ~/dotfiles/Submodules/zsh-autopair/zsh-autopair.plugin.zsh
+auto_compile ~/dotfiles/Submodules/zsh-autopair/autopair.zsh
 
 auto_source ~/dotfiles/Submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
 auto_compile ~/dotfiles/Submodules/zsh-history-substring-search/zsh-history-substring-search.zsh

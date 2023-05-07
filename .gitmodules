@@ -16,3 +16,6 @@
 [submodule "Submodules/fzf"]
 	path = Submodules/fzf
 	url = https://github.com/junegunn/fzf.git
+[submodule "Submodules/zsh-autopair"]
+	path = Submodules/zsh-autopair
+	url = https://github.com/hlissner/zsh-autopair.git

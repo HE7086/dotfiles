@@ -1,3 +1,4 @@
 # ingnore backup files
 /backup/*
 *.log
+*.zwc
