@@ -141,9 +141,9 @@ local plugins = {
         dependencies = "kyazdani42/nvim-web-devicons",
         lazy = true,
         event = "LspAttach",
-        -- config = function()
-        --     require("plugins.trouble")
-        -- end
+        config = function()
+            require("plugins.trouble")
+        end
     },
     { "folke/noice.nvim",
         lazy = true
