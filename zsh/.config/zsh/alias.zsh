@@ -103,3 +103,4 @@ alias se='sudoedit'
 alias sudo='sudo '
 
 alias d='dir -v'
+alias power='cat /sys/firmware/acpi/platform_profile'
