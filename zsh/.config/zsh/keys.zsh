@@ -2,7 +2,7 @@
 # keybinding settings
 #----------------------------------------------------------------------------------------------------
 bindkey -v
-export KEYTIMEOUT=1
+export KEYTIMEOUT=20
 
 bindkey '^ ' autosuggest-accept
 # Use vim keys for select when autocomplete
