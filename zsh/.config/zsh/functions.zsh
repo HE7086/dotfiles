@@ -134,6 +134,11 @@ function perflame() {
     perf script | stackcollapse-perf | curl --data-binary @- "https://flamegraph.com" | jq ".url" | xargs xdg-open
 }
 
+function perflame2() {
+    [[ $# -ge 1 ]] && perf record -z --call-graph=dwarf $@
+    perf script | stackcollapse-perf | flamegraph | imv -
+}
+
 # function bkup() {
 #     [[ $# -lt 2 ]] && echo "usage: bkup <src> <dst>" && return 0;
 
