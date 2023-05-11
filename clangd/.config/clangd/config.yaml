@@ -1,7 +1,7 @@
 If:
   PathMatch: .*\.cpp
 CompileFlags:
-    Add: [-std=c++23]
+    Add: [-std=c++20]
 
 If:
   PathMatch: .*\.c
