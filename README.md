@@ -7,12 +7,19 @@
 * **Note**: Most of the commit messages are randomly generated using `git yolo`, they do not make any sense ;)
 
 ## recommend additional packages
-* shell (automatic installation by zsh)
+* For Archlinux
 ```
+aria2
+bat
+bat-extras
+exa
 fzf
-zsh-autosuggestions
-zsh-completions
-zsh-history-substring-search
-zsh-fast-syntax-highlighting
-zsh-theme-powerlevel10k
+fd
+hyperfine
+imv
+inxi
+mtr
+ripgrep
+rsync
+unarchiver
 ```
