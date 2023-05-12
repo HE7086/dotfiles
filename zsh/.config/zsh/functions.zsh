@@ -111,7 +111,7 @@ function git_tum_config() {
 # disassembly utility
 #----------------------------------------------------------------------------------------------------
 function disasm() {
-    objdump -d -C -w -Mintel $1 | vim -
+    objdump -d -C -w -Mintel $@ | vim -
 }
 
 function gui() {
@@ -129,13 +129,32 @@ function mkd() {
 }
 
 function perflame() {
-    [[ $# -ge 1 ]] && perf record -z --call-graph=dwarf $@
-    # perf script | stackcollapse-perf | flamegraph | imv -
+    if [[ $# -ge 1 ]]; then
+        if ! command -v $1 > /dev/null; then
+            if command -v $PWD/$1 > /dev/null; then
+                1=$PWD/$1
+            else
+                echo "command not found: $1"
+                return 1
+            fi
+        fi
+        perf record -z --call-graph=dwarf $@
+    fi
     perf script | stackcollapse-perf | curl --data-binary @- "https://flamegraph.com" | jq ".url" | xargs xdg-open
 }
 
 function perflame2() {
-    [[ $# -ge 1 ]] && perf record -z --call-graph=dwarf $@
+    if [[ $# -ge 1 ]]; then
+        if ! command -v $1 > /dev/null; then
+            if command -v $PWD/$1 > /dev/null; then
+                1=$PWD/$1
+            else
+                echo "command not found: $1"
+                return 1
+            fi
+        fi
+        perf record -g $@
+    fi
     perf script | stackcollapse-perf | flamegraph | imv -
 }
 
