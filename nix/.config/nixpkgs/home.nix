@@ -35,6 +35,8 @@
 
     rustup
     rust-analyzer
+
+    picocom
   ];
   # home.file = {
   #   "dotfiles" = {
