@@ -37,6 +37,7 @@
     rust-analyzer
 
     picocom
+    kubernetes
   ];
   # home.file = {
   #   "dotfiles" = {
