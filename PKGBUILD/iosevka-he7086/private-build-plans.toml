@@ -8,7 +8,7 @@ export-glyph-names = true
 [buildPlans.iosevka-he7086.variants.design]
 capital-g = "toothless-rounded-serifless-hooked"
 capital-q = "crossing"
-f = "flat-hook"
+f = "flat-hook-serifless"
 l = "tailed-serifed"
 r = "compact-serifed"
 one = "base"
