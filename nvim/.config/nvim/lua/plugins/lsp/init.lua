@@ -53,3 +53,4 @@ nmap('<S-F6>', vim.lsp.buf.rename) -- shift F6 for gui
 nmap('<A-CR>', vim.lsp.buf.code_action)
 nmap('<space><space>', function() vim.lsp.buf.format { async = true } end)
 nmap('<space>e', vim.diagnostic.open_float)
+nmap('<F4>', '<CMD>LspStart<CR>')
