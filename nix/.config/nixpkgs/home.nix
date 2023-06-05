@@ -1,5 +1,8 @@
 { pkgs, ...}:
 
+let
+  unstable = import (fetchTarball https://nixos.org/channels/nixos-unstable/nixexprs.tar.xz) {};
+in
 {
   programs.home-manager.enable = true;
   home.stateVersion = "22.05";
@@ -26,7 +29,8 @@
     tmux
     git
 
-    neovim
+    # neovim
+    unstable.neovim
     tree-sitter
     python310Packages.pynvim
 
