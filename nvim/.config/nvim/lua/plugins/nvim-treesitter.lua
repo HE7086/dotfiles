@@ -22,7 +22,7 @@ require('nvim-treesitter.configs').setup {
         'rust',
         'toml',
         'vim',
-        'yaml',
+        -- 'yaml',
     },
     -- ignore_install = { "javascript" },
     highlight = {
