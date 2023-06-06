@@ -15,6 +15,7 @@ in
     cmake
     gnumake
     gdb
+    llvmPackages.clang-unwrapped
 
     zsh
     fzf
@@ -43,6 +44,8 @@ in
     picocom
     kubernetes
   ];
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
   # home.file = {
   #   "dotfiles" = {
   #     source = pkgs.fetchFromGitHub {
