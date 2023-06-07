@@ -5,7 +5,7 @@ require('nvim-treesitter.configs').setup {
         'bibtex',
         'c',
         'cmake',
-        'comment',
+        -- 'comment',
         'cpp',
         'cuda',
         'dockerfile',

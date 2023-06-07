@@ -156,6 +156,7 @@ local plugins = {
         end
     },
     { "imsnif/kdl.vim" },
+    { "NoahTheDuke/vim-just" },
 
     { dir = vim.fn.stdpath("config") .. "/myplugins" },
 }
