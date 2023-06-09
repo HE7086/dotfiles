@@ -29,6 +29,7 @@ in
     unar
     tmux
     git
+    just
 
     # neovim
     unstable.neovim
