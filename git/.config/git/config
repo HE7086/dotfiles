@@ -67,3 +67,4 @@
     cr = !git reset --hard && git clean -xdf
     spushall = submodule foreach --recursive git push
     sup = submodule update --init --recursive --recommend-shallow
+    mt = mergetool
