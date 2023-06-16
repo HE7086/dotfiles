@@ -68,3 +68,4 @@
     spushall = submodule foreach --recursive git push
     sup = submodule update --init --recursive --recommend-shallow
     mt = mergetool
+    ac = !git add . && git commit
