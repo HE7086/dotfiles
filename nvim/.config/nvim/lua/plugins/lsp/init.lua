@@ -53,4 +53,13 @@ nmap('<S-F6>', vim.lsp.buf.rename) -- shift F6 for gui
 nmap('<A-CR>', vim.lsp.buf.code_action)
 nmap('<space><space>', function() vim.lsp.buf.format { async = true } end)
 nmap('<space>e', vim.diagnostic.open_float)
-nmap('<F5>', '<CMD>LspStart<CR>')
+
+local function toggleLSP()
+    local clients = vim.lsp.buf_get_clients()
+    if next(clients) == nil then
+        vim.api.nvim_command("LspStart")
+    else
+        vim.api.nvim_command("LspStop")
+    end
+end
+nmap('<F5>', toggleLSP)
