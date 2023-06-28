@@ -85,9 +85,9 @@ alias rbt2firm='systemctl reboot --firmware-setup'
 function rbt2win() {
     if [[ -f /usr/bin/grub-reboot ]]; then
         sudo grub-reboot "$(grep -i windows /boot/grub/grub.cfg|cut -d"'" -f2)" 
-        reboot
+        sudo reboot
     else
-        systemctl reboot --boot-loader-entry=auto-windows
+        sudo systemctl reboot --boot-loader-entry=auto-windows
     fi
 
 }
