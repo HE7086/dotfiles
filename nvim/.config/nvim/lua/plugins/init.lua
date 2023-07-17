@@ -137,7 +137,8 @@ local plugins = {
         },
         config = function()
             require("plugins.mason")
-        end
+        end,
+        build = ":MasonUpdate"
     },
     { "folke/trouble.nvim",
         dependencies = "kyazdani42/nvim-web-devicons",
