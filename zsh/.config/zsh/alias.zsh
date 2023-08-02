@@ -106,3 +106,6 @@ alias d='dir -v'
 alias power='cat /sys/firmware/acpi/platform_profile'
 alias j='just'
 alias hm='home-manager'
+
+alias venv='python -m venv'
+alias venvact='source ~/data/venv/bin/activate'
