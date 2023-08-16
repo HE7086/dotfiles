@@ -88,6 +88,7 @@ else
 
     # right prompts ====================
     typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
+        nix_shell
         background_jobs
         vi_mode 
         status 
