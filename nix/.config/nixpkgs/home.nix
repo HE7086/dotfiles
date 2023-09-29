@@ -23,7 +23,7 @@ in
     ripgrep
     fd
     stow
-    exa
+    eza
     aria2
     bat
     unar
