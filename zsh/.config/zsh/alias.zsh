@@ -109,3 +109,5 @@ alias hm='home-manager'
 
 alias venv='python -m venv'
 alias venvact='source ~/data/venv/bin/activate'
+
+alias ssh_nh='ssh -o StrictHostKeyChecking=no'
