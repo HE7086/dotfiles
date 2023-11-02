@@ -31,6 +31,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 export INPUT_METHOD=fcitx
 export SDL_IM_MODULE=fcitx
+export GLFW_IM_MODULE=ibus
 
 export SSH_ASKPASS=/usr/bin/ksshaskpass
 
@@ -43,7 +44,7 @@ export ELECTRON_TRASH=gio
 
 export DEBUGINFOD_URLS="https://debuginfod.archlinux.org https://repo.archlinuxcn.org"
 
-if [[ $(cat /etc/hostname) = "HE-workstation" ]]; then
+if [[ $(cat /etc/hostname) = "HE-WS" ]]; then
     if [[ "$XDG_SESSION_TYPE" = "wayland" ]]; then 
         export EGL_PLATFORM=wayland
         # export GDK_SCALE=2
@@ -51,7 +52,7 @@ if [[ $(cat /etc/hostname) = "HE-workstation" ]]; then
         export MOZ_X11_EGL=1
     fi
 
-    export GTK_USE_PORTAL=1
+    # export GTK_USE_PORTAL=1
     # machine specific variables for nvidia-vaapi-driver
     export MOZ_DISABLE_RDD_SANDBOX=1
     export LIBVA_DRIVER_NAME=nvidia
