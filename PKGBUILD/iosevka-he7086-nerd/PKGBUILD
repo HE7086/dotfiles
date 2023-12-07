@@ -1,0 +1,38 @@
+pkgname=ttf-iosevka-he7086-nerd
+_iosevkaver=27.3.5
+_nerdver=3.1.1
+_dir_name=Iosevka-${_iosevkaver}
+pkgver=${_iosevkaver}.nerd${_nerdver}
+pkgrel=1
+pkgdesc="Typeface family designed for coding, terminal use and technical documents. Customized verion for he7086 with nerd font."
+arch=("any")
+url="https://typeof.net/Iosevka/"
+license=("custom:OFL")
+makedepends=("git" "ttfautohint" "npm" "python" "fontforge" "parallel")
+source=("https://github.com/be5invis/Iosevka/archive/refs/tags/v${_iosevkaver}.tar.gz"
+        "https://github.com/ryanoasis/nerd-fonts/releases/download/v${_nerdver}/FontPatcher.zip"
+        "private-build-plans.toml")
+sha256sums=('c4a2ec3ec1efae4824a5e644e75df6173a0dc1ed524a4af038760599044c9334'
+            '7b11bdbbe645ff817192233f7fab1dc026cea201959dc4617f5217d5250de4f2'
+            '8517c9689b2a383fa0c4d4810c9aad18dc682fb2519498d57bfb484c1a013275')
+
+prepare() {
+    cp "private-build-plans.toml" "${_dir_name}/private-build-plans.toml"
+}
+
+build() {
+    cd "${_dir_name}"
+    npm install
+    npm update
+    npm run build -- ttf::iosevka-he7086
+
+    printf "\nBuilding Complete, Patching Nerd Fonts...\n"
+    find dist/iosevka-he7086/ttf -name '*.ttf' -print0 | \
+    parallel -0 ../font-patcher --mono --complete --careful --quiet
+}
+
+package() {
+    install -d ${pkgdir}/usr/share/fonts/TTF/
+    install -m644 "${_dir_name}"/*.ttf ${pkgdir}/usr/share/fonts/TTF/
+    install -D -m644 "${_dir_name}"/LICENSE.md ${pkgdir}/usr/share/licenses/${pkgname}/LICENSE.md
+}
