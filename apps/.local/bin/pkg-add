@@ -3,11 +3,11 @@
 REPO="$HOME/code/repo"
 REPO_DIR=repo
 REPO_NAME=he7086
-SERVER="toaster:/var/www"
-ARCH=(x86_64 aarch64)
+SERVER="root@herd:/var/www"
+ARCH=(x86_64)
 
 # download from the server
-rsync --archive --verbose --partial --progress --delete "${SERVER}/${REPO_DIR}" "${REPO%%/${REPO_DIR}}"
+# rsync --verbose --partial --progress --delete "${SERVER}/${REPO_DIR}" "${REPO%%/${REPO_DIR}}"
 
 for _arg in "$@"; do
     # only match zst and xz packages
@@ -48,4 +48,4 @@ for _arg in "$@"; do
 done
 
 # upload to the server
-rsync --archive --verbose --partial --progress --delete "$REPO" "$SERVER"
+rsync --verbose --partial --progress --delete --recursive --links --chown=root:root "$REPO" "$SERVER"
