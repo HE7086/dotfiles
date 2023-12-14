@@ -41,7 +41,7 @@ for _arg in "$@"; do
     fi
 
     # move package to repository directory, if not already inside repo
-    [[ "${_arg}" -ef "${REPO}/${_arch}/${_pkg}" ]] || mv --update "${_arg}" "${_arg}.sig" "${REPO}/${_arch}/"
+    [[ "${_arg}" -ef "${REPO}/${_arch}/${_pkg}" ]] || cp --update "${_arg}" "${_arg}.sig" "${REPO}/${_arch}/"
 
     # add package to repo
     repo-add --sign --remove "${REPO}/${_arch}/${REPO_NAME}.db.tar.gz" "${REPO}/${_arch}/${_pkg}"
