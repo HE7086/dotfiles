@@ -30,4 +30,11 @@ enables = [ "arrow"
           , "html-comment"
           ]
 
+[buildPlans.iosevka-he7086.exclude-chars]
+ranges = [[0x2639, 0x263a]]
+# ☹☺
+
+[collectPlans.iosevka-he7086]
+from = ["iosevka-he7086"]
+
 # The quick brown fox jumps over the lazy dog
