@@ -1,5 +1,5 @@
 hwdec = auto
 script-opts=ytdl_hook-ytdl_path=yt-dlp
 #ytdl-format=bestvideo[vcodec!=hevc]+bestaudio/best
-#ytdl-format=best[vcodec!=hevc]
+ytdl-format=best[vcodec!=hevc]
 ytdl-raw-options="cookies-from-browser=firefox"

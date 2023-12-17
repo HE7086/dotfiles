@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+BLIVEC_HOME=~/.local/share/blivec
+[[ -d $BLIVEC_HOME ]] || mkdir -p $BLIVEC_HOME
+
+find ~/.mozilla/firefox \
+    -name cookies.sqlite \
+    -exec sqlite3 'file:{}?immutable=1' "select name,value from moz_cookies where host = '.bilibili.com'" \; \
+    -quit \
+| sed 's/|/=/' > $BLIVEC_HOME/cookie.txt
+
+HOME=$BLIVEC_HOME npx @hyrious/blivec $@
