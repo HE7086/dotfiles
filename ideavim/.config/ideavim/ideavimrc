@@ -59,6 +59,8 @@ nmap == <Action>(ReformatCode)
 
 nnoremap <space><CR> :nohlsearch<CR>
 
+nnoremap Y v$y
+
 command! W :w
 
 exec nohlsearch
