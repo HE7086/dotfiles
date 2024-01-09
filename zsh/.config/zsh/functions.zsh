@@ -158,6 +158,17 @@ function perflame2() {
     perf script | stackcollapse-perf | flamegraph | imv -
 }
 
+function nix() {
+    case $1 in
+        build|shell|develop)
+            command nom $@
+            ;;
+        *)
+            command nix $@
+            ;;
+    esac
+}
+
 # function bkup() {
 #     [[ $# -lt 2 ]] && echo "usage: bkup <src> <dst>" && return 0;
 
