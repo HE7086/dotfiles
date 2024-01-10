@@ -57,6 +57,8 @@ local plugins = {
 
     { "ajorgensen/vim-markdown-toc" },
 
+    { "dhruvasagar/vim-table-mode" },
+
     { "iamcco/markdown-preview.nvim",
         build = function()
             vim.fn["mkdp#util#install"]()
