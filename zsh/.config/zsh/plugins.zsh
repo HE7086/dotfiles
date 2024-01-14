@@ -139,30 +139,30 @@ else
 
 
     # non-tty plugins
-    auto_source ~/dotfiles/Submodules/powerlevel10k/powerlevel10k.zsh-theme
+    auto_source ~/.config/Submodules/powerlevel10k/powerlevel10k.zsh-theme
 
-    auto_source ~/dotfiles/Submodules/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-    auto_compile ~/dotfiles/Submodules/fast-syntax-highlighting/fast-string-highlight
-    auto_compile ~/dotfiles/Submodules/fast-syntax-highlighting/fast-highlight
+    auto_source ~/.config/Submodules/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+    auto_compile ~/.config/Submodules/fast-syntax-highlighting/fast-string-highlight
+    auto_compile ~/.config/Submodules/fast-syntax-highlighting/fast-highlight
 
-    auto_source ~/dotfiles/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-    auto_compile ~/dotfiles/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    auto_source ~/.config/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    auto_compile ~/.config/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 fi
 
 # universal plugins
-auto_source ~/dotfiles/Submodules/zsh-autopair/zsh-autopair.plugin.zsh
-auto_compile ~/dotfiles/Submodules/zsh-autopair/autopair.zsh
+auto_source ~/.config/Submodules/zsh-autopair/zsh-autopair.plugin.zsh
+auto_compile ~/.config/Submodules/zsh-autopair/autopair.zsh
 
-auto_source ~/dotfiles/Submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
-auto_compile ~/dotfiles/Submodules/zsh-history-substring-search/zsh-history-substring-search.zsh
+auto_source ~/.config/Submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+auto_compile ~/.config/Submodules/zsh-history-substring-search/zsh-history-substring-search.zsh
 
-auto_source ~/dotfiles/Submodules/zsh-completions/zsh-completions.plugin.zsh
+auto_source ~/.config/Submodules/zsh-completions/zsh-completions.plugin.zsh
 
 # FZF
 if ! command -v fzf > /dev/null; then 
-    ~/dotfiles/Submodules/fzf/install --no-bash --no-fish --no-key-bindings --no-completion --no-update-rc --bin
+    ~/.config/Submodules/fzf/install --no-bash --no-fish --no-key-bindings --no-completion --no-update-rc --bin
 fi
-auto_source ~/dotfiles/Submodules/fzf/shell/key-bindings.zsh
+auto_source ~/.config/Submodules/fzf/shell/key-bindings.zsh
 eval bindkey '^R' fzf-history-widget
 
 # if mode indicator wasn't setup by theme, define default

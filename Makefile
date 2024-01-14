@@ -11,9 +11,26 @@ $(pkgs): %:
 	@echo "installing package $@"
 	@stow -v --no-folding $@ --target=$(HOME)
 
+.PHONY: Submodules
+Submodules:
+	@mkdir -p ~/.config/Submodules
+	@if [ -w . ]; then \
+		for mod in $(abspath $(wildcard Submodules/*)); do \
+			ln -sf $$mod ~/.config/Submodules; \
+		done \
+	else \
+		for mod in $(abspath $(wildcard Submodules/*)); do \
+			cp --reflink=auto -ru $$mod ~/.config/Submodules; \
+		done \
+	fi
+
 .PHONY: test
 test:
-	@echo $(pkgs)
+	@if [ -w . ]; then \
+		for mod in $(abspath $(wildcard Submodules/*)); do \
+			echo $$mod; \
+		done \
+	fi
 
 .PHONY: clean
 clean:
