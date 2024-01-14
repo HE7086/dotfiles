@@ -21,6 +21,7 @@ Submodules:
 	else \
 		for mod in $(abspath $(wildcard Submodules/*)); do \
 			cp --reflink=auto -ru $$mod ~/.config/Submodules; \
+			chmod 755 $$mod; \
 		done \
 	fi
 
