@@ -22,9 +22,7 @@ Submodules:
 		for mod in $(abspath $(wildcard Submodules/*)); do \
 			cp --reflink=auto -ru $$mod ~/.config/Submodules; \
 		done; \
-		for mod in $(abspath $(wildcard ~/.config/Submodules/*)); do \
-			chmod -R 755 $$mod; \
-		done \
+		chmod -R 755 ~/.config/Submodules; \
 	fi
 
 .PHONY: test
