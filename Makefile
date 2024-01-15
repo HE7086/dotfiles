@@ -21,15 +21,18 @@ Submodules:
 	else \
 		for mod in $(abspath $(wildcard Submodules/*)); do \
 			cp --reflink=auto -ru $$mod ~/.config/Submodules; \
-		done \
+		done; \
 		for mod in $(abspath $(wildcard ~/.config/Submodules/*)); do \
-			chmod 755 $$mod; \
-		done
+			chmod -R 755 $$mod; \
+		done \
 	fi
 
 .PHONY: test
 test:
 	@if [ -w . ]; then \
+		for mod in $(abspath $(wildcard Submodules/*)); do \
+			echo $$mod; \
+		done; \
 		for mod in $(abspath $(wildcard Submodules/*)); do \
 			echo $$mod; \
 		done \
