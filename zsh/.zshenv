@@ -6,9 +6,11 @@ export LESSHISTFILE=-
 export GPG_TTY=$TTY
 export MANPAGER='sh -c "col -bx | bat -pl man"'
 export MANROFFOPT='-c'
+export LESS='-R'
 
 typeset -U PATH path
 path=(
+    /opt/clangd/bin
     ~/.nix-profile/bin
     ~/.local/bin
     $path
