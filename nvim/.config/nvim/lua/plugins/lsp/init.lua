@@ -7,7 +7,6 @@ require('plugins.lsp.texlab')
 require('plugins.lsp.rust')
 require('plugins.lsp.cmake')
 require('plugins.lsp.nil_ls')
-require('plugins.lsp.zls')
 
 -- auto show diagnostic hover
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
