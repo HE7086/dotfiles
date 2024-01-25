@@ -23,7 +23,7 @@ function M.run_file()
             return string.format("cd %s && gcc %s -o %s && %s", dir, file, exe, path.join(dir, exe))
         end,
         ["cpp"] = function(dir, file, exe)
-            return string.format("cd %s && g++ -march=native -lfmt %s -o %s && %s", dir, file, exe, path.join(dir, exe))
+            return string.format("cd %s && g++ -std=c++23 -lfmt %s -o %s && %s", dir, file, exe, path.join(dir, exe))
         end,
         ["rust"] = function(dir, file, exe)
             return string.format("cd %s && rustc %s -o %s && %s", dir, file, exe, path.join(dir, exe))

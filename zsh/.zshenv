@@ -10,7 +10,6 @@ export LESS='-R'
 
 typeset -U PATH path
 path=(
-    /opt/clangd/bin
     ~/.nix-profile/bin
     ~/.local/bin
     $path
