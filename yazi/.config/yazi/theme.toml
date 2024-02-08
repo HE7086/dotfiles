@@ -5,34 +5,37 @@ separator_close = ""
 [filetype]
 rules = [
     # Images
-	{ mime = "image/*", fg = "cyan" },
+    { mime = "image/*", fg = "cyan" },
 
-	# Videos
-	{ mime = "video/*", fg = "yellow" },
-	{ mime = "audio/*", fg = "yellow" },
+    # Videos
+    { mime = "video/*", fg = "yellow" },
+    { mime = "audio/*", fg = "yellow" },
 
-	# Archives
-	{ mime = "application/zip",             fg = "magenta" },
-	{ mime = "application/gzip",            fg = "magenta" },
-	{ mime = "application/x-tar",           fg = "magenta" },
-	{ mime = "application/x-bzip",          fg = "magenta" },
-	{ mime = "application/x-bzip2",         fg = "magenta" },
-	{ mime = "application/x-7z-compressed", fg = "magenta" },
-	{ mime = "application/x-rar",           fg = "magenta" },
-	{ mime = "application/xz",              fg = "magenta" },
+    # Archives
+    { mime = "application/zip",             fg = "magenta" },
+    { mime = "application/gzip",            fg = "magenta" },
+    { mime = "application/x-tar",           fg = "magenta" },
+    { mime = "application/x-bzip",          fg = "magenta" },
+    { mime = "application/x-bzip2",         fg = "magenta" },
+    { mime = "application/x-7z-compressed", fg = "magenta" },
+    { mime = "application/x-rar",           fg = "magenta" },
+    { mime = "application/xz",              fg = "magenta" },
+    { mime = "application/zstd",            fg = "magenta" },
 
-	# Documents
-	{ mime = "application/doc",   fg = "green" },
-	{ mime = "application/pdf",   fg = "green" },
-	{ mime = "application/rtf",   fg = "green" },
-	{ mime = "application/vnd.*", fg = "green" },
+    # Documents
+    { mime = "application/doc",   fg = "green" },
+    { mime = "application/pdf",   fg = "green" },
+    { mime = "application/rtf",   fg = "green" },
+    { mime = "application/vnd.*", fg = "green" },
 
-    { mime = "*", is = "block", fg = "yellow" },
-    { mime = "*", is = "char", fg = "yellow" },
-    { mime = "*", is = "fifo", fg = "yellow" },
-    { mime = "*", is = "sock", fg = "yellow" },
-    { mime = "*", is = "orphan", fg = "red" },
-    { mime = "*", is = "link", fg = "cyan" },
+    { name = "*", is = "block", fg = "yellow" },
+    { name = "*", is = "char", fg = "yellow" },
+    { name = "*", is = "fifo", fg = "yellow" },
+    { name = "*", is = "sock", fg = "yellow" },
+    { name = "*", is = "orphan", fg = "magenta" },
+    { name = "*", is = "link", fg = "cyan" },
 
     { name = "*/", fg = "blue" },
+
+    { name = "*", is = "exec", fg = "green" },
 ]
