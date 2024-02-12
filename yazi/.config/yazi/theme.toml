@@ -28,12 +28,12 @@ rules = [
     { mime = "application/rtf",   fg = "green" },
     { mime = "application/vnd.*", fg = "green" },
 
-    { name = "*", is = "block", fg = "yellow" },
-    { name = "*", is = "char", fg = "yellow" },
-    { name = "*", is = "fifo", fg = "yellow" },
-    { name = "*", is = "sock", fg = "yellow" },
+    { name = "*", is = "block",  fg = "yellow" },
+    { name = "*", is = "char",   fg = "yellow" },
+    { name = "*", is = "fifo",   fg = "yellow" },
+    { name = "*", is = "sock",   fg = "yellow" },
     { name = "*", is = "orphan", fg = "magenta" },
-    { name = "*", is = "link", fg = "cyan" },
+    { name = "*", is = "link",   fg = "cyan" },
 
     { name = "*/", fg = "blue" },
 

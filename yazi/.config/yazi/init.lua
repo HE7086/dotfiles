@@ -4,10 +4,10 @@ function Folder:linemode(area)
 	for _, f in ipairs(self:by_kind(self.CURRENT).window) do
 		local spans = { ui.Span(" ") }
 
-        if f.cha.is_dir then
-            spans[#spans + 1] = ui.Span(f:size() or "")
-            -- TODO: number of child files
-        else
+        -- if f.cha.is_dir then
+        --     spans[#spans + 1] = ui.Span(f:size() or "")
+        --     -- TODO: number of child files
+        -- else
             local size = f:size()
             if f.cha.is_link then
                 spans[#spans + 1] = ui.Span("-> ")
@@ -16,7 +16,7 @@ function Folder:linemode(area)
             end
             spans[#spans + 1] = ui.Span(size and ya.readable_size(size) or "")
             spans[#spans + 1] = ui.Span(" ")
-        end
+        -- end
 
 		lines[#lines + 1] = ui.Line(spans)
 	end
