@@ -1,9 +1,9 @@
 [manager]
 prepend_keymap = [
-    { on = [ "l" ], exec = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
-    { on = [ "q" ], exec = "quit --no-cwd-file",        desc = "Exit the process without writing cwd-file" },
-    { on = [ "Q" ], exec = "quit",                      desc = "Exit the process" },
+    { on = [ "l" ], run = "plugin --sync smart-enter", desc = "Enter the child directory, or open the file" },
+    { on = [ "q" ], run = "quit --no-cwd-file",        desc = "Exit the process without writing cwd-file" },
+    { on = [ "Q" ], run = "quit",                      desc = "Exit the process" },
 
-    { on = [ "d", "d" ], exec = "remove --force",               desc = "Move files to trash" },
-    { on = [ "d", "D" ], exec = "remove --force --permanently", desc = "Delete files" },
+    { on = [ "d", "d" ], run = "remove --force",               desc = "Move files to trash" },
+    { on = [ "d", "D" ], run = "remove --force --permanently", desc = "Delete files" },
 ]
