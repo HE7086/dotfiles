@@ -3,7 +3,7 @@ family = "Iosevka HE7086"
 spacing = "fontconfig-mono"
 serifs = "sans"
 noCvSs = true
-export-glyph-names = true
+exportGlyphNames = true
 
 [buildPlans.iosevka-he7086.variants.design]
 capital-g = "toothless-rounded-serifless-hooked"
@@ -12,7 +12,7 @@ f = "flat-hook-serifless"
 l = "tailed-serifed"
 r = "compact-serifed"
 one = "base"
-two = "straight-neck"
+two = "straight-neck-serifless"
 asterisk = "penta-low"
 caret = "low"
 number-sign = "slanted"
@@ -30,7 +30,7 @@ enables = [ "arrow"
           , "html-comment"
           ]
 
-[buildPlans.iosevka-he7086.exclude-chars]
+[buildPlans.iosevka-he7086.excludeChars]
 ranges = [[0x2639, 0x263a]]
 # ☹ ☺ 
 

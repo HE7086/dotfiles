@@ -9,8 +9,8 @@ license=("custom:OFL")
 makedepends=("git" "ttfautohint" "npm")
 source=("https://github.com/be5invis/Iosevka/archive/refs/tags/v${pkgver}.tar.gz"
         "private-build-plans.toml")
-sha256sums=('c4a2ec3ec1efae4824a5e644e75df6173a0dc1ed524a4af038760599044c9334'
-            '65dcf5e13094e138e529a4d8091d2e680daab8203b10c1b9d84c8ba5c328d2e6')
+sha256sums=('7c4873e524354a2a2ce67c24cbf946e23dbeb615c265b8909976d672071ffe5a'
+            'c74159c11113147f23a4799c8e548c70ecbea5f8b951ff2f92cb5c5bd5ae3214')
 
 prepare() {
     cp "private-build-plans.toml" "${_git_name}/private-build-plans.toml"
