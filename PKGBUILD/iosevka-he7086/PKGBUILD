@@ -1,5 +1,5 @@
 pkgname=ttf-iosevka-he7086
-pkgver=27.3.5
+pkgver=29.1.0
 _git_name=Iosevka-${pkgver}
 pkgrel=2
 pkgdesc="Typeface family designed for coding, terminal use and technical documents. Customized verion for he7086."

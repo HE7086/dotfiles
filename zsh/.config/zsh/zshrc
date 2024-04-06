@@ -29,6 +29,9 @@ zstyle ':completion:*' cache-path ~/.cache/zsh/zcompcache
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' accept-exact '*(N)'
 
+zstyle ':completion:*:manuals'    separate-sections true
+zstyle ':completion:*:manuals.*'  insert-sections   true
+
 # cd options
 setopt autocd
 setopt auto_pushd
