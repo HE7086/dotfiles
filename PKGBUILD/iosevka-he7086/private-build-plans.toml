@@ -1,11 +1,11 @@
-[buildPlans.iosevka-he7086]
+[buildPlans.iosevkaHe7086]
 family = "Iosevka HE7086"
 spacing = "fontconfig-mono"
 serifs = "sans"
 noCvSs = true
 exportGlyphNames = true
 
-[buildPlans.iosevka-he7086.variants.design]
+[buildPlans.iosevkaHe7086.variants.design]
 capital-g = "toothless-rounded-serifless-hooked"
 capital-q = "crossing"
 f = "flat-hook-serifless"
@@ -19,10 +19,10 @@ number-sign = "slanted"
 ampersand = "upper-open"
 percent = "rings-continuous-slash"
 
-[buildPlans.iosevka-he7086.variants.italic]
+[buildPlans.iosevkaHe7086.variants.italic]
 f = "flat-hook-tailed"
 
-[buildPlans.iosevka-he7086.ligations]
+[buildPlans.iosevkaHe7086.ligations]
 enables = [ "arrow"
           , "center-ops"
           , "ltgt-diamond"
@@ -30,11 +30,11 @@ enables = [ "arrow"
           , "html-comment"
           ]
 
-[buildPlans.iosevka-he7086.excludeChars]
+[buildPlans.iosevkaHe7086.excludeChars]
 ranges = [[0x2639, 0x263a]]
 # ☹ ☺ 
 
-[collectPlans.iosevka-he7086]
-from = ["iosevka-he7086"]
+[collectPlans.iosevkaHe7086]
+from = ["iosevkaHe7086"]
 
 # The quick brown fox jumps over the lazy dog

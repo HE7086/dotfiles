@@ -25,6 +25,10 @@ Submodules:
 		chmod -R 755 ~/.config/Submodules; \
 	fi
 
+.PHONY: purge
+purge:
+	@echo purge
+
 .PHONY: test
 test:
 	@if [ -w . ]; then \
