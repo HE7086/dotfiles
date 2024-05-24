@@ -2,10 +2,10 @@ return {
   "AstroNvim/astrolsp",
   opts = {
     features = {
-      autoformat = true, -- enable or disable auto formatting on start
-      codelens = true, -- enable/disable codelens refresh on start
-      inlay_hints = false, -- enable/disable inlay hints on start
-      semantic_tokens = true, -- enable/disable semantic token highlighting
+      autoformat = true,
+      codelens = true,
+      inlay_hints = false,
+      semantic_tokens = true,
     },
     formatting = {
       format_on_save = {
@@ -18,7 +18,7 @@ return {
       disabled = {
         "lua_ls",
       },
-      timeout_ms = 1000, -- default format timeout
+      timeout_ms = 1000,
     },
     servers = {
       "clangd"
@@ -43,6 +43,8 @@ return {
     mappings = {
       n = {
         gl = { function() vim.diagnostic.open_float() end, desc = "Hover diagnostics" },
+        ["<F18>"] = { function() vim.lsp.buf.rename() end, desc = "Rename" },
+        ["<A-CR>"] = { function() vim.lsp.buf.code_action() end, desc = "Code actions" },
       },
     },
     on_attach = function() end,

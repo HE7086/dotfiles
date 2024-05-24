@@ -2,24 +2,24 @@ return {
   "AstroNvim/astrocore",
   opts = {
     features = {
-      large_buf = { size = 1024 * 500, lines = 10000 }, -- set global limits for large files for disabling features like treesitter
-      autopairs = true, -- enable autopairs at start
-      cmp = true, -- enable completion at start
-      diagnostics_mode = 3, -- diagnostic mode on start (0 = off, 1 = no signs/virtual text, 2 = no virtual text, 3 = on)
-      highlighturl = true, -- highlight URLs at start
-      notifications = true, -- enable notifications at start
+      large_buf = { size = 1024 * 500, lines = 10000 },
+      autopairs = true,
+      cmp = true,
+      diagnostics_mode = 3,
+      highlighturl = true,
+      notifications = true,
     },
     diagnostics = {
       virtual_text = true,
       underline = true,
     },
     options = {
-      opt = { -- vim.opt.<key>
-        relativenumber = true, -- sets vim.opt.relativenumber
-        number = true, -- sets vim.opt.number
-        spell = true, -- sets vim.opt.spell
-        signcolumn = "auto", -- sets vim.opt.signcolumn to auto
-        wrap = false, -- sets vim.opt.wrap
+      opt = {
+        relativenumber = true,
+        number = true,
+        spell = true,
+        signcolumn = "auto",
+        wrap = false,
 
         scrolloff = 5,
         sidescrolloff = 8,

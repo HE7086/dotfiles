@@ -5,7 +5,7 @@ return {
     local condition = require("astroui.status.condition")
     local hl = require("astroui.status.hl")
 
-    opts.statusline = { -- statusline
+    opts.statusline = {
       hl = { fg = "fg", bg = "bg" },
       status.component.mode({
         mode_text = { padding = { left = 1, right = 1 } },
@@ -51,23 +51,23 @@ return {
 
     opts.winbar = false
 
-    opts.tabline = { -- tabline
-      { -- file tree padding
+    opts.tabline = {
+      {
         condition = function(self)
           self.winid = vim.api.nvim_tabpage_list_wins(0)[1]
           self.winwidth = vim.api.nvim_win_get_width(self.winid)
-          return self.winwidth ~= vim.o.columns -- only apply to sidebars
+          return self.winwidth ~= vim.o.columns
             and not require("astrocore.buffer").is_valid(
               vim.api.nvim_win_get_buf(self.winid)
-            ) -- if buffer is not in tabline
+            )
         end,
         provider = function(self)
           return (" "):rep(self.winwidth + 1)
         end,
         hl = { bg = "tabline_bg" },
       },
-      status.heirline.make_buflist(status.component.tabline_file_info()), -- component for each buffer tab
-      status.component.fill({ hl = { bg = "tabline_bg" } }), -- fill the rest of the tabline with background color
+      status.heirline.make_buflist(status.component.tabline_file_info()),
+      status.component.fill({ hl = { bg = "tabline_bg" } }),
       {
         condition = function()
           return #vim.api.nvim_list_tabpages() >= 2
