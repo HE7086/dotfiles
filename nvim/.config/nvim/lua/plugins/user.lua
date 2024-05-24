@@ -1,8 +1,14 @@
 return {
-  { "navarasu/onedark.nvim" },
-  { "kylechui/nvim-surround" },
+  { "tpope/vim-fugitive" },
+  -- { "navarasu/onedark.nvim" },
+  -- { "olimorris/onedarkpro.nvim" },
+  { "kylechui/nvim-surround",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({})
+    end,
+  },
 
-  { "andweeb/presence.nvim" },
   { "ray-x/lsp_signature.nvim",
     event = "BufRead",
     config = function()
@@ -16,12 +22,9 @@ return {
     end,
   },
 
-  { "max397574/better-escape.nvim", enabled = false },
-
   { "L3MON4D3/LuaSnip",
     config = function(plugin, opts)
-      require "astronvim.plugins.configs.luasnip"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom luasnip configuration such as filetype extend or custom snippets
+      require "astronvim.plugins.configs.luasnip"(plugin, opts)
       local luasnip = require("luasnip")
       luasnip.filetype_extend("javascript", { "javascriptreact" })
     end,
@@ -29,8 +32,7 @@ return {
 
   { "windwp/nvim-autopairs",
     config = function(plugin, opts)
-      require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts) -- include the default astronvim config that calls the setup call
-      -- add more custom autopairs configuration such as custom rules
+      require "astronvim.plugins.configs.nvim-autopairs"(plugin, opts)
       local npairs = require "nvim-autopairs"
       local Rule = require "nvim-autopairs.rule"
       local cond = require "nvim-autopairs.conds"

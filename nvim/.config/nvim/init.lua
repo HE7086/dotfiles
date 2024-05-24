@@ -10,17 +10,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   }
 end
 vim.opt.rtp:prepend(lazypath)
-vim.api.nvim_create_user_command("W", "w", {})
-vim.api.nvim_create_user_command("LU", function()
-  vim.api.nvim_command("Lazy update")
-  vim.api.nvim_command("MasonUpdate")
-  vim.api.nvim_command("TSUpdate")
-end, {})
 
 require("lazy").setup({
   {
     "AstroNvim/AstroNvim",
-    version = "^4", -- Remove version tracking to elect for nighly AstroNvim
+    version = "^4", -- Remove version tracking to elect for nightly AstroNvim
     import = "astronvim.plugins",
     opts = { -- AstroNvim options must be set here with the `import` key
       mapleader = " ", -- This ensures the leader key must be configured before Lazy is set up
@@ -32,7 +26,7 @@ require("lazy").setup({
   },
   { import = "plugins" },
 }, {
-  install = { colorscheme = { "onedark" } },
+  install = { colorscheme = { "astrodark" } },
   ui = { backdrop = 100 },
   performance = {
     rtp = {
@@ -46,3 +40,5 @@ require("lazy").setup({
     },
   },
 })
+
+require("custom")

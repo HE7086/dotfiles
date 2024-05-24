@@ -1,0 +1,6 @@
+vim.api.nvim_create_user_command("W", "w", {})
+vim.api.nvim_create_user_command("LU", function()
+  vim.api.nvim_command("Lazy update")
+  vim.api.nvim_command("MasonUpdate")
+  vim.api.nvim_command("TSUpdate")
+end, {})

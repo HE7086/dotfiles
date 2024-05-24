@@ -1,7 +1,7 @@
 return {
   "AstroNvim/astroui",
   opts = {
-    colorscheme = "onedark",
+    colorscheme = "astrodark",
     highlights = {
       init = {},
       astrodark = {},
@@ -17,6 +17,11 @@ return {
       LSPLoading8 = "⠧",
       LSPLoading9 = "⠇",
       LSPLoading10 = "⠏",
+    },
+    status = {
+      attributes = {
+        buffer_active = { bold = true, italic = false },
+      },
     },
   },
 }

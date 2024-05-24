@@ -22,8 +22,8 @@ return {
         wrap = false, -- sets vim.opt.wrap
 
         scrolloff = 5,
-        sidescroll = 1,
         sidescrolloff = 8,
+        showtabline = 1
       },
       g = { -- vim.g.<key>
       },
@@ -59,19 +59,6 @@ return {
             local new_showtabline = #vim.t.bufs > 1 and 2 or 1
             if new_showtabline ~= vim.opt.showtabline:get() then
               vim.opt.showtabline = new_showtabline
-            end
-          end,
-        },
-      },
-      autohidewinbar = {
-        {
-          event = "User",
-          pattern = "AstroLspSetup",
-          desc = "Hide winbar when no lsp available",
-          group = "autohidewinbar",
-          callback = function()
-            if #vim.lsp.get_clients() == 0 then
-              vim.opt_local.winbar = nil
             end
           end,
         },
