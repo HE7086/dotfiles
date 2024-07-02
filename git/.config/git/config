@@ -1,6 +1,7 @@
 [core]
     editor = nvim
     autocrlf = input
+    safecrlf = true
 [user]
     email = me@heyi7086.com
     name = HE7086

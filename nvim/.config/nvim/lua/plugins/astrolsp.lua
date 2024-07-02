@@ -21,7 +21,8 @@ return {
       timeout_ms = 1000,
     },
     servers = {
-      "clangd"
+      -- "clangd"
+      "rust_analyzer"
     },
     config = {
       -- clangd = { capabilities = { offsetEncoding = "utf-8" } },
