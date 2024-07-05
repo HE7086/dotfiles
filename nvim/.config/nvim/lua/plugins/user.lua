@@ -29,12 +29,6 @@ return {
     "windwp/nvim-autopairs",
     config = function(plugin, opts)
       require("astronvim.plugins.configs.nvim-autopairs")(plugin, opts)
-      local npairs = require("nvim-autopairs")
-      local Rule = require("nvim-autopairs.rule")
-      npairs.add_rules(
-        -- disable for .vim files, but it work for another filetypes
-        Rule("a", "a", "-vim")
-      )
     end,
   },
 
