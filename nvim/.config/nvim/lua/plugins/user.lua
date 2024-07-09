@@ -28,4 +28,9 @@ return {
     "NoahTheDuke/vim-just",
     ft = { "just" },
   },
+
+  {
+    "max397574/better-escape.nvim",
+    enabled = false,
+  },
 }
