@@ -16,15 +16,12 @@ alias lr='eza -TF'
 
 # alias ra='ranger'
 alias ra='ya'
-alias rf='rifle'
-alias nf='neofetch'
 alias sl='ls'
 alias py='python'
 alias a='aria2c'
 alias svim='nvim --clean'
 alias vim=nvim
 alias pc='proxychains'
-alias nv='neovide'
 alias tm='tmux -2'
 # convert encoding: echo 'xxx' | conv
 # convmv -r -f gb18030 -t utf-8 <file>
