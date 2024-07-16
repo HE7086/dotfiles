@@ -178,6 +178,14 @@ function nix() {
     esac
 }
 
+function printpath() {
+    if [[ -n $path ]]; then
+        printf '%s\n' $path | nl
+    else
+        echo $PATH | sed 's/:/\n/g' | nl
+    fi
+}
+
 # function bkup() {
 #     [[ $# -lt 2 ]] && echo "usage: bkup <src> <dst>" && return 0;
 

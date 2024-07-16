@@ -10,6 +10,7 @@ export LESS='-R'
 
 typeset -U PATH path
 path=(
+    ~/.local/share/JetBrains/Toolbox/scripts
     ~/.nix-profile/bin
     ~/.local/bin
     $path
