@@ -41,5 +41,4 @@ require("lazy").setup({
   },
 })
 
-require("code_runner")
 require("custom")
