@@ -42,15 +42,4 @@ return {
     enabled = false,
   },
 
-  {
-    "HE7086/code-runner.nvim",
-    cmd = "CodeRunnerRun",
-    dependencies = {
-      "akinsho/toggleterm.nvim",
-    },
-    opts = {},
-    keys = {
-      { "<F22>", "<Cmd>CodeRunnerRun<Cr>", desc = "Run Code" },
-    },
-  },
 }
