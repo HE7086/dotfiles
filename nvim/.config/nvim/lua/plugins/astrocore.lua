@@ -23,21 +23,31 @@ return {
 
         scrolloff = 5,
         sidescrolloff = 8,
-        showtabline = 1
+        showtabline = 1,
       },
       g = { -- vim.g.<key>
       },
     },
     mappings = {
       n = {
-        L = { function() require("astrocore.buffer").nav(vim.v.count1) end, desc = "Next buffer" },
-        H = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
+        L = {
+          function()
+            require("astrocore.buffer").nav(vim.v.count1)
+          end,
+          desc = "Next buffer",
+        },
+        H = {
+          function()
+            require("astrocore.buffer").nav(-vim.v.count1)
+          end,
+          desc = "Previous buffer",
+        },
 
         ["<Leader>bD"] = {
           function()
-            require("astroui.status.heirline").buffer_picker(
-              function(bufnr) require("astrocore.buffer").close(bufnr) end
-            )
+            require("astroui.status.heirline").buffer_picker(function(bufnr)
+              require("astrocore.buffer").close(bufnr)
+            end)
           end,
           desc = "Pick to close",
         },
