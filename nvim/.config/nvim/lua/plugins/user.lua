@@ -44,13 +44,11 @@ return {
 
   {
     "HE7086/code-runner.nvim",
-    lazy = true,
     cmd = "CodeRunnerRun",
     dependencies = {
-      "nvim-lua/plenary.nvim",
       "akinsho/toggleterm.nvim",
     },
-    config = true,
+    opts = {},
     keys = {
       { "<F22>", "<Cmd>CodeRunnerRun<Cr>", desc = "Run Code" },
     },
