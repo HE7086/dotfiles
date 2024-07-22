@@ -89,7 +89,7 @@ function clip() {
 #----------------------------------------------------------------------------------------------------
 # remove package recursively without touching other packages' optional deps
 #----------------------------------------------------------------------------------------------------
-function remove_packge() {
+function remove_package() {
     if [[ $# -ne 0 ]]; then
         sudo pacman -R "$*"
     fi
@@ -178,7 +178,7 @@ function nix() {
     esac
 }
 
-function printpath() {
+function path() {
     if [[ -n $path ]]; then
         printf '%s\n' $path | nl
     else
@@ -194,7 +194,7 @@ function printpath() {
 #     DIR=${2#*:}
 #     RSYNC='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 --delete'
 
-#     if ssh $HOST "test -e $DIR/lastupdate"; then
+#     if ssh $HOST "test -e $DIR/lastupdate"; then 
 #         REMOTE_TIMESTAMP=$(ssh $HOST "cat $DIR/lastupdate")
 #         LASTUPDATE=$(cat "$SRC/lastupdate")
 
