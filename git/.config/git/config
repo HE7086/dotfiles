@@ -70,7 +70,7 @@
     a = add -A
     cm = commit
     st = status --show-stash
-    pl = pull --recurse-submodules
+    pl = pull --recurse-submodules --rebase
     df = !git diff --name-only --relative --diff-filter=d | xargs bat --diff
     lg = log --abbrev-commit --graph 
     cl = clone --recursive
