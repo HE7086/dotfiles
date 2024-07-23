@@ -1,0 +1,5 @@
+#!/bin/bash
+
+if [[ $XDG_CURRENT_DESKTOP = KDE ]]; then
+  systemctl --user restart plasma-plasmashell.service
+fi
