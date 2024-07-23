@@ -5,41 +5,51 @@ return {
     local condition = require("astroui.status.condition")
     local hl = require("astroui.status.hl")
 
+    local lsp_icon = { -- lsp info icon
+      provider = status.provider.str({
+        str = require("astroui").get_icon("ActiveLSP", 1),
+      }),
+      hl = hl.get_attributes("lsp"),
+      surround = {
+        separator = "right",
+        color = "lsp_bg",
+        condition = condition.lsp_attached,
+      },
+      on_click = {
+        name = "heirline_lsp",
+        callback = function()
+          vim.schedule(vim.cmd.LspInfo)
+        end,
+      },
+    }
+
     opts.statusline = {
       hl = { fg = "fg", bg = "bg" },
       status.component.mode({
         mode_text = { padding = { left = 1, right = 1 } },
       }),
       status.component.git_branch(),
-      -- status.component.file_info(),
       status.component.git_diff(),
       status.component.diagnostics(),
-
-      status.component.breadcrumbs(),
-      status.component.fill(),
-
       status.component.cmd_info(),
+
       status.component.fill(),
-      status.component.lsp({
-        lsp_client_names = false,
-      }),
-      {
-        provider = status.provider.str({
-          str = require("astroui").get_icon("ActiveLSP", 1),
-        }),
-        hl = hl.get_attributes("lsp"),
-        surround = {
-          separator = "right",
-          color = "lsp_bg",
-          condition = condition.lsp_attached,
-        },
-        on_click = {
-          name = "heirline_lsp",
-          callback = function()
-            vim.schedule(vim.cmd.LspInfo)
-          end,
-        },
+
+      -- status.component.lsp({
+      --   lsp_client_names = false,
+      --   on_click = false,
+      -- }),
+      { -- filename
+        provider = "%<%F %m%r",
       },
+
+      status.component.fill(),
+
+      status.component.file_info({
+        file_modified = false,
+        file_read_only = false,
+      }),
+      lsp_icon,
       status.component.virtual_env(),
       status.component.treesitter({
         str = { str = " ", icon = { kind = "ActiveTS" }, padding = false },
@@ -52,6 +62,15 @@ return {
     }
 
     opts.winbar = false
+    -- opts.winbar = { -- winbar
+    --   init = function(self)
+    --     self.bufnr = vim.api.nvim_get_current_buf()
+    --   end,
+    --   condition = function(self)
+    --     return status.condition.is_active() and status.condition.lsp_attached(self.bufnr)
+    --   end,
+    --   status.component.breadcrumbs({ hl = status.hl.get_attributes("winbar", true) }),
+    -- }
 
     opts.tabline = {
       {
@@ -101,6 +120,9 @@ return {
       status.component.foldcolumn(),
       status.component.numbercolumn(),
       status.component.signcolumn(),
+    }
+    opts.opts = {
+      colors = require("astroui").config.status.setup_colors(),
     }
   end,
 }
