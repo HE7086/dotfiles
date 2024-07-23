@@ -52,6 +52,7 @@ alias mvr='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify
 alias bkup='rsync --archive -hh --partial --info=stats1 --info=progress2 --modify-window=1 --delete'
 
 alias wget='wget --hsts-file="~/.cache/wget-hsts"'
+alias ip='ip --color=auto'
 
 alias Ss='pacman -Ss'
 alias Si='pacman -Si'

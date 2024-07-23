@@ -186,6 +186,15 @@ function path() {
     fi
 }
 
+function ssh-exit() {
+    for socket in ~/.ssh/ssh-*@*:*; do
+        if [[ -S "$socket" ]]; then
+            echo $socket
+            ssh -S "$socket" -O exit "$socket"
+        fi
+    done
+}
+
 # function bkup() {
 #     [[ $# -lt 2 ]] && echo "usage: bkup <src> <dst>" && return 0;
 
