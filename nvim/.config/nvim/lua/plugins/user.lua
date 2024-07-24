@@ -5,17 +5,13 @@ return {
   {
     "kylechui/nvim-surround",
     event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({})
-    end,
+    opts = {},
   },
 
   {
     "ray-x/lsp_signature.nvim",
     event = "BufRead",
-    config = function()
-      require("lsp_signature").setup()
-    end,
+    opts = {},
   },
 
   {
@@ -38,8 +34,14 @@ return {
   },
 
   {
+    "mrded/nvim-lsp-notify",
+    opts = {
+      notify = require("notify"),
+    }
+  },
+
+  {
     "max397574/better-escape.nvim",
     enabled = false,
   },
-
 }
