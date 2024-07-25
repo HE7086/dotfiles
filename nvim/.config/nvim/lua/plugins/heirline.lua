@@ -21,6 +21,7 @@ return {
           vim.schedule(vim.cmd.LspInfo)
         end,
       },
+      condition = condition.lsp_attached,
     }
 
     opts.statusline = {
@@ -35,10 +36,6 @@ return {
 
       status.component.fill(),
 
-      -- status.component.lsp({
-      --   lsp_client_names = false,
-      --   on_click = false,
-      -- }),
       { -- filename
         provider = "%<%F %m%r",
       },
