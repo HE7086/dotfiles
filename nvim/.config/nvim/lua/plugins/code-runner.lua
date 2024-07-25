@@ -23,6 +23,9 @@ return {
         end,
       },
     },
+    term = function(command)
+        require("toggleterm").exec(command, nil, nil, nil, nil, "Code Runner")
+    end
   },
   keys = {
     { "<F22>", "<Cmd>CodeRunnerRun<Cr>", desc = "Run Code" },
