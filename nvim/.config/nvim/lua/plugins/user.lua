@@ -37,8 +37,10 @@ return {
     "mrded/nvim-lsp-notify",
     opts = {
       notify = require("notify"),
-    }
+    },
   },
+
+  { "HE7086/sudoedit.nvim" },
 
   {
     "max397574/better-escape.nvim",
