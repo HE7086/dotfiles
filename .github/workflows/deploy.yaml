@@ -1,0 +1,42 @@
+name: "Deploy Dotfiles"
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        host: [herd, fridge, toaster]
+
+    steps:
+      - name: Configure SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.BOT_SSH_KEY }}" > ~/.ssh/id_ed25519
+          chmod 400 ~/.ssh/id_ed25519
+          echo "${{ secrets.BOT_SSH_CERT }}" > ~/.ssh/id_ed25519-cert.pub
+          chmod 400 ~/.ssh/id_ed25519-cert.pub
+          echo "@cert-authority *.heyi7086.com ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICETRx1nrSVwLdwod4KaDIZYVf6La97GjbwMSza6/Put" > ~/.ssh/known_hosts
+          chmod 400 ~/.ssh/known_hosts
+
+      - name: Deploy Dotfiles
+        run: |
+          ssh -v \
+            -i ~/.ssh/id_ed25519 \
+            -o CertificateFile=~/.ssh/id_ed25519-cert.pub \
+            -c aes256-gcm@openssh.com \
+            -m hmac-sha2-512-etm@openssh.com \
+            -o KexAlgorithms=sntrup761x25519-sha512@openssh.com \
+            -o HostKeyAlgorithms=ssh-ed25519-cert-v01@openssh.com \
+            -o PubkeyAcceptedAlgorithms=ssh-ed25519-cert-v01@openssh.com,ssh-ed25519 \
+            -o StrictHostKeyChecking=yes \
+            -o ControlMaster=no \
+            "he@${{ matrix.host }}.heyi7086.com"
+
+      - name: Clear SSH Credential
+        run: rm -rf ~/.ssh
+        if: ${{ always() }}
