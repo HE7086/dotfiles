@@ -74,5 +74,11 @@ return {
         },
       },
     },
+    commands = {
+      W = {
+        "w",
+        desc = "write",
+      },
+    },
   },
 }
