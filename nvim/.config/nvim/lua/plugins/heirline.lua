@@ -37,7 +37,7 @@ return {
       status.component.fill(),
 
       { -- filename
-        provider = "%<%F %m%r",
+        provider = string.format("%%<%s %%m%%r", require("sudoedit").filename),
       },
 
       status.component.fill(),
