@@ -43,6 +43,16 @@ return {
   { "HE7086/sudoedit.nvim" },
 
   {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      require("lazy").load({ plugins = { "markdown-preview.nvim" } })
+      vim.fn["mkdp#util#install"]()
+    end,
+  },
+
+  {
     "max397574/better-escape.nvim",
     enabled = false,
   },
