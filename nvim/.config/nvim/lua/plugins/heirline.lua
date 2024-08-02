@@ -36,8 +36,25 @@ return {
 
       status.component.fill(),
 
+      { provider = "%<" },
+
       { -- filename
-        provider = string.format("%%<%s %%m%%r", require("sudoedit").filename),
+        provider = function(self)
+          return require("sudoedit").get_filename(self.bufnr)
+        end,
+      },
+
+      { provider = " %m%r" },
+
+      {
+        provider = "[sudo]",
+        hl = { fg = "red" },
+        surround = {
+          separator = "left",
+        },
+        condition = function(self)
+          return require("sudoedit").detected(self.bufnr)
+        end,
       },
 
       status.component.fill(),
