@@ -4,6 +4,7 @@ return {
     local status = require("astroui.status")
     local condition = require("astroui.status.condition")
     local hl = require("astroui.status.hl")
+    local sudoedit = require("sudoedit")
 
     local lsp_icon = { -- lsp info icon
       provider = status.provider.str({
@@ -40,7 +41,7 @@ return {
 
       { -- filename
         provider = function(self)
-          return require("sudoedit").get_filename(self.bufnr)
+          return sudoedit.get_filename(self.bufnr)
         end,
       },
 
@@ -53,7 +54,7 @@ return {
           separator = "left",
         },
         condition = function(self)
-          return require("sudoedit").detected(self.bufnr)
+          return sudoedit.detected(self.bufnr)
         end,
       },
 

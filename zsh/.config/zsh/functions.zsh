@@ -5,7 +5,7 @@
 # wenn using sudo root, preserve the variables
 function sudo() {
     case $1 in 
-        vi|vim|nvim) command sudoedit "$@";;
+        vi|vim|nvim) command sudoedit "${@:2}";;
         *) command sudo "$@";;
     esac
 }
