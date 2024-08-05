@@ -4,3 +4,4 @@ sort_by = "natural"
 sort_sensitive = false
 sort_reverse = false
 show_symlink = false
+linemode = "custom"

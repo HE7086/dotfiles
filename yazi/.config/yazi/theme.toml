@@ -2,6 +2,10 @@
 separator_open = ""
 separator_close = ""
 
+mode_normal = { fg = "white", bg = "blue" }
+mode_select = { fg = "white", bg = "red" }
+# mode_unset = ""
+
 [filetype]
 rules = [
     # Images

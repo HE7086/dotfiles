@@ -1,53 +1,61 @@
--- show number of children for folders and size for files
-function Folder:linemode(area)
-	local lines = {}
-	for _, f in ipairs(self:by_kind(self.CURRENT).window) do
-		local spans = { ui.Span(" ") }
-
-        -- if f.cha.is_dir then
-        --     spans[#spans + 1] = ui.Span(f:size() or "")
-        --     -- TODO: number of child files
-        -- else
-            local size = f:size()
-            if f.cha.is_link then
-                spans[#spans + 1] = ui.Span("-> ")
-            elseif f.cha.is_orphan then
-                spans[#spans + 1] = ui.Span("-x ")
-            end
-            spans[#spans + 1] = ui.Span(size and ya.readable_size(size) or "")
-            spans[#spans + 1] = ui.Span(" ")
-        -- end
-
-		lines[#lines + 1] = ui.Line(spans)
-	end
-	return ui.Paragraph(area, lines):align(ui.Paragraph.RIGHT)
+function Linemode:custom()
+  local spans = { ui.Span(" ") }
+  if self._file.cha.is_link then
+    spans[#spans + 1] = ui.Span("-> ")
+  elseif self._file.cha.is_orphan then
+    spans[#spans + 1] = ui.Span("-x ")
+  end
+  if self._file.cha.is_dir then
+    -- local test = self._file.cha.length
+    spans[#spans + 1] = ui.Span("")
+  else
+    local size = self._file:size()
+    spans[#spans + 1] = ui.Span(size and ya.readable_size(size):gsub(" ", "") or "")
+  end
+  return ui.Line(spans)
 end
+
+-- show user@hostname in header
+Header:children_add(function()
+  return ui.Line(string.format("%s@%s ", ya.user_name(), ya.host_name()))
+end, 0, Header.LEFT)
 
 -- increase the width of `size` to prevent wobbling
 function Status:size()
-	local h = cx.active.current.hovered
-	if h == nil then
-		return ui.Line {}
-	end
+  local h = self._tab.current.hovered
+  if not h then
+    return ui.Line({})
+  end
 
-	local style = self.style()
-    local file_size = string.format("%8s ", ya.readable_size(h:size() or h.cha.length))
-	return ui.Line {
-		ui.Span(file_size):fg(style.bg):bg(THEME.status.separator_style.bg),
-		ui.Span(THEME.status.separator_close):fg(THEME.status.separator_style.fg),
-	}
+  local style = self:style()
+  local file_size = string.format(" %8s ", ya.readable_size(h:size() or h.cha.length))
+  return ui.Line({
+    ui.Span(file_size):fg(style.bg):bg(THEME.status.separator_style.bg),
+    ui.Span(THEME.status.separator_close):fg(THEME.status.separator_style.fg),
+  })
 end
 
 -- show symlink in status bar
 function Status:name()
-	local h = cx.active.current.hovered
-	if h == nil then
-		return ui.Span("")
-	end
+  local h = cx.active.current.hovered
+  if h == nil then
+    return ui.Span("")
+  end
 
- 	local linked = ""
- 	if h.link_to ~= nil then
- 		linked = " -> " .. tostring(h.link_to)
- 	end
- 	return ui.Span(" " .. h.name .. linked)
+  local linked = ""
+  if h.link_to then
+    linked = " -> " .. tostring(h.link_to)
+  end
+  return ui.Span(" " .. h.name .. linked)
 end
+
+-- show user group next to permissions
+Status:children_add(function(self)
+  local h = self._tab.current.hovered
+  local user = h.cha.uid and ya.user_name(h.cha.uid) or h.cha.uid
+  local group = h and h.cha.gid and ya.user_name(h.cha.gid) or h.cha.gid
+  return ui.Line(string.format(" %s %s ", user, group))
+end, 0, Status.RIGHT)
+
+-- remove percentage
+Status:children_remove(5, Status.RIGHT)
