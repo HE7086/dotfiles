@@ -45,19 +45,28 @@ return {
         end,
       },
 
-      { provider = " %m%r" },
+      { provider = "%m%r" },
 
       {
-        provider = "[sudo]",
-        hl = { fg = "red" },
-        surround = {
-          separator = "left",
+        fallthrough = false,
+        {
+          provider = "[sudo]",
+          hl = { fg = "red" },
+          condition = function(self)
+            return sudoedit.detected(self.bufnr)
+          end,
         },
-        condition = function(self)
-          return sudoedit.detected(self.bufnr)
-        end,
+        {
+          provider = "[root]",
+          hl = { fg = "red" },
+          surround = {
+            separator = "left",
+          },
+          condition = function()
+            return vim.uv.getuid() == 0
+          end,
+        },
       },
-
       status.component.fill(),
 
       status.component.file_info({
