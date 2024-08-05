@@ -38,6 +38,7 @@ rules = [
     { name = "*", is = "sock",   fg = "yellow" },
     { name = "*", is = "orphan", fg = "magenta" },
     { name = "*", is = "link",   fg = "cyan" },
+    { name = "*/", is = "link",   fg = "cyan" },
 
     { name = "*/", fg = "blue" },
 
