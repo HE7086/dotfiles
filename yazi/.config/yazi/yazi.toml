@@ -13,7 +13,7 @@ sudoedit = [
 
 [open]
 prepend_rules = [
-  { mime = "text/*",           use = [ "edit", "sudoedit", "reveal" ] }
-  { mime = "inode/x-empty",    use = [ "edit", "sudoedit", "reveal" ] }
+  { mime = "text/*",           use = [ "edit", "sudoedit", "reveal" ] },
+  { mime = "inode/x-empty",    use = [ "edit", "sudoedit", "reveal" ] },
   { mime = "application/json", use = [ "edit", "sudoedit", "reveal" ] }
 ]
