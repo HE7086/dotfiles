@@ -5,3 +5,15 @@ sort_sensitive = false
 sort_reverse = false
 show_symlink = false
 linemode = "custom"
+
+[opener]
+sudoedit = [
+  { run = 'sudoedit "$@"', block = true, desc = "sudoedit", for = "linux" }
+]
+
+[open]
+prepend_rules = [
+  { mime = "text/*",           use = [ "edit", "sudoedit", "reveal" ] }
+  { mime = "inode/x-empty",    use = [ "edit", "sudoedit", "reveal" ] }
+  { mime = "application/json", use = [ "edit", "sudoedit", "reveal" ] }
+]

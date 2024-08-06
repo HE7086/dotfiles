@@ -49,13 +49,30 @@ function Status:name()
   return ui.Span(" " .. h.name .. linked)
 end
 
+-- modified time
+Status:children_add(function(self)
+  local h = self._tab.current.hovered
+  local time = (h.cha.modified or 0) // 1
+	if time == 0 then
+		return ui.Line("")
+	elseif os.date("%Y", time) == os.date("%Y") then
+		return ui.Line(os.date("%m/%d %H:%M", time))
+	else
+		return ui.Line(os.date("%Y/%m/%d %H:%M", time))
+	end
+end, 0, Status.RIGHT)
+
 -- show user group next to permissions
 Status:children_add(function(self)
   local h = self._tab.current.hovered
   local user = h.cha.uid and ya.user_name(h.cha.uid) or h.cha.uid
   local group = h and h.cha.gid and ya.user_name(h.cha.gid) or h.cha.gid
-  return ui.Line(string.format(" %s %s ", user, group))
-end, 0, Status.RIGHT)
+  return ui.Line({
+    ui.Span(string.format(" %s", user)):fg("yellow"),
+    ui.Span(":"),
+    ui.Span(string.format("%s ", group)):fg("yellow"),
+  })
+end, 1, Status.RIGHT)
 
 -- remove percentage
 Status:children_remove(5, Status.RIGHT)
