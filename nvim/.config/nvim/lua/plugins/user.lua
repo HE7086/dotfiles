@@ -16,9 +16,8 @@ return {
 
   {
     "goolord/alpha-nvim",
-    config = function()
-      require("alpha").setup(require("alpha.themes.startify").config)
-    end,
+    opts = require("alpha.themes.startify").config,
+    config = false,
   },
 
   {
@@ -43,14 +42,23 @@ return {
   { "HE7086/sudoedit.nvim" },
 
   {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    ft = { "markdown" },
-    build = function()
-      require("lazy").load({ plugins = { "markdown-preview.nvim" } })
-      vim.fn["mkdp#util#install"]()
-    end,
+    "OXY2DEV/markview.nvim",
+    ft = "markdown",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
   },
+
+  -- { -- not maintained anymore?
+  --   "iamcco/markdown-preview.nvim",
+  --   cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  --   ft = { "markdown" },
+  --   build = function()
+  --     require("lazy").load({ plugins = { "markdown-preview.nvim" } })
+  --     vim.fn["mkdp#util#install"]()
+  --   end,
+  -- },
 
   {
     "max397574/better-escape.nvim",
