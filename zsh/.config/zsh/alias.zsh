@@ -15,7 +15,6 @@ alias laa='eza -laagF'
 alias lr='eza -TF'
 
 # alias ra='ranger'
-alias ra='ya'
 alias sl='ls'
 alias py='python'
 alias a='aria2c'
