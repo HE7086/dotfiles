@@ -41,14 +41,14 @@ return {
 
   { "HE7086/sudoedit.nvim" },
 
-  {
-    "OXY2DEV/markview.nvim",
-    ft = "markdown",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
+  -- {
+  --   "OXY2DEV/markview.nvim",
+  --   ft = "markdown",
+  --   dependencies = {
+  --     "nvim-treesitter/nvim-treesitter",
+  --     "nvim-tree/nvim-web-devicons",
+  --   },
+  -- },
 
   -- { -- not maintained anymore?
   --   "iamcco/markdown-preview.nvim",
