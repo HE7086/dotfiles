@@ -45,23 +45,24 @@ return {
         end,
       },
 
-      { provider = "%m%r" },
+      -- modified
+      { provider = "%m" },
+
+      -- read only
+      { provider = "%r", hl = { fg = "red" } },
 
       {
         fallthrough = false,
-        {
+        { -- sudoedit
           provider = "[sudo]",
           hl = { fg = "red" },
           condition = function(self)
             return sudoedit.detected(self.bufnr)
           end,
         },
-        {
+        { -- root user
           provider = "[root]",
           hl = { fg = "red" },
-          surround = {
-            separator = "left",
-          },
           condition = function()
             return vim.uv.getuid() == 0
           end,
