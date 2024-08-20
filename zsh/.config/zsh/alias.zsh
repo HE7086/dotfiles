@@ -7,12 +7,18 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 
-alias ls='eza'
-alias l='eza -lgF'
-alias ll='eza -lagFH@'
-alias la='eza -lagF'
-alias laa='eza -laagF'
-alias lr='eza -TF'
+if command -v eza > /dev/null; then
+    alias ls='eza'
+    alias l='eza -lgF'
+    alias ll='eza -lagH@F'
+    alias la='eza -lagF'
+    alias laa='eza -laagF'
+    alias lr='eza -TF'
+else
+    alias ls='ls --color=auto'
+    alias l='ls --color=auto -lh'
+    alias la='ls --color=auto -lah'
+fi
 
 # alias ra='ranger'
 alias sl='ls'
@@ -22,9 +28,6 @@ alias svim='nvim --clean'
 alias vim=nvim
 alias pc='proxychains'
 alias tm='tmux -2'
-# convert encoding: echo 'xxx' | conv
-# convmv -r -f gb18030 -t utf-8 <file>
-# alias conv='iconv -f gb18030 -t utf-8'
 
 alias maek='make'
 
@@ -77,9 +80,7 @@ alias Fy='sudo pacman -Fy'
 
 alias syu='paru -Syu'
 
-# alias reboot2win='sudo grub-reboot 2 && reboot'
 alias rbt2firm='systemctl reboot --firmware-setup'
-# alias rbt2win='systemctl reboot --boot-loader-entry=auto-windows'
 function rbt2win() {
     if [[ -f /usr/bin/grub-reboot ]]; then
         sudo grub-reboot "$(grep -i windows /boot/grub/grub.cfg|cut -d"'" -f2)" 
@@ -89,7 +90,7 @@ function rbt2win() {
     fi
 
 }
-alias fixkeymap='setxkbmap -option caps:escape_shifted_capslock'
+# alias fixkeymap='setxkbmap -option caps:escape_shifted_capslock'
 alias igtop='sudo intel_gpu_top'
 
 alias printarg='python -c "print(__import__(\"sys\").argv[1:])"'
@@ -100,7 +101,6 @@ alias se='sudoedit'
 # enable appended alias
 alias sudo='sudo '
 
-alias d='dir -v'
 alias power='cat /sys/firmware/acpi/platform_profile'
 alias j='just'
 alias hm='home-manager'
