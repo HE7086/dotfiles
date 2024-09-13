@@ -5,13 +5,15 @@ function Linemode:custom()
   elseif self._file.cha.is_orphan then
     spans[#spans + 1] = ui.Span("-x ")
   end
-  if self._file.cha.is_dir then
-    -- local test = self._file.cha.length
-    spans[#spans + 1] = ui.Span("")
-  else
-    local size = self._file:size()
+
+	local size = self._file:size()
+	if size then
     spans[#spans + 1] = ui.Span(size and ya.readable_size(size):gsub(" ", "") or "")
-  end
+	else
+		local folder = cx.active:history(self._file.url)
+    spans[#spans + 1] = ui.Span(folder and tostring(#folder.files) or "")
+	end
+
   return ui.Line(spans)
 end
 
