@@ -30,7 +30,7 @@ function Status:size()
   end
 
   local style = self:style()
-  local file_size = string.format(" %8s ", ya.readable_size(h:size() or h.cha.length))
+  local file_size = string.format(" %8s ", ya.readable_size(h:size() or h.cha.len))
   return ui.Line({
     ui.Span(file_size):fg(style.bg):bg(THEME.status.separator_style.bg),
     ui.Span(THEME.status.separator_close):fg(THEME.status.separator_style.fg),
@@ -54,7 +54,7 @@ end
 -- modified time
 Status:children_add(function(self)
   local h = self._tab.current.hovered
-  local time = (h.cha.modified or 0) // 1
+  local time = (h.cha.mtime or 0) // 1
 	if time == 0 then
 		return ui.Line("")
 	elseif os.date("%Y", time) == os.date("%Y") then
