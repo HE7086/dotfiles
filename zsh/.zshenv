@@ -10,7 +10,6 @@ export LESS='-R'
 
 typeset -U PATH path
 path=(
-    ~/.nix-profile/bin
     ~/.local/bin
     $path
 )
