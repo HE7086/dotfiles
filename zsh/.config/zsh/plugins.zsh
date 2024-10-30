@@ -1,5 +1,5 @@
 #----------------------------------------------------------------------------------------------------
-# Plugin Settings
+# Theme
 #----------------------------------------------------------------------------------------------------
 
 # prompt
@@ -89,7 +89,8 @@ else
 
     # right prompts ====================
     typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-        nix_shell
+        shlvl
+        direnv
         background_jobs
         vi_mode 
         status 
@@ -137,33 +138,8 @@ else
 
     HISTORY_SUBSTRING_SEARCH_FUZZY=1
 
-
-    # non-tty plugins
     auto_source ~/.config/Submodules/powerlevel10k/powerlevel10k.zsh-theme
-
-    auto_source ~/.config/Submodules/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
-    auto_compile ~/.config/Submodules/fast-syntax-highlighting/fast-string-highlight
-    auto_compile ~/.config/Submodules/fast-syntax-highlighting/fast-highlight
-
-    auto_source ~/.config/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
-    auto_compile ~/.config/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 fi
-
-# universal plugins
-auto_source ~/.config/Submodules/zsh-autopair/zsh-autopair.plugin.zsh
-auto_compile ~/.config/Submodules/zsh-autopair/autopair.zsh
-
-auto_source ~/.config/Submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
-auto_compile ~/.config/Submodules/zsh-history-substring-search/zsh-history-substring-search.zsh
-
-auto_source ~/.config/Submodules/zsh-completions/zsh-completions.plugin.zsh
-
-# FZF
-if ! command -v fzf > /dev/null; then 
-    ~/.config/Submodules/fzf/install --no-bash --no-fish --no-key-bindings --no-completion --no-update-rc --bin
-fi
-auto_source ~/.config/Submodules/fzf/shell/key-bindings.zsh
-eval bindkey '^R' fzf-history-widget
 
 # if mode indicator wasn't setup by theme, define default
 if [[ "$MODE_INDICATOR" == "" ]]; then
@@ -184,3 +160,37 @@ if [[ $TTY =~ "/dev/tty" ]]; then
     fi
 fi
 
+function prompt_shlvl() {
+    if [[ $SHLVL -le 1 ]]; then
+        return
+    fi
+    p10k segment -t $SHLVL -i $'\u2211' -f black -b blue
+}
+
+#----------------------------------------------------------------------------------------------------
+# universal plugins
+#----------------------------------------------------------------------------------------------------
+if [[ ! $TTY =~ "/dev/tty" ]]; then
+    # non-tty plugins
+    auto_source ~/.config/Submodules/fast-syntax-highlighting/fast-syntax-highlighting.plugin.zsh
+    auto_compile ~/.config/Submodules/fast-syntax-highlighting/fast-string-highlight
+    auto_compile ~/.config/Submodules/fast-syntax-highlighting/fast-highlight
+
+    auto_source ~/.config/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+    auto_compile ~/.config/Submodules/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+fi
+
+auto_source ~/.config/Submodules/zsh-autopair/zsh-autopair.plugin.zsh
+auto_compile ~/.config/Submodules/zsh-autopair/autopair.zsh
+
+auto_source ~/.config/Submodules/zsh-history-substring-search/zsh-history-substring-search.plugin.zsh
+auto_compile ~/.config/Submodules/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+auto_source ~/.config/Submodules/zsh-completions/zsh-completions.plugin.zsh
+
+# FZF
+if ! command -v fzf > /dev/null; then 
+    ~/.config/Submodules/fzf/install --no-bash --no-fish --no-key-bindings --no-completion --no-update-rc --bin
+fi
+auto_source ~/.config/Submodules/fzf/shell/key-bindings.zsh
+eval bindkey '^R' fzf-history-widget
