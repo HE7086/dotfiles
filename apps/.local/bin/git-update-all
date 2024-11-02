@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for repo in $(ls -a); do
+  if [[ ! -d "$repo/.git" ]]; then
+    continue
+  fi
+  git -C $repo pull
+  git -C $repo submodule update --init --recursive
+done
