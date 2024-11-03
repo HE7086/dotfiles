@@ -21,13 +21,6 @@ return {
   },
 
   {
-    "windwp/nvim-autopairs",
-    config = function(plugin, opts)
-      require("astronvim.plugins.configs.nvim-autopairs")(plugin, opts)
-    end,
-  },
-
-  {
     "NoahTheDuke/vim-just",
     ft = { "just" },
   },
@@ -59,6 +52,13 @@ return {
   --     vim.fn["mkdp#util#install"]()
   --   end,
   -- },
+
+  {
+    "akinsho/toggleterm.nvim",
+    opts = function(_, opts)
+      opts.direction = "float"
+    end,
+  },
 
   {
     "max397574/better-escape.nvim",

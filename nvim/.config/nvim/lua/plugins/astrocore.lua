@@ -25,7 +25,8 @@ return {
         sidescrolloff = 8,
         showtabline = 1,
       },
-      g = { -- vim.g.<key>
+      g = {
+        -- vim.g.<key>
       },
     },
     mappings = {
@@ -42,16 +43,9 @@ return {
           end,
           desc = "Previous buffer",
         },
-
-        ["<Leader>bD"] = {
-          function()
-            require("astroui.status.heirline").buffer_picker(function(bufnr)
-              require("astrocore.buffer").close(bufnr)
-            end)
-          end,
-          desc = "Pick to close",
-        },
-        ["<Leader>b"] = { desc = "Buffers" },
+      },
+      i = {
+        ["<F7>"] = false,
       },
       t = {
         -- setting a mapping to false will disable it
@@ -67,7 +61,7 @@ return {
           group = "autohidetabline",
           callback = function()
             local new_showtabline = #vim.t.bufs > 1 and 2 or 1
-            if new_showtabline ~= vim.opt.showtabline:get() then
+            if new_showtabline ~= vim.opt.showtabline then
               vim.opt.showtabline = new_showtabline
             end
           end,
