@@ -1,5 +1,5 @@
 pkgname=ttc-iosevka-he7086
-pkgver=31.0.0
+pkgver=32.0.1
 _git_name=Iosevka-${pkgver}
 pkgrel=1
 pkgdesc="Typeface family designed for coding, terminal use and technical documents. Customized verion for he7086."
@@ -9,8 +9,8 @@ license=("custom:OFL")
 makedepends=("git" "ttfautohint" "npm")
 source=("https://github.com/be5invis/Iosevka/archive/refs/tags/v${pkgver}.tar.gz"
         "private-build-plans.toml")
-sha256sums=('9a5edeb12c69ccdefbe8a707e493c408ccf96c5003343c3b57b326573fe62f18'
-            '160cebe1237303bea8b4dfedca6ba2d0890062112bffccdf49777326514f8a86')
+sha256sums=('8b365bff6cefd73b76323cd2bf4ae097e63e182cada02f2807d675f038d7eb90'
+            '4f5be414d014e8b95b6c3f6e0c5deae0a3559bb0df732d78dce2543c671cecbf')
 
 prepare() {
     cp "private-build-plans.toml" "${_git_name}/private-build-plans.toml"
@@ -20,7 +20,7 @@ build() {
     cd "${_git_name}"
     npm install
     npm update
-    npm run build -- ttc::iosevkaHe7086
+    npm run build -- ttc::iosevkaHe7086 --jCmd=8
 }
 
 package() {

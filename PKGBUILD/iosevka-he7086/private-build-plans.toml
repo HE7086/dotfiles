@@ -23,7 +23,8 @@ percent = "rings-continuous-slash"
 f = "flat-hook-tailed"
 
 [buildPlans.iosevkaHe7086.ligations]
-enables = [ "arrow"
+enables = [ "arrow-l"
+          , "arrow-r"
           , "center-ops"
           , "ltgt-diamond"
           , "brst"
