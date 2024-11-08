@@ -1,3 +1,4 @@
+--- @sync entry
 return {
 	entry = function(_, _)
 		local h = cx.active.current.hovered
