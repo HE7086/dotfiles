@@ -1,0 +1,21 @@
+font-family = "monospace"
+font-size = 14
+
+theme = Breeze
+
+background = #232627
+foreground = #fcfcfc
+
+selection-invert-fg-bg = true
+
+cursor-style = block
+cursor-style-blink = false
+
+mouse-hide-while-typing = true
+
+shell-integration = zsh
+shell-integration-features = no-cursor
+
+auto-update = off
+
+# vim: ft=config
