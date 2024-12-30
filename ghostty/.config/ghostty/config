@@ -1,7 +1,7 @@
 font-family = "monospace"
 font-size = 14
-font-feature = -liga
-font-feature = -calt
+# font-feature = -liga
+# font-feature = -calt
 font-feature = -dlig
 
 theme = Breeze
@@ -10,6 +10,8 @@ background = #232627
 foreground = #fcfcfc
 
 selection-invert-fg-bg = true
+
+unfocused-split-opacity = 1
 
 cursor-style = block
 cursor-style-blink = false

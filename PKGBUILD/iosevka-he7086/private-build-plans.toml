@@ -29,6 +29,8 @@ enables = [ "arrow-l"
           , "ltgt-diamond"
           , "brst"
           , "html-comment"
+          , "lteq-separate"
+          , "gteq-separate"
           ]
 
 [buildPlans.iosevkaHe7086.excludeChars]
