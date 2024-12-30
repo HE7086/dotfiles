@@ -238,3 +238,9 @@ function ssh-exit() {
 #     zle -N zle-line-init
 # }
 # cursor_mode
+
+
+function terminfo() {
+    # https://ghostty.org/docs/help/terminfo
+    infocmp -x | ssh $1 -- tic -x -
+}
