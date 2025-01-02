@@ -3,6 +3,7 @@ font-size = 14
 # font-feature = -liga
 # font-feature = -calt
 font-feature = -dlig
+# -> <- >= <=
 
 theme = Breeze
 
@@ -18,9 +19,13 @@ cursor-style-blink = false
 
 mouse-hide-while-typing = true
 
+window-save-state = never
+
 # shell-integration = zsh
 shell-integration-features = no-cursor
 
 auto-update = off
+
+keybind = f11=toggle_fullscreen
 
 # vim: ft=config
