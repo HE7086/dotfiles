@@ -18,11 +18,11 @@ rules = [
     # Archives
     { mime = "application/zip",             fg = "magenta" },
     { mime = "application/gzip",            fg = "magenta" },
-    { mime = "application/x-tar",           fg = "magenta" },
-    { mime = "application/x-bzip",          fg = "magenta" },
-    { mime = "application/x-bzip2",         fg = "magenta" },
-    { mime = "application/x-7z-compressed", fg = "magenta" },
-    { mime = "application/x-rar",           fg = "magenta" },
+    { mime = "application/tar",             fg = "magenta" },
+    { mime = "application/bzip",            fg = "magenta" },
+    { mime = "application/bzip2",           fg = "magenta" },
+    { mime = "application/7z-compressed",   fg = "magenta" },
+    { mime = "application/rar",             fg = "magenta" },
     { mime = "application/xz",              fg = "magenta" },
     { mime = "application/zstd",            fg = "magenta" },
 

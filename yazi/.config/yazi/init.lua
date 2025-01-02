@@ -24,16 +24,16 @@ end, 0, Header.LEFT)
 
 -- increase the width of `size` to prevent wobbling
 function Status:size()
-  local h = self._tab.current.hovered
+  local h = self._current.hovered
   if not h then
-    return ui.Line({})
+    return ""
   end
 
   local style = self:style()
   local file_size = string.format(" %8s ", ya.readable_size(h:size() or h.cha.len))
   return ui.Line({
-    ui.Span(file_size):fg(style.bg):bg(THEME.status.separator_style.bg),
-    ui.Span(THEME.status.separator_close):fg(THEME.status.separator_style.fg),
+    ui.Span(file_size):fg(style.alt.fg):bg(style.alt.bg),
+    ui.Span(THEME.status.separator_close):fg(style.alt.fg),
   })
 end
 
@@ -53,7 +53,7 @@ end
 
 -- modified time
 Status:children_add(function(self)
-  local h = self._tab.current.hovered
+  local h = self._current.hovered
   local time = (h.cha.mtime or 0) // 1
 	if time == 0 then
 		return ui.Line("")
@@ -66,7 +66,7 @@ end, 0, Status.RIGHT)
 
 -- show user group next to permissions
 Status:children_add(function(self)
-  local h = self._tab.current.hovered
+  local h = self._current.hovered
   local user = h.cha.uid and ya.user_name(h.cha.uid) or h.cha.uid
   local group = h and h.cha.gid and ya.user_name(h.cha.gid) or h.cha.gid
   return ui.Line({
