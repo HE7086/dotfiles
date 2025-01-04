@@ -1,14 +1,9 @@
-font-family = "monospace"
+font-family = monospace
 font-size = 14
 # font-feature = -liga
 # font-feature = -calt
 font-feature = -dlig
 # -> <- >= <=
-
-theme = Breeze
-
-background = #232627
-foreground = #fcfcfc
 
 selection-invert-fg-bg = true
 
@@ -27,5 +22,25 @@ shell-integration-features = no-cursor
 auto-update = off
 
 keybind = f11=toggle_fullscreen
+
+# theme = Breeze
+palette = 0=#232627
+palette = 1=#ed1515
+palette = 2=#11d116
+palette = 3=#f67400
+palette = 4=#1d99f3
+palette = 5=#9b59b6
+palette = 6=#1abc9c
+palette = 7=#fcfcfc
+palette = 8=#7f8c8d
+palette = 9=#c0392b
+palette = 10=#1cdc9a
+palette = 11=#fdbc4b
+palette = 12=#3daee9
+palette = 13=#8e44ad
+palette = 14=#16a085
+palette = 15=#ffffff
+background = #232627
+foreground = #fcfcfc
 
 # vim: ft=config
