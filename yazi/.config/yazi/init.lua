@@ -24,17 +24,17 @@ end, 0, Header.LEFT)
 
 -- increase the width of `size` to prevent wobbling
 function Status:size()
-  local h = self._current.hovered
-  if not h then
-    return ""
-  end
+	local h = self._current.hovered
+	if not h then
+		return ""
+	end
 
-  local style = self:style()
+	local style = self:style()
   local file_size = string.format(" %8s ", ya.readable_size(h:size() or h.cha.len))
-  return ui.Line({
-    ui.Span(file_size):fg(style.alt.fg):bg(style.alt.bg),
-    ui.Span(THEME.status.separator_close):fg(style.alt.fg),
-  })
+	return ui.Line {
+    ui.Span(file_size):style(style.alt),
+		ui.Span(th.status.sep_left.close):fg(style.alt.bg),
+	}
 end
 
 -- show symlink in status bar
@@ -77,4 +77,20 @@ Status:children_add(function(self)
 end, 1, Status.RIGHT)
 
 -- remove percentage
-Status:children_remove(5, Status.RIGHT)
+-- Status:children_remove(5, Status.RIGHT)
+function Status:percent()
+  return
+end
+
+function Status:position()
+	local cursor = self._current.cursor
+	local length = #self._current.files
+
+	local style = self:style()
+	return ui.Line {
+	  ui.Span(" "),
+		ui.Span(th.status.sep_right.open):fg(style.main.bg):bg("reset"),
+		ui.Span(string.format(" %2d/%-2d ", math.min(cursor + 1, length), length)):style(style.main),
+		ui.Span(th.status.sep_right.close):fg(style.main.bg):bg("reset"),
+	}
+end
