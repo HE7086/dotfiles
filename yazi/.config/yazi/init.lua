@@ -1,19 +1,20 @@
 function Linemode:custom()
   local spans = { ui.Span(" ") }
   if self._file.cha.is_link then
-    spans[#spans + 1] = ui.Span("-> ")
-  elseif self._file.cha.is_orphan then
-    spans[#spans + 1] = ui.Span("-x ")
+    if self._file.cha.is_orphan then
+      spans[#spans + 1] = ui.Span("-x ")
+    else
+      spans[#spans + 1] = ui.Span("-> ")
+    end
   end
 
-	local size = self._file:size()
-	if size then
-    spans[#spans + 1] = ui.Span(size and ya.readable_size(size):gsub(" ", "") or "")
-	else
+  if self._file.cha.is_dir then
 		local folder = cx.active:history(self._file.url)
     spans[#spans + 1] = ui.Span(folder and tostring(#folder.files) or "")
-	end
-
+  else
+	  local size = self._file:size()
+    spans[#spans + 1] = ui.Span(size and ya.readable_size(size):gsub(" ", "") or "")
+  end
   return ui.Line(spans)
 end
 
