@@ -8,19 +8,13 @@ function Linemode:custom()
     end
   end
 
-  if self._file.cha.is_dir then
-		local folder = cx.active:history(self._file.url)
-    spans[#spans + 1] = ui.Span(folder and tostring(#folder.files) or "")
-  else
-	  local size = self._file:size()
-    spans[#spans + 1] = ui.Span(size and ya.readable_size(size):gsub(" ", "") or "")
-  end
+  spans[#spans + 1] = ui.Span(self:size())
   return ui.Line(spans)
 end
 
 -- show user@hostname in header
 Header:children_add(function()
-  return ui.Line(string.format("%s@%s ", ya.user_name(), ya.host_name()))
+  return ui.Line("%s@%s ", ya.user_name(), ya.host_name())
 end, 0, Header.LEFT)
 
 -- increase the width of `size` to prevent wobbling
@@ -31,9 +25,8 @@ function Status:size()
 	end
 
 	local style = self:style()
-  local file_size = string.format(" %8s ", ya.readable_size(h:size() or h.cha.len))
 	return ui.Line {
-    ui.Span(file_size):style(style.alt),
+    ui.Span(" %8s ", ya.readable_size(h:size() or h.cha.len)):style(style.alt),
 		ui.Span(th.status.sep_left.close):fg(style.alt.bg),
 	}
 end
@@ -71,9 +64,9 @@ Status:children_add(function(self)
   local user = h.cha.uid and ya.user_name(h.cha.uid) or h.cha.uid
   local group = h and h.cha.gid and ya.user_name(h.cha.gid) or h.cha.gid
   return ui.Line({
-    ui.Span(string.format(" %s", user)):fg("yellow"),
+    ui.Span(" %s", user):fg("yellow"),
     ui.Span(":"),
-    ui.Span(string.format("%s ", group)):fg("yellow"),
+    ui.Span("%s ", group):fg("yellow"),
   })
 end, 1, Status.RIGHT)
 
