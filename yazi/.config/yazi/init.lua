@@ -14,7 +14,7 @@ end
 
 -- show user@hostname in header
 Header:children_add(function()
-  return ui.Line("%s@%s ", ya.user_name(), ya.host_name())
+  return ui.Line(string.format("%s@%s ", ya.user_name(), ya.host_name()))
 end, 0, Header.LEFT)
 
 -- increase the width of `size` to prevent wobbling
