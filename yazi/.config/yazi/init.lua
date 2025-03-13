@@ -26,7 +26,7 @@ function Status:size()
 
 	local style = self:style()
 	return ui.Line {
-    ui.Span(" %8s ", ya.readable_size(h:size() or h.cha.len)):style(style.alt),
+    ui.Span(string.format(" %8s ", ya.readable_size(h:size() or h.cha.len))):style(style.alt),
 		ui.Span(th.status.sep_left.close):fg(style.alt.bg),
 	}
 end
@@ -64,9 +64,9 @@ Status:children_add(function(self)
   local user = h.cha.uid and ya.user_name(h.cha.uid) or h.cha.uid
   local group = h and h.cha.gid and ya.user_name(h.cha.gid) or h.cha.gid
   return ui.Line({
-    ui.Span(" %s", user):fg("yellow"),
+    ui.Span(string.format(" %s", user)):fg("yellow"),
     ui.Span(":"),
-    ui.Span("%s ", group):fg("yellow"),
+    ui.Span(string.format("%s ", group)):fg("yellow"),
   })
 end, 1, Status.RIGHT)
 
