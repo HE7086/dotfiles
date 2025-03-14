@@ -7,6 +7,7 @@ return {
       "diff",
       "html",
       "json",
+      "just",
       "lua",
       "make",
       "markdown",
