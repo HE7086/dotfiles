@@ -1,6 +1,6 @@
 [status]
-separator_open = ""
-separator_close = ""
+sep_left = { open = "", close = "" }
+sep_right = { open = "", close = "" }
 
 mode_normal = { fg = "white", bg = "blue" }
 mode_select = { fg = "white", bg = "red" }
