@@ -102,7 +102,8 @@ function rbt2win() {
 # alias fixkeymap='setxkbmap -option caps:escape_shifted_capslock'
 alias igtop='sudo intel_gpu_top'
 
-alias printarg='python -c "print(__import__(\"sys\").argv[1:])"'
+alias printarg='python3 -c "print(__import__(\"sys\").argv[1:])"'
+alias unquote='python3 -c "import sys; from urllib.parse import unquote; print(unquote(sys.stdin.read()));"'
 
 alias grep='grep --color=auto'
 
