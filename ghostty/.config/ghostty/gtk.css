@@ -41,6 +41,6 @@ tabbox tab label {
   min-height: 10px;
 }
 
-tabboxchild {
+tabboxchild, tabbox button {
   border-radius: 0;
 }
