@@ -43,4 +43,6 @@ palette = 15=#ffffff
 background = #232627
 foreground = #fcfcfc
 
+gtk-custom-css = gtk.css
+
 # vim: ft=config
