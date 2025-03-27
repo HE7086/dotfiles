@@ -14,10 +14,38 @@ return {
     opts = {},
   },
 
+  -- {
+  --   "goolord/alpha-nvim",
+  --   opts = require("alpha.themes.startify").config,
+  --   config = false,
+  -- },
   {
-    "goolord/alpha-nvim",
-    opts = require("alpha.themes.startify").config,
-    config = false,
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          keys = {
+            { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+            { icon = " ", key = "s", desc = "Restore Session", action = "session" },
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+          header = [[
+
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+        },
+        sections = {
+          { section = "header" },
+          { icon = " ", section = "keys", indent = 2, padding = 1 },
+          { icon = " ", title = "Recent Files", limit = 10, section = "recent_files", indent = 2, padding = 1 },
+          { section = "startup" },
+        },
+      },
+    },
   },
 
   {
@@ -25,12 +53,12 @@ return {
     ft = { "just" },
   },
 
-  {
-    "mrded/nvim-lsp-notify",
-    opts = {
-      notify = require("notify"),
-    },
-  },
+  -- {
+  --   "mrded/nvim-lsp-notify",
+  --   opts = {
+  --     notify = require("notify"),
+  --   },
+  -- },
 
   { "HE7086/sudoedit.nvim" },
 

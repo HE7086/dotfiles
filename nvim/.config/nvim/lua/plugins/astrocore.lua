@@ -5,7 +5,7 @@ return {
       large_buf = { size = 1024 * 500, lines = 10000 },
       autopairs = true,
       cmp = true,
-      diagnostics_mode = 3,
+      diagnostics = { virtual_text = true, virtual_lines = false },
       highlighturl = true,
       notifications = true,
     },
