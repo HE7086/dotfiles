@@ -24,6 +24,7 @@ return {
     opts = {
       image = { enabled = false },
       dashboard = {
+        autokeys = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
         preset = {
           keys = {
             { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
@@ -53,13 +54,6 @@ return {
     "NoahTheDuke/vim-just",
     ft = { "just" },
   },
-
-  -- {
-  --   "mrded/nvim-lsp-notify",
-  --   opts = {
-  --     notify = require("notify"),
-  --   },
-  -- },
 
   { "HE7086/sudoedit.nvim" },
 

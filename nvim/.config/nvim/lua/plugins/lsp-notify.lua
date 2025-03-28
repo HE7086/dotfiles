@@ -1,3 +1,10 @@
+-- return {
+--   "mrded/nvim-lsp-notify",
+--   opts = {
+--     notify = require("notify"),
+--   },
+-- }
+
 -- https://github.com/folke/snacks.nvim/blob/main/docs/notifier.md
 ---@type table<number, {token:lsp.ProgressToken, msg:string, done:boolean}[]>
 local progress = vim.defaulttable()

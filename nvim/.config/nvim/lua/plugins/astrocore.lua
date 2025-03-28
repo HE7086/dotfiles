@@ -67,16 +67,16 @@ return {
           end,
         },
       },
-      alpha_i = {
-        {
-          event = "Filetype",
-          pattern = "alpha",
-          desc = "Open a unnamed buffer",
-          callback = function(event)
-            vim.keymap.set("n", "i", "<Cmd>enew!<CR>", { buffer = event.buf })
-          end,
-        },
-      },
+      -- alpha_i = {
+      --   {
+      --     event = "Filetype",
+      --     pattern = "alpha",
+      --     desc = "Open a unnamed buffer",
+      --     callback = function(event)
+      --       vim.keymap.set("n", "i", "<Cmd>enew!<CR>", { buffer = event.buf })
+      --     end,
+      --   },
+      -- },
     },
     commands = {
       W = {
