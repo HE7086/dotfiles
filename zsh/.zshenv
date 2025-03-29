@@ -6,7 +6,7 @@ export LESSHISTFILE=-
 export GPG_TTY=$TTY
 export MANPAGER='sh -c "col -bx | bat -pl man"'
 export MANROFFOPT='-c'
-export LESS='-R'
+export LESS='-r'
 
 typeset -U PATH path
 path=(
