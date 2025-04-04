@@ -22,6 +22,10 @@ shell-integration-features = no-cursor
 auto-update = off
 
 keybind = f11=toggle_fullscreen
+keybind = alt+h=goto_split:left
+keybind = alt+j=goto_split:down
+keybind = alt+k=goto_split:up
+keybind = alt+l=goto_split:right
 
 # theme = Breeze
 palette = 0=#232627
