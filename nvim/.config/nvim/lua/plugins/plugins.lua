@@ -6,6 +6,10 @@ return {
     opts = {},
   },
   { "HE7086/sudoedit.nvim" },
+  {
+    "NoahTheDuke/vim-just",
+    ft = { "just" },
+  },
 
   -- disabled plugins
   { "echasnovski/mini.animate", enabled = false },
