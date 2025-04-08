@@ -1,9 +1,6 @@
 return {
   "HE7086/code-runner.nvim",
   cmd = "CodeRunnerRun",
-  dependencies = {
-    "akinsho/toggleterm.nvim",
-  },
   opts = {
     runners = {
       {
@@ -24,8 +21,8 @@ return {
       },
     },
     term = function(command)
-        require("toggleterm").exec(command, nil, nil, nil, nil, "Code Runner")
-    end
+      Snacks.terminal(command)
+    end,
   },
   keys = {
     { "<F22>", "<Cmd>CodeRunnerRun<Cr>", desc = "Run Code" },
