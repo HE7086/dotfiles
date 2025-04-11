@@ -17,6 +17,7 @@ return {
       "make",
       "markdown",
       "markdown_inline",
+      "nix",
       "printf",
       "python",
       "query",
