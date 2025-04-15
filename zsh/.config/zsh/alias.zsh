@@ -25,9 +25,10 @@ alias sl='ls'
 alias py='python'
 alias a='aria2c'
 alias svim='nvim --clean'
-alias vim=nvim
+alias vim='nvim'
 alias pc='proxychains'
 alias tm='tmux -2'
+alias tf='tofu'
 
 alias maek='make'
 
