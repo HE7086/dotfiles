@@ -244,3 +244,7 @@ function terminfo() {
     # https://ghostty.org/docs/help/terminfo
     infocmp -x | ssh $1 -- tic -x -
 }
+
+function ns() {
+  nix shell "nixpkgs#$@"
+}
