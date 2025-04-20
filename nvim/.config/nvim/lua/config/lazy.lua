@@ -15,10 +15,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-  spec = {
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-    { import = "plugins" },
-  },
+  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+  { import = "plugins" },
+}, {
   defaults = {
     lazy = false,
     version = "*",
@@ -38,7 +37,6 @@ require("lazy").setup({
       },
     },
   },
-}, {
   dev = {
     fallback = true,
     path = "~/code/neovim",
