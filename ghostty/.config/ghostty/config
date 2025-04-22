@@ -19,6 +19,8 @@ window-save-state = never
 # shell-integration = zsh
 shell-integration-features = no-cursor
 
+scrollback-limit = 50_000_000
+
 auto-update = off
 
 keybind = f11=toggle_fullscreen
