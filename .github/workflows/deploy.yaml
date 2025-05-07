@@ -36,7 +36,7 @@ jobs:
             -o CertificateFile=~/.ssh/id_ed25519-cert.pub \
             -o Ciphers=aes256-gcm@openssh.com \
             -o MACs=hmac-sha2-512-etm@openssh.com \
-            -o KexAlgorithms=sntrup761x25519-sha512 \
+            -o KexAlgorithms=sntrup761x25519-sha512@openssh.com \
             -o HostKeyAlgorithms=ssh-ed25519-cert-v01@openssh.com \
             -o PubkeyAcceptedAlgorithms=ssh-ed25519-cert-v01@openssh.com,ssh-ed25519 \
             -o CASignatureAlgorithms=ssh-ed25519 \
