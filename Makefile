@@ -11,8 +11,11 @@ $(pkgs): %:
 	@echo "installing package $@"
 	@stow -v --no-folding $@ --target=$(HOME)
 
+zsh: Submodules
+
 .PHONY: Submodules
 Submodules:
+	git submodule update --init --recursive
 	@mkdir -p ~/.config/Submodules
 	@if [ -w . ]; then \
 		for mod in $(abspath $(wildcard Submodules/*)); do \
