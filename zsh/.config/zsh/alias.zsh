@@ -32,6 +32,9 @@ alias tf='tofu'
 
 alias maek='make'
 
+alias sc='systemctl'
+alias rc='resolvectl'
+
 alias status='systemctl status'
 alias ustatus='systemctl --user status'
 
