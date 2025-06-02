@@ -12,7 +12,7 @@ autoload -Uz compinit && compinit -d ~/.cache/zsh/zcompdump
 setopt globdots
 
 setopt correct
-setopt complete_aliases
+# setopt complete_aliases
 setopt auto_menu
 setopt complete_in_word
 setopt always_to_end
