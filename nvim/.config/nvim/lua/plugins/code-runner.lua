@@ -21,7 +21,10 @@ return {
       },
     },
     term = function(command)
-      Snacks.terminal(command)
+      Snacks.terminal(command, {
+        auto_insert = true,
+        auto_close = false,
+      })
     end,
   },
   keys = {
