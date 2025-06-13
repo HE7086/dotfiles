@@ -5,7 +5,13 @@ set follow-fork-mode child
 source ~/.config/Submodules/gdb-dashboard/.gdbinit
 
 dashboard -layout source expressions variables
+dashboard source -style height 20
+dashboard source -style highlight-line True
+dashboard -style style_selected_1 7
 
+define wat
+  dashboard expression watch $arg0
+end
 define dashboard-profile
   dashboard -layout assembly breakpoints expressions history registers source stack threads variables
 end
