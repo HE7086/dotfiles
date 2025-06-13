@@ -19,3 +19,6 @@
 [submodule "Submodules/zsh-autopair"]
 	path = Submodules/zsh-autopair
 	url = https://github.com/hlissner/zsh-autopair.git
+[submodule "Submodules/gdb-dashboard"]
+	path = Submodules/gdb-dashboard
+	url = https://github.com/cyrus-and/gdb-dashboard.git

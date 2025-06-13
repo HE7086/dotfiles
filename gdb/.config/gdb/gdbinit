@@ -1,4 +1,11 @@
 set debuginfod enabled on
 set disassembly-flavor intel
 set follow-fork-mode child
-add-auto-load-safe-path /
+
+source ~/.config/Submodules/gdb-dashboard/.gdbinit
+
+dashboard -layout source expressions variables
+
+define dashboard-profile
+  dashboard -layout assembly breakpoints expressions history registers source stack threads variables
+end
