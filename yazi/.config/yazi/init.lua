@@ -8,7 +8,7 @@ function Linemode:custom()
     end
   end
 
-  spans[#spans + 1] = ui.Span(self:size())
+  spans[#spans + 1] = ui.Span(string.format("%4s", self:size()))
   return ui.Line(spans)
 end
 
@@ -19,16 +19,16 @@ end, 0, Header.LEFT)
 
 -- increase the width of `size` to prevent wobbling
 function Status:size()
-	local h = self._current.hovered
-	if not h then
-		return ""
-	end
+  local h = self._current.hovered
+  if not h then
+    return ""
+  end
 
-	local style = self:style()
-	return ui.Line {
+  local style = self:style()
+  return ui.Line {
     ui.Span(string.format(" %8s ", ya.readable_size(h:size() or h.cha.len))):style(style.alt),
-		ui.Span(th.status.sep_left.close):fg(style.alt.bg),
-	}
+    ui.Span(th.status.sep_left.close):fg(style.alt.bg),
+  }
 end
 
 -- show symlink in status bar
@@ -46,21 +46,27 @@ function Status:name()
 end
 
 -- modified time
-Status:children_add(function(self)
-  local h = self._current.hovered
+Status:children_add(function()
+  local h = cx.active.current.hovered
+  if not h then
+    return ""
+  end 
   local time = (h.cha.mtime or 0) // 1
-	if time == 0 then
-		return ui.Line("")
-	elseif os.date("%Y", time) == os.date("%Y") then
-		return ui.Line(os.date("%m/%d %H:%M", time))
-	else
-		return ui.Line(os.date("%Y/%m/%d %H:%M", time))
-	end
+  if time == 0 then
+    return ui.Line("")
+  elseif os.date("%Y", time) == os.date("%Y") then
+    return ui.Line(os.date("%m/%d %H:%M", time))
+  else
+    return ui.Line(os.date("%Y/%m/%d %H:%M", time))
+  end
 end, 0, Status.RIGHT)
 
 -- show user group next to permissions
-Status:children_add(function(self)
-  local h = self._current.hovered
+Status:children_add(function()
+  local h = cx.active.current.hovered
+  if not h then
+    return ""
+  end
   local user = h.cha.uid and ya.user_name(h.cha.uid) or h.cha.uid
   local group = h and h.cha.gid and ya.user_name(h.cha.gid) or h.cha.gid
   return ui.Line({
@@ -77,14 +83,13 @@ function Status:percent()
 end
 
 function Status:position()
-	local cursor = self._current.cursor
-	local length = #self._current.files
-
-	local style = self:style()
-	return ui.Line {
-	  ui.Span(" "),
-		ui.Span(th.status.sep_right.open):fg(style.main.bg):bg("reset"),
-		ui.Span(string.format(" %2d/%-2d ", math.min(cursor + 1, length), length)):style(style.main),
-		ui.Span(th.status.sep_right.close):fg(style.main.bg):bg("reset"),
-	}
+  local cursor = self._current.cursor
+  local length = #self._current.files
+  local style = self:style()
+  return ui.Line {
+    ui.Span(" "),
+    ui.Span(th.status.sep_right.open):fg(style.main.bg):bg("reset"),
+    ui.Span(string.format(" %2d/%-2d ", math.min(cursor + 1, length), length)):style(style.main),
+    ui.Span(th.status.sep_right.close):fg(style.main.bg):bg("reset"),
+  }
 end
