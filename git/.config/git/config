@@ -81,6 +81,7 @@
     sup = submodule update --init --recursive --recommend-shallow
     mt = mergetool
     ac = !git add . && git commit
+    au = !git add -u && git commit
     stasha = stash --all
     bl = blame -w -CCC
     dw = diff --word-diff

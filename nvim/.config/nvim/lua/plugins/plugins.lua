@@ -10,7 +10,12 @@ return {
     "NoahTheDuke/vim-just",
     ft = { "just" },
   },
-
+  {
+    "echasnovski/mini.pairs",
+    opts = {
+      skip_unbalanced = false,
+    },
+  },
   -- disabled plugins
   { "echasnovski/mini.animate", enabled = false },
   { "folke/flash.nvim", enabled = false },

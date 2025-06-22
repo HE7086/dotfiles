@@ -9,3 +9,4 @@ local map = LazyVim.safe_keymap_set
 -- end, { desc = "focus explorer", expr = true, silent = true })
 
 vim.api.nvim_create_user_command("W", "w", {})
+map({ "n" }, "ZZ", "<CMD>wqa<CR>")
