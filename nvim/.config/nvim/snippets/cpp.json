@@ -2,7 +2,15 @@
   "fori": {
     "prefix": "fori",
     "body": [
-        "for (${1:size_t} ${2:i} = 0; $2 < ${3:length}; $2++) {",
+        "for (${1:size_t} ${2:i} = ${3:0}; $2 < ${4:length}; $2++) {",
+        "\t$0",
+        "}"
+    ]
+  },
+  "forr": {
+    "prefix": "forr",
+    "body": [
+        "for (${1:int} ${2:i} = ${3:length}; $2 >= ${4:0}; $2--) {",
         "\t$0",
         "}"
     ]
