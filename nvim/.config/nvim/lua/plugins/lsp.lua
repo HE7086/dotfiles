@@ -7,6 +7,9 @@ return {
 
       -- nix profile install nixpkgs#nixd
       nixd = {},
+      clangd = {
+        cmd = { 'clangd', '--experimental-modules-support' },
+      },
     },
   },
 }

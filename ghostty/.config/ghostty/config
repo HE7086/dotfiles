@@ -52,3 +52,4 @@ foreground = #fcfcfc
 gtk-custom-css = gtk.css
 
 # vim: ft=config
+keybind = shift+enter=text:\n
