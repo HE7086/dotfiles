@@ -14,3 +14,12 @@ If:
   PathMatch: .*\.c
 CompileFlags:
     Add: [-std=c17]
+
+---
+
+CompileFlags:
+  CompilationDatabase: build
+
+Diagnostics:
+  ClangTidy:
+    UseBuildDir: Yes
