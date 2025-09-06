@@ -5,3 +5,4 @@
 vim.g.snacks_animate = false
 vim.o.conceallevel = 0
 vim.g.autoformat = false
+vim.opt.relativenumber = false

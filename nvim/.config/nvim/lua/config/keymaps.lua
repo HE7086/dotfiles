@@ -10,3 +10,4 @@ local map = LazyVim.safe_keymap_set
 
 vim.api.nvim_create_user_command("W", "w", {})
 map({ "n" }, "ZZ", "<CMD>wqa<CR>")
+map({ "n" }, "<F5>", vim.lsp.buf.code_action)

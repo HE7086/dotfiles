@@ -86,3 +86,8 @@
     bl = blame -w -CCC
     dw = diff --word-diff
     yolo = !git add -A && git commit -m \"$(curl -Ls http://whatthecommit.com/index.txt)\" && git pull --rebase && git push
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
