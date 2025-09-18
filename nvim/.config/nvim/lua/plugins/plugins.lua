@@ -11,13 +11,13 @@ return {
     ft = { "just" },
   },
   {
-    "echasnovski/mini.pairs",
+    "nvim-mini/mini.pairs",
     opts = {
       skip_unbalanced = false,
     },
   },
   -- disabled plugins
-  { "echasnovski/mini.animate", enabled = false },
+  { "nvim-mini/mini.animate", enabled = false },
   { "folke/flash.nvim", enabled = false },
   {
     "folke/snacks.nvim",
