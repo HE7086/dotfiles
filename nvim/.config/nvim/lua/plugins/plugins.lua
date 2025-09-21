@@ -1,10 +1,5 @@
 return {
   { "tpope/vim-fugitive" },
-  {
-    "kylechui/nvim-surround",
-    event = "VeryLazy",
-    opts = {},
-  },
   { "HE7086/sudoedit.nvim" },
   {
     "NoahTheDuke/vim-just",
@@ -16,18 +11,26 @@ return {
       skip_unbalanced = false,
     },
   },
-  -- disabled plugins
-  { "nvim-mini/mini.animate", enabled = false },
-  { "folke/flash.nvim", enabled = false },
   {
-    "folke/snacks.nvim",
+    "nvim-mini/mini.surround",
+    version = "*",
     opts = {
-      scroll = { enabled = false },
-      indent = { animate = { enabled = false } },
+      mappings = {
+        add = "ys", -- Add surrounding in Normal and Visual modes
+        delete = "ds", -- Delete surrounding
+        replace = "cs", -- Replace surrounding
+
+        find = "gsf", -- Find surrounding (to the right)
+        find_left = "gsF", -- Find surrounding (to the left)
+        highlight = "gsh", -- Highlight surrounding
+        update_n_lines = "gsn", -- Update `n_lines`
+      },
     },
   },
 
-  -- https://github.com/LazyVim/LazyVim/issues/6039
-  -- { "mason-org/mason.nvim", version = "1.11.0" },
-  -- { "mason-org/mason-lspconfig.nvim", version = "1.32.0" },
+  -- {
+  --   "kylechui/nvim-surround",
+  --   event = "VeryLazy",
+  --   opts = {},
+  -- },
 }

@@ -5,7 +5,8 @@ font-size = 14
 font-feature = -dlig
 # -> <- >= <=
 
-selection-invert-fg-bg = true
+selection-foreground = cell-background
+selection-background = cell-foreground
 
 unfocused-split-opacity = 1
 
@@ -28,6 +29,7 @@ keybind = alt+h=goto_split:left
 keybind = alt+j=goto_split:down
 keybind = alt+k=goto_split:up
 keybind = alt+l=goto_split:right
+keybind = shift+enter=text:\n
 
 # theme = Breeze
 palette = 0=#232627
@@ -52,4 +54,3 @@ foreground = #fcfcfc
 gtk-custom-css = gtk.css
 
 # vim: ft=config
-keybind = shift+enter=text:\n

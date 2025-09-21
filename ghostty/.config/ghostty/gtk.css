@@ -5,7 +5,7 @@ https://docs.gtk.org/gtk4/css-properties.html
 */
 
 headerbar {
-  height: 10px;
+  /* height: 10px; */
   padding: 0;
   margin: 0;
 }
