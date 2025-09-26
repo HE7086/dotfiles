@@ -7,11 +7,13 @@ font-feature = -dlig
 
 selection-foreground = cell-background
 selection-background = cell-foreground
+# selection-background = #495459
 
 unfocused-split-opacity = 1
 
 cursor-style = block
 cursor-style-blink = false
+cursor-color = #838a90
 
 mouse-hide-while-typing = true
 
