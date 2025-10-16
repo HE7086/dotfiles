@@ -16,9 +16,9 @@ return {
     version = "*",
     opts = {
       mappings = {
-        add = "ys", -- Add surrounding in Normal and Visual modes
-        delete = "ds", -- Delete surrounding
-        replace = "cs", -- Replace surrounding
+        add = "gsa", -- Add surrounding in Normal and Visual modes
+        delete = "gsd", -- Delete surrounding
+        replace = "gsr", -- Replace surrounding
 
         find = "gsf", -- Find surrounding (to the right)
         find_left = "gsF", -- Find surrounding (to the left)
@@ -27,6 +27,10 @@ return {
       },
     },
   },
+  {
+    "folke/flash.nvim",
+    enabled = false,
+  }
 
   -- {
   --   "kylechui/nvim-surround",

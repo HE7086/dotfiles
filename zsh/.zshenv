@@ -1,7 +1,7 @@
 export ZDOTDIR=$HOME/.config/zsh
 export EDITOR=nvim
 export VISUAL=nvim
-export BROWSER=chromium
+export BROWSER=google-chrome-stable
 export LESSHISTFILE=-
 export GPG_TTY=$TTY
 export MANPAGER='sh -c "col -bx | bat -pl man"'

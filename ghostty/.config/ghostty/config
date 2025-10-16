@@ -21,6 +21,7 @@ window-save-state = never
 
 # shell-integration = zsh
 shell-integration-features = no-cursor
+# shell-integration-features = no-cursor, ssh-terminfo
 
 scrollback-limit = 50_000_000
 

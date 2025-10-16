@@ -9,7 +9,7 @@ prepend_keymap = [
     { on = [ "d", "d" ], run = "remove --force",               desc = "Move files to trash" },
     { on = [ "d", "D" ], run = "remove --force --permanently", desc = "Delete files" },
 
-    { on = [ "@" ], run = 'shell --block --interactive --cursor=0 " $@"', desc = "Run a shell command" },
+    { on = [ "@" ], run = 'shell --block --interactive --cursor=0 " \"$@\""', desc = "Run a shell command" },
 
     { on = [ "<Up>" ],    run = "seek -1", desc = "Scroll up the preview panel" },
     { on = [ "<Down>" ],  run = "seek 1",  desc = "Scroll down the preview panel" },
