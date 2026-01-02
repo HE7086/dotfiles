@@ -1,8 +1,8 @@
 name: "Update Submodules"
 on:
   workflow_dispatch:
-  schedule:
-    - cron:  '30 5 * * *'
+  #schedule:
+  #  - cron:  '30 5 * * *'
 jobs:
   update-submodules:
     runs-on: ubuntu-latest
